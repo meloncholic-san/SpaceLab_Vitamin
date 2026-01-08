@@ -1,0 +1,171 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.main-hero {
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 15 / 8;
+    margin: 0 auto;
+    max-width: 1800px;
+    @include respond-to(md) {
+        margin-top: 110px;
+        aspect-ratio: unset;
+    }
+    &__wrapper {
+        display: flex;
+        height: 100%;
+            @include respond-to(md) {
+                flex-direction: column;
+            }
+    }
+    &__content {
+        width: 50%;
+        padding-left: 202px;
+        padding-top: 257px;
+            @include respond-to(lg) {
+            padding-left: 72px;
+            padding-top: 140px;
+            }
+            @include respond-to(md) {
+            width: unset;
+            padding: 0;
+            margin: 0 auto;
+            }
+    }
+    &__image {
+        &__wrapper {
+            width: 50%;
+            background-color: #F9F9F9;
+                @include respond-to(md) {
+                width: 100%;
+                background-color: white;
+                // height: 300px;
+                }
+            &::before {
+                content: "";
+                position: absolute;
+                display: block;
+                width: 523px;
+                height: 523px;
+                border-radius: 50%;
+                background-color: #8172DD;
+                z-index: 1;
+                width: 29.1%;
+                height: 54.3%;
+                transform: translate(36%, 42%);
+                    @include respond-to(md) {
+                        display: none;
+                    }
+            }
+        }
+        width: 120%;
+        transform: translate(-16.9%, 15.6%);
+        position: relative;
+        z-index: 5;
+            @include respond-to(md) {
+                width: 100%;
+                transform: translate(5.4%, -17%);
+            }
+            @include respond-to(xxs) {
+            width: 160%;
+            transform: translate(-24.6%, -17%);
+            }
+    }
+    &-title {
+        font-family: "Effra", sans-serif;
+        font-weight: 500;
+        font-size: 56px;
+        color: #080808;
+        max-width: 620px;
+        margin-bottom: 42px;
+        letter-spacing: 2.41px;
+            @include respond-to(lg) {
+                font-size: 42px;
+            }
+            @include respond-to(md) {
+                font-size: 24px;
+                max-width: 335px;
+                text-align: center;
+                letter-spacing: 0;
+                margin-bottom: 14px;
+            }
+        span {
+            color: #ED815E;
+        }
+    }
+
+    &-phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        color: variables.$color-secondary-grey;
+        font-size: 20px;
+        max-width: 490px;
+        margin-bottom: 51px;
+        line-height: 1.6em;
+            @include respond-to(md) {
+                font-size: 14px;
+                max-width: 335px;
+                text-align: center;
+                margin-bottom: 22px;
+            }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 33px;
+            @include respond-to(md) {
+                flex-direction: column;
+                max-width: 490px;
+                gap: 19px;
+            }
+    }
+
+    &__elipse-1 {
+    top: 0;
+    left: 25%;
+    transform: rotate(-90deg) translate(27%, 4%);
+    width: 347px;
+    height: 159px;
+        @include respond-to(md) {
+        transform: rotate(180deg) translate(-75%, -219%);
+            left: unset;
+            right: 0;
+            clip-path: inset(0% 0 0 50%);
+            width: 298PX;
+            height: 70px;
+            &::before {
+                border: 28px solid #E99478;
+                border-top: none;
+            }
+        }
+    }
+
+    &__elipse-2 {
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-50%, -24%);
+        @include respond-to(md) {
+        transform: translate(-80%, 392%);
+        bottom: unset;
+        top: 0;
+        left: 0;
+        width: 370px;
+        height: 69px;
+            &::before {
+                border: 28px solid #E99478;
+                border-top: none;
+            }
+        }
+    }
+
+    &__circle {
+    right: 4%;
+    top: 17.6%;
+        @include respond-to(md) {
+            display: none;
+        }
+    }
+}

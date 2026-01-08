@@ -1,0 +1,154 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.banner-purple {
+    position: relative;
+    max-width: 1396px;
+    &__wrapper {
+    position: relative;
+    overflow: hidden;
+
+    background-color: #8172DD;
+    height: 472px;
+    display: flex;
+    align-items: center;
+    padding-left: 70px;
+    border-radius: 24px;
+        @include respond-to(md) {
+            padding: 0;
+            align-items: normal;
+            border-radius: 0px;
+            height: 476px;
+            justify-content: center;
+        }
+        @include respond-to(uxs) {
+            height: 464px;
+        }
+    }
+
+    &__content {
+        @include respond-to(md) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 226px;
+        }
+        @include respond-to(uxs) {
+            margin-top: 195px;
+        }
+    }
+
+    &-title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 50px;
+        margin-bottom: 20px;
+        max-width: 660px;
+        color: white;
+            @include respond-to(md) {
+                font-size: 24px;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+    }
+
+    &-phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 18px;
+        opacity: 0.7;
+        margin-bottom: 30px;
+        max-width: 440px;
+        color: white;
+            @include respond-to(md) {
+                font-size: 14px;
+                text-align: center;
+                max-width: 340px;
+                margin-bottom: 21px;
+            }
+            @include respond-to(uxs) {
+                max-width: 280px;
+            }
+    }
+
+    &-btn {
+        color: black;
+        background-color: white;
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-bold;
+        font-size: 20px;
+        padding: 20px 69px;
+        border-radius: 100px;
+        transition: all 0.3s;
+        cursor: pointer;
+            @media (hover: hover) {
+                &:hover {
+                    background-color: rgb(172, 164, 218);
+                }
+            }
+
+            @include respond-to(md) {
+                font-size: 16px;
+                padding: 15px 30px;
+            }
+    }
+
+    &__elipse-2 {
+        clip-path: inset(0% 0 0 50%);
+        transform: rotate(-90deg) translate(-25%, 240%);
+        bottom: 0px;
+        left: 88px;
+        width: 255px;
+        height: 135px;
+        &::before {
+              border: 40px solid #E99478;
+              border-top: none;
+        }
+        @include respond-to(md) {
+            display: none;
+        }
+    }
+
+    &__circle {
+    top: -25px;
+    left: 50%;
+    transform: translate(137%, 0);
+        @include respond-to(md) {
+            display: none;
+        }
+    }
+
+    &-image-1-desctop {
+    position: absolute;
+    top: -25px;
+    right: 0;
+        @include respond-to(md) {
+            display: none;
+        }
+    }
+    &-image-1-mobile {
+        display: none;
+            @include respond-to(md) {
+                display: block;
+                position: absolute;
+                top: 0;
+            }
+    }
+    &-background {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 1220px;
+        height: 1010px;
+        transform: translate(50%, 0%);
+            @include respond-to(md) {
+            position: absolute;
+            right: 50%;
+            top: 0;
+            width: 100%;
+            height: unset;
+            transform: translate(50%, 0%);
+            }
+    }
+}

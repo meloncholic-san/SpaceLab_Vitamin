@@ -1,0 +1,22 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.products-reviews {
+    margin-top: 100px;
+    padding: 0 202px;
+    margin-bottom: 100px;
+        @include respond-to(lg) {
+            padding: 0 20px;
+        }
+    &__title {
+    font-family: variables.$font-family-main;
+    font-weight: variables.$font-weight-medium;
+    font-size: 30px;
+    max-width: 446px;
+    margin-bottom: 50px;
+        @include respond-from(xl) {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}

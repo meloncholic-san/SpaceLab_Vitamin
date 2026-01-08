@@ -1,0 +1,28 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.product-advertisement {
+    max-width: 1800px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    &__header {
+    font-family: variables.$font-family-main;
+    font-weight: variables.$font-weight-medium;
+    font-size: 30px;
+    margin-bottom: 40px;
+    align-self: flex-start;
+    padding-left: 202px;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+    }
+}

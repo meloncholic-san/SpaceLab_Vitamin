@@ -1,0 +1,33 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.shop-btn {
+    position: relative;
+    font-family: variables.$font-family-main;
+    font-weight: variables.$font-weight-medium;
+    color: #F27E58;
+    font-size: 20px;
+        @include respond-to(md) {
+        margin-left: -18px;
+        font-size: 14px;
+        }
+}
+
+.shop-btn::before {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid #F27E58;
+    border-top: 2px solid #F27E58;
+    transform: rotate(45deg);
+    top: 10px;
+    right: -15px;
+        @include respond-to(md) {
+        width: 6px;
+        height: 6px;
+        top: 6px;
+        right: -12px;
+        }
+}

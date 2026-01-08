@@ -1,0 +1,516 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+
+.product {
+    position: relative;
+    &__wrapper {
+        display: flex;
+    }
+
+    &__image{
+        width: 608px;
+        height: 562px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 30%);
+        caret-color: transparent;
+        &-wrapper {
+            width: 50%;
+            position: relative;
+                &.category--vitamins {
+                    background-color: #6B5EBB;
+                }
+                &.category--weight-loss {
+                    background-color: #A5B3FF;
+                }
+                &.category--pain {
+                    background-color: #91CAF2;
+                }
+                &.category--minerals {
+                    background-color: #94D6BE;
+                }
+                &.category--probiotics {
+                    background-color: #E8939D;
+                }
+                &.category--antioxidants {
+                    background-color: #F2B385;
+                }
+                &.category--prenatal-vitamins {
+                    background-color: #DA91E0;
+                }
+            }
+    }
+
+    &__content-wrapper {
+        width: 50%;
+        position: relative;
+        padding-left: 135px;
+        border-bottom: 1px solid #F2F2F2;
+    }
+
+    &__backlink {
+        position: relative;
+        display: block;
+        color: black;
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 16px;
+        margin-top: 44px;
+            &::after {
+                content: "";
+                position: absolute;
+                width: 9px;
+                height: 9px;
+                border-left: 2px solid black;
+                border-top: 2px solid black;
+                transform: rotate(-45deg);
+                left: -10px;
+                top: 7px;
+            }
+    }
+
+    &__category {
+    font-family: variables.$font-family-second;
+    font-weight: variables.$font-weight-semibold;
+    font-size: 16px;
+    margin-top: 94px;
+    margin-bottom: 13px;
+
+        @include respond-to(lg) {
+            font-size: 12px;
+            margin-top: 8px;
+            margin-bottom: 9px;
+        }
+        &.category--vitamins {
+            color: #6B5EBB;
+        }
+        &.category--weight-loss {
+            color: #A5B3FF;
+        }
+        &.category--pain {
+            color: #91CAF2;
+        }
+        &.category--minerals {
+            color: #94D6BE;
+        }
+        &.category--probiotics {
+            color: #E8939D;
+        }
+        &.category--antioxidants {
+            color: #F2B385;
+        }
+        &.category--prenatal-vitamins {
+            color: #DA91E0;
+        }
+    }
+
+    &__title {
+    font-family: variables.$font-family-main;
+    font-weight: variables.$font-weight-medium;
+    font-size: 40px;
+    max-width: 563px;
+    margin-bottom: 80px;
+    position: relative;
+        &::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: grey;
+            opacity: 0.3;
+            bottom: -40px;
+        }
+        @include respond-to(lg) {
+            font-size: 16px;
+            min-height: 39px;
+            margin-bottom: 17px;
+        }
+    }
+
+    &__cart {
+
+        &-wrapper {
+            max-width: 563px;
+        }
+
+        &-quantity {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+            button {
+                width: 50px;
+                height: 50px;
+                background: #F5F5F5;
+                border-radius: 100%;
+                position: relative;
+                caret-color: transparent;
+            }
+        }
+        &-btn-menus {
+            &::before {
+                content: "";
+                position: absolute;
+                width: 12px;
+                height: 2px;
+                opacity: 0.3;
+                background-color: #000000;
+                left: 50%;
+                transform: translate(-50%,0%);
+            }
+        }
+
+        &-btn-plus {
+            &::before {
+                content: "";
+                position: absolute;
+                width: 12px;
+                height: 2px;
+                background-color: #000000;
+                left: 50%;
+                transform: translate(-50%,0%);
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                width: 2px;
+                height: 12px;
+                background-color: #000000;
+                top: 51%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        &-count {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-regular;
+        font-size: 20px;
+        }
+    }
+
+    &__package {
+        &-wrapper {
+        display: flex;
+        align-items: center;
+        }
+
+        &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-grow: 1;
+        padding-right: 30px;
+        }
+        &-icon {
+            width: 50px;
+            height: 60px;
+        }
+        &__content {
+            margin-left: 20px;
+        }
+        &-quantity {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 16px;
+        }
+        &-desc {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 14px;
+        opacity: 0.7;
+        }
+    }
+
+    &__order-wrapper {
+        padding: 30px;
+        border-radius: 30px;
+        border: 1px solid #E6E6E6;
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        position: relative;
+    }
+
+    &__order-content {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &::before {
+            position: absolute;
+            display: block;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: #F2F2F2;
+            top: -30px;
+        }
+    }
+    &__order-btn {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-bold;
+        font-size: 20px;
+        background-color: #FF7D4E;
+        color: white;
+        padding: 20px 115px;
+        border-radius: 100px;
+    }
+    &__autoship {
+        opacity: 0.5;
+        &-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+        position: relative;
+        }
+
+        &-content {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        }
+
+        &-title {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 14px;
+        white-space: nowrap;
+        }
+
+        &-frequency {
+            position: relative;
+            select {
+            appearance: none;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 8px 36px 8px 16px;
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-semibold;
+            font-size: 14px;
+            cursor: pointer;
+            }
+            &::before {
+            position: absolute;
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-left: 2px solid black;
+            border-top: 2px solid black;
+            transform: rotate(-135deg);
+            right: 12px;
+            top: 14px;
+            }
+         }
+
+         &-checkbox {
+            position: absolute;
+            opacity: 0;
+            width: 62px;
+            height: 36px;
+            right: 0px;
+            z-index: 1;
+        }
+
+        &-custom-checkbox {
+        position: relative;
+        width: 62px;
+        height: 36px;
+        background-color: #FFFFFF;
+        border-radius: 30px;
+        border: 2px solid #DEDEDE;
+        position: relative;
+        transition: background 0.3s ease;
+
+            &::before {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: #DEDEDE;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s ease;
+            }
+        }
+
+  }
+
+  &__autoship-checkbox:checked + &__autoship-custom-checkbox {
+    background: #f68b5c;
+
+    &::before {
+      transform: translateX(20px);
+    }
+  }
+
+
+  &__autoship-title-mobile {
+    display: none;
+  }
+
+  @include respond-to(lg) {
+    &__autoship-title-desctop {
+      display: none;
+    }
+
+    &__autoship-title-mobile {
+      display: inline;
+    }
+  }
+
+
+
+    &__price-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    &__price--regular {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-bold;
+        font-size: 30px;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+    }
+
+    &__price--old {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 16px;
+        position: relative;
+        max-width: 52px;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: black;
+                top: 55%;
+            }
+    }
+
+    &__price--new {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-bold;
+        font-size: 30px;
+        color: red;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+    }
+
+    &__sale {
+        position: absolute;
+        width: 36px;
+        height: 22px;
+        border-radius: 4px;
+        background-color: red;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-bold;
+        font-size: 10px;
+        top: 0%;
+        left: 11%;
+            @include respond-to(lg) {
+                font-size: 10px;
+                width: 36px;
+                height: 22px;
+            }
+    }
+
+
+    &__description {
+        margin-top: 90px;
+        max-width: 563px;
+        &-header {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 26px;
+        margin-bottom: 30px;
+        }
+        &-phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+        line-height: 28px;
+        margin-bottom: 30px;
+        }
+        &-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        &-item {
+            margin-left: 50px;
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 16px;
+            position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    display: block;
+                    width: 30px;
+                    height: 2px;
+                    background-color: #FF7D4E;
+                    left: -50px;
+                    top: 10px;
+                }
+        }
+    }
+
+    &__info {
+        margin-top: 90px;
+        max-width: 563px;
+        margin-bottom: 130px;
+        &-header {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 26px;
+        margin-bottom: 40px;
+        }
+        &-phrase {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 16px;
+        line-height: 28px;
+        margin-bottom: 60px;
+        position: relative;
+            &::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: #F2F2F2;
+            bottom: -30px;
+            }
+            &:last-child {
+                margin: 0;
+                &::before {
+                    content: none;
+                }
+            }
+        }
+
+        &-detail {
+        font-weight: variables.$font-weight-regular;
+        width: 324px;
+        text-align: left;
+        }
+    }
+}

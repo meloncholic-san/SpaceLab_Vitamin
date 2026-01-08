@@ -1,0 +1,100 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.main-start {
+    max-width: 1800px;
+    margin: 0 auto;
+    margin-top: 75px;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100px;
+        @include respond-to(md) {
+            margin-top: 28px;
+            padding-bottom: 140px;
+        }
+    &__icon {
+        width: 96px;
+        height: 90px;
+        margin-bottom: 48px;
+        margin-top: 25px;
+            @include respond-to(md) {
+                width: 49px;
+                height: 46px;
+                margin-left: -17px;
+                margin-bottom: 28px;
+            }
+    }
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 56px;
+        margin-bottom: 39px;
+            @include respond-to(md) {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+    }
+    &__phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 20px;
+        max-width: 920px;
+        line-height: 1.67em;
+        text-align: center;
+        margin-bottom: 47px;
+            @include respond-to(md) {
+                font-size: 14px;
+                max-width: 335px;
+                margin-bottom: 23px;
+            }
+    }
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &-shop-btn {
+        display: block;
+        margin-top: 33px;
+        margin-left: -20px;
+            @include respond-to(md) {
+            margin-top: 20px;
+            margin-left: -18px;
+            }
+    }
+    &__elipse-1 {
+    top: 0%;
+    right: -7.9%;
+        @include respond-to(md) {
+    top: 0%;
+    right: unset;
+    left: 0;
+    transform: translate(-58%, 14%);
+    width: 175px;
+    height: 72px;
+            &::before {
+                border: 28px solid #FFCA78;
+                border-top: 0;
+            }
+        }
+    }
+    &__elipse-2 {
+    left: 2.9%;
+    top: 36.2%;
+    transform: rotate(90deg);
+    z-index: -2;
+        @include respond-to(md) {
+            width: 150px;
+            height: 67px;
+            left: unset;
+            top: unset;
+            right: 0;
+            bottom: 0;
+            transform: rotate(0deg) translate(43%, -41%);
+            &::before {
+            border: 28px solid #E99478;
+            border-top: none;
+            }
+        }
+    }
+}

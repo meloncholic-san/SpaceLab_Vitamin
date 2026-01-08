@@ -1,0 +1,31 @@
+<article class="product-card">
+    <div class="product-card__wrapper">
+        <a href="/product?id={{id}}" class="product-card__link" style="color: black;">
+            {{#if discount}}
+                <span class="product-card__sale">-{{discount}}%</span>
+            {{/if}}
+
+            <img
+                class="product-card__image"
+                src="./img/components/products/{{image}}.png"
+                alt="{{title}}"
+                loading="lazy"
+            />
+
+            <div class="product-card__content">
+                <p class="product-card__category {{categoryClass}}">{{category}}</p>
+                <h3 class="product-card__title">{{title}}</h3>
+
+                <div class="product-card__price">
+                {{#if discount}}
+                    <span class="product-card__price--old">${{oldPrice}}</span>
+                    <span class="product-card__price--new">${{price}}</span>
+                {{else}}
+                    <span class="product-card__price--regular">${{price}}</span>
+                {{/if}}
+                </div>
+
+            </div>
+        </a>
+    </div>
+</article>

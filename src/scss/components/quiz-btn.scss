@@ -1,0 +1,23 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.quiz-btn {
+    background-color: #6E5DDC;
+    font-family: "Effra", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 20px 62px;
+    border-radius: 200px;
+    line-height: 1.6em;
+    letter-spacing: 1.51px;
+    max-width: 264px;
+        @include respond-to(md) {
+            font-size: 16px;
+            padding: 15px 30px;
+            line-height: 1.3em;
+            letter-spacing: 0;
+        }
+    a {
+        color: white
+    }
+}

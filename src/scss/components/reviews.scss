@@ -1,0 +1,68 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.reviews {
+        max-width: 1400px;
+        margin: 0px auto;
+    &__item {
+        background-color: #FAF8F6;
+        padding: 30px 32px 30px;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 350px !important;
+        width: 444px !important;
+            @include respond-to(sm) {
+                padding: 22px 20px 28px;
+                width: 335px !important;
+                height: 360px !important;
+            }
+    }
+    &__icons {
+        display: flex;
+        gap: 5.5px;
+        margin-bottom: 20px;
+            @include respond-to(sm) {
+                margin-bottom: 15px;
+            }
+    }
+    &__icon {
+        width: 19px;
+        height: 19px;
+    }
+
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 20px;
+        margin-bottom: 12px;
+            @include respond-to(sm) {
+                font-size: 16px;
+            }
+    }
+    &__phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+        max-width: 380px;
+        line-height: 28px;
+            @include respond-to(sm) {
+                font-size: 14px;
+                line-height: 25px;
+            }
+    }
+    &__person {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        &-name {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-bold;
+        font-size: 16px;
+            @include respond-to(sm) {
+                font-size: 14px;
+            }
+        }
+    }
+}

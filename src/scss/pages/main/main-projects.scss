@@ -1,0 +1,192 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.main-projects {
+    overflow: hidden;
+    position: relative;
+    padding-top: 152px;
+    margin: 0 auto;
+    max-width: 1800px;
+        @include respond-to(lg) {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+    &__wrapper {
+        display: flex;
+        aspect-ratio: 15 / 6.88;
+            @include respond-to(lg) {
+                flex-direction: column-reverse;
+            }
+    }
+
+    &__content {
+        &-swiper {
+            width: 50%;
+            padding: 0 120px;
+                @include respond-to(lg) {
+                    width: 100%;
+                    padding: 0;
+                }
+        }
+
+        &-content {
+            position: relative;
+            width: 50%;
+            z-index: 2;
+            padding-left: 14.1%;
+            padding-top: 13%;
+                @include respond-to(lg) {
+                width: 100%;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                }
+        }
+        &-title {
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-medium;
+            font-size: 56px;
+            max-width: 444px;
+            color: white;
+            margin-bottom: 33px;
+                @include respond-to(lg) {
+                    font-size: 24px;
+                    margin-top: 60px;
+                    margin-bottom: 13px;
+                }
+        }
+        &-phrase {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 20px;
+            max-width: 444px;
+            color: white;
+            line-height: 1.6em;
+            margin-bottom: 36px;
+                @include respond-to(lg) {
+                    font-size: 14px;
+                    max-width: 335px;
+                    text-align: center;
+                    margin-bottom: 24px;
+                }
+        }
+        &-shop-btn {
+            color: white;
+            left: 5px;
+                @include respond-to(lg) {
+                left: 0px;
+                }
+            &::before {
+            border-right: 2px solid white;
+            border-top: 2px solid white;
+            }
+        }
+    }
+
+    &__swiper {
+    position: relative;
+    z-index: 10;
+    right: -50%;
+    top: 10%;
+    transform: translate(-29.9%, 14.2%);
+    width: 833px;
+    overflow: hidden;
+        @include respond-to(lg) {
+            transform: translate(-20.2%, 1.2%);
+        }
+        &-slide {
+            width: 400px !important;
+            height: 494px !important;
+            border-radius: 16px;
+                @include respond-to(md) {
+                    width: 335px !important;
+                    height: 352px !important;
+                }
+            &.slide-green {
+                background-color: #89D4A7;
+            }
+            &.slide-purple {
+                background-color: #9C91E0;
+            }
+            &-inner {
+                display: flex;
+                flex-direction: column;
+                justify-items: center;
+                align-items: center;
+            }
+            &-image {
+                margin-top: 38px;
+                    @include respond-to(lg) {
+                    max-width: 202px;
+                    max-height: 199px;
+                    margin-top: 12px;
+                    }
+            }
+            &-content {
+                margin-top: 40px;
+                margin-left: 20px;
+                    @include respond-to(lg) {
+                        margin-top: 18px;
+                        margin-left: 0px;
+                    }
+            }
+            &-category {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-semibold;
+            opacity: 0.5;
+            font-size: 14px;
+            color: white;
+            margin-bottom: 12px;
+                @include respond-to(lg) {
+                    font-size: 12px;
+                }
+            }
+            &-title {
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-medium;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 22px;
+                @include respond-to(lg) {
+                    font-size: 18px;
+                    margin-bottom: 12px;
+                }
+            }
+            &-desc {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-semibold;
+            opacity: 0.5;
+            font-size: 14px;
+            color: white;
+            line-height: 1.69em;
+            max-width: 360px;
+            letter-spacing: 0.71px;
+                @include respond-to(lg) {
+                    font-size: 14px;
+                    max-width: 295px;
+                    line-height: 1.39em;
+                    letter-spacing: -0.19px;
+                }
+            }
+        }
+    }
+    &__image {
+        &-background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            z-index: -2;
+        }
+        &-3 {
+            position: relative;
+            margin-top: -108px;
+            z-index: 3;
+            left: 64.1%;
+                @include respond-to(lg) {
+                    display: none;
+                }
+        }
+    }
+}

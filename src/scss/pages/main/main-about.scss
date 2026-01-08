@@ -1,0 +1,178 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.main-about {
+    overflow: hidden;
+    position: relative;
+    height: 1330px;
+    margin: 0 auto;
+    max-width: 1800px;
+        @include respond-to(md) {
+        padding-top: 20%;
+        margin-top: -207px;
+        }
+        @include respond-to(xs) {
+            height: 964px;
+        }
+        @include respond-to(xxs) {
+            padding-top: 41px;
+            margin-top: -172px;
+            height: 764px;
+        }
+    &__wrapper {
+        display: flex;
+        // height: 100%;
+        aspect-ratio: 15 / 8;
+            @include respond-to(md) {
+                flex-direction: column;
+            }
+    }
+
+    &__content {
+        width: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+            @include respond-to(md) {
+                width: 100%;
+                min-height: 53vw;
+            }
+            &-background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            }
+            &-image-1 {
+            position: absolute;
+            bottom: 198px;
+            left: 11.3%;
+            z-index: 2;
+                @include respond-to(md) {
+                bottom: 10%;
+                left: 47%;
+                transform: translate(-88%, 9%);
+                z-index: 2;
+                }
+                img {
+                    width: 100%;
+                }
+            }
+            &-image-2 {
+            position: absolute;
+            bottom: 0px;
+            left: 37.6%;
+            z-index: 1; 
+                @include respond-to(md) {
+                bottom: 10%;
+                left: 21.6%;
+                transform: translate(1%, 47%);
+                }
+                img {
+                    width: 100%;
+                }
+            }
+            &-phrase {
+            position: relative;
+            z-index: 3;
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-medium;
+            font-size: 56px;
+            max-width: 563px;
+            color: white;
+            margin-top: -46px;
+            margin-left: 70px;
+                @include respond-to(md) {
+                    text-align: center;
+                    font-size: 24px;
+                    max-width: 280px;
+                    margin: 0;
+                }
+            }
+            &-circle {
+            width: 139px;
+            height: 139px;
+            z-index: 2;
+            left: 14%;
+            top: 7%;
+                @include respond-to(md) {
+                    width: 60px;
+                    height: 60px;
+                    right: 4.6%;
+                    top: 0;
+                    transform: translate(0, -52%);
+                    left: unset;
+                }
+            }
+    }
+
+    &__icons {
+        width: 50%;
+        display: flex;
+        align-items: center;
+            @include respond-to(md) {
+                width: 100%;
+                justify-content: center;
+                margin-left: -10px;
+            }
+        &-list {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+            margin-left: 61px;
+            margin-top: -40px;
+                @include respond-to(md) {
+                margin-left: 21px;
+                margin-top: 42px;
+                gap: 40px;
+                }
+        }
+        &-item {
+            display: flex;
+            align-items: center;
+            gap: 90px;
+                @include respond-to(md) {
+                    gap: 25px;
+                }
+        }
+
+        &-icon.icon-1 {
+            width: 103px;
+            height: 84px;
+                @include respond-to(md) {
+                    width: 46px;
+                    height: 37px;
+                }
+        }
+        &-icon.icon-2 {
+            width: 87px;
+            height: 97px;
+                @include respond-to(md) {
+                    width: 39px;
+                    height: 43px;
+                }
+        }
+        &-icon.icon-3 {
+            width: 83px;
+            height: 106px;
+                @include respond-to(md) {
+                    width: 37px;
+                    height: 48px;
+                }
+        }
+        &-phrase {
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-medium;
+            font-size: 30px;
+            max-width: 444px;
+                @include respond-to(md) {
+                    font-size: 14px;
+                    max-width: 263px;
+                }
+        }
+    }
+}

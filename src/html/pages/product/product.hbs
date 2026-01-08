@@ -1,0 +1,94 @@
+<section class="product">
+    <div class="product__wrapper">
+        <div class="product__image-wrapper {{categoryClass}}">
+            <img
+                class="product__image"
+                src="./img/components/products/{{image}}.png"
+                alt="{{title}}"
+                loading="lazy"
+            />
+        </div>
+
+        <div class="product__content-wrapper">
+            <a class="product__backlink" href="">Back to shop</a>
+            <p class="product__category {{categoryClass}}">{{category}}</p>
+            <h3 class="product__title">{{title}}</h3>
+            <div class="product__cart-wrapper">
+                <div class="product__package-wrapper">
+                    <svg class="product__package-icon">
+                        <use href="#{{package.icon}}"></use>
+                    </svg>
+                    <div class="product__package__inner">
+                        <div class="product__package__content">
+                            <p class="product__package-quantity"><span>{{package.count}}</span> {{package.type}}</p>
+                            <p class="product__package-desc">{{package.desc}}</p>
+                        </div>
+
+                        <div class="product__cart-quantity">
+                            <button type="button" class="product__cart-btn-menus"></button>
+                            <span class="product__cart-count">1</span>
+                            <button type="button" class="product__cart-btn-plus"></button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="product__order-wrapper">
+                    <div class="product__autoship">
+                        <label class="product__autoship-label">
+                            <div class="product__autoship-content">
+                                <p class="product__autoship-title"><span class="product__autoship-title-desctop">Autoship this item every</span> <span class="product__autoship-title-mobile">Deliver every</span> </p>
+                                <div class="product__autoship-frequency">
+                                    <select class="product__autoship-select">
+                                        <option value="30">30</option>
+                                        <option value="60">60</option>
+                                        <option value="90">90</option>
+                                    </select>
+                                </div>
+                                <p class="product__autoship-title">days</p>
+                            </div>
+                            <input type="checkbox" class="product__autoship-checkbox">
+                            <span class="product__autoship-custom-checkbox"></span>
+                        </label>
+                    </div>
+
+                    <div class="product__order-content">
+                        <div class="product__price-wrapper">
+                        {{#if discount}}
+                            <span class="product__price--old">${{oldPrice}}</span>
+                            <span class="product__price--new">${{price}}</span>
+                            <span class="product__sale">-{{discount}}%</span>
+                        {{else}}
+                            <span class="product__price--regular">${{price}}</span>
+                        {{/if}}
+                        </div>
+
+                        <button type="button" class="product__order-btn">Add to cart</button>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="product__description">
+                <h4 class="product__description-header">Description</h4>
+                <p class="product__description-phrase">500-C Methoxyflavone is a synergistic formula that features a specialized complex of bioflavonoids combined with vitamin C.*</p>
+
+                <ul class="product__description-list">
+                    <li class="product__description-item">Citrus bioflavonoid complex</li>
+                    <li class="product__description-item">Provides potent antioxidant protection and supports healthy immune system function*</li>
+                    <li class="product__description-item">Supports healthy collagen production, the main component of connective tissue*</li>
+                    <li class="product__description-item">This product is non-GMO, gluten free, and vegetarian</li>
+                </ul>
+            </div>
+
+            <div class="product__info">
+                <h4 class="product__info-header">Important information</h4>
+                <p class="product__info-phrase">Safety information<span class="product__info-detail">Keep out of the reach of children.</span></p>
+                <p class="product__info-phrase">Indications<span class="product__info-detail">Deficient or weak Immune System Function</span></p>
+                <p class="product__info-phrase">Ingredients<span class="product__info-detail">Vitamin C (as ascorbic acid), Citrus Bioflavonoid Complex [standardized to 45% (225 mg) bioflavonoids: hesperidin and other naturally occurring phenolic compounds]. Other Ingredients: Cellulose, silica, stearic acid (vegetable), croscarmellose sodium, magnesium stearate (vegetable), and coating (hypromellose, medium chain triglycerides, and hydroxypropylcellulose)..</span></p>
+                <p class="product__info-phrase">Directions<span class="product__info-detail">Take one tablet daily or as directed by your healthcare practitioner.</span></p>
+                <p class="product__info-phrase">Legal Disclaimer<span class="product__info-detail">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. <br> <br> Statements regarding dietary supplements have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease or health condition.</span></p>
+            </div>
+        </div>
+    </div>
+</section>

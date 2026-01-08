@@ -1,0 +1,149 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.product-card {
+    background-color: #FAF8F6;
+    width: 325px;
+    height: 479px;
+    padding: 40px 30px 30px 30px;
+    position: relative;
+        @include respond-to(lg) {
+            width: 160px;
+            height: 279px;
+            padding: 10px 15px 20px;
+        }
+        @include respond-to(uxs) {
+            width: 280px;
+            height: 405px;
+            padding: 30px 20px 20px 20px;
+        }
+    &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    }
+    &__sale {
+        display: block;
+        position: absolute;
+        width: 51px;
+        height: 27px;
+        border-radius: 4px;
+        background-color: red;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 12px;
+        top: 6%;
+        right: 9.2%;
+            @include respond-to(lg) {
+                font-size: 10px;
+                width: 36px;
+                height: 22px;
+            }
+    }
+    &__category {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 14px;
+        margin-bottom: 12px;
+        margin-top: 37px;
+            @include respond-to(lg) {
+                font-size: 12px;
+                margin-top: 8px;
+                margin-bottom: 9px;
+            }
+        &.category--vitamins {
+            color: #6B5EBB;
+        }
+        &.category--weight-loss {
+            color: #A5B3FF;
+        }
+        &.category--pain {
+            color: #91CAF2;
+        }
+        &.category--minerals {
+            color: #94D6BE;
+        }
+        &.category--probiotics {
+            color: #E8939D;
+        }
+        &.category--antioxidants {
+            color: #F2B385;
+        }
+        &.category--prenatal-vitamins {
+            color: #DA91E0;
+        }
+    }
+
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-regular;
+        font-size: 20px;
+        margin-bottom: 14px;
+        min-height: 49px;
+            @include respond-to(lg) {
+                font-size: 16px;
+                min-height: 39px;
+                margin-bottom: 17px;
+            }
+    }
+
+    &__price {
+        display: flex;
+        gap: 12px;
+    }
+
+    &__price--regular {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-bold;
+        font-size: 20px;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+    }
+
+    &__price--old {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-bold;
+        font-size: 20px;
+        position: relative;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: black;
+                top: 55%;
+            }
+    }
+
+    &__price--new {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-bold;
+        font-size: 20px;
+        color: red;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+    }
+
+    &__image {
+        caret-color: transparent;
+            @include respond-to(lg) {
+                width: 130px;
+                height: 120px;
+            }
+            @include respond-to(uxs) {
+                width: 240px;
+                height: 222px;
+            }
+    }
+}

@@ -1,0 +1,35 @@
+$breakpoints: (
+  uxs: 320px,
+  xxs: 375px,
+  xs: 575px,
+  xsm:767px,
+  sm: 768px,
+  lsm: 880px,
+  md: 1024px,
+  xmd: 1320px,
+  lg: 1440px,
+  l: 1600px,
+  xl: 1920px,
+);
+
+
+$font-family-main: "Effra", sans-serif;
+$font-family-second: "Open Sans", sans-serif;
+$font-family-third: "Gilroy", sans-serif;
+$font-family-forth: "Mandatory Plaything", sans-serif;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+
+$color-main-white: #FFFFFF;
+$color-main-black: #080808;
+$color-secondary-grey: #808080;
+$color-modal-main: #3A3E4B;
+
+
+$color-accent-orange: #FF7D4E;
+$color-accent-main: #ED815E;

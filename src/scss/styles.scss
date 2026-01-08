@@ -1,0 +1,30 @@
+@use "@scss/utils/variables";
+@use "@scss/utils/reset";
+@use "@scss/fonts/fonts";
+@use "@scss/utils/animations";
+
+
+@use "@scss/components/header";
+@use "@scss/components/elipse";
+@use "@scss/components/quiz-btn";
+@use "@scss/components/shop-btn";
+@use "@scss/components/circle";
+@use "@scss/components/reviews";
+@use "@scss/components/banner-purple";
+@use "@scss/components/banner-blue";
+@use "@scss/components/banner-lilac";
+@use "@scss/components/product-card";
+
+@use "@scss/pages/main/main-hero";
+@use "@scss/pages/main/main-about";
+@use "@scss/pages/main/main-quiz";
+@use "@scss/pages/main/main-projects";
+@use "@scss/pages/main/main-reviews";
+@use "@scss/pages/main/main-start";
+
+@use "@scss/pages/products/products-hero";
+@use "@scss/pages/products/products-catalogue";
+@use "@scss/pages/products/products-reviews";
+
+@use "@scss/pages/product/product";
+@use "@scss/pages/product/product-advertisement";

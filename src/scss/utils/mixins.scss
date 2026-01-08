@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "sass:math";
+@use './variables.scss' as variables;
+
+@mixin respond-to($breakpoint) {
+  @media (max-width: map.get(variables.$breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+@mixin respond-from($breakpoint) {
+  $value: map.get(variables.$breakpoints, $breakpoint);
+  $numeric: math.div($value, 1px);
+  $min-width: ($numeric + 1) * 1px;
+  @media (min-width: $min-width) {
+    @content;
+  }
+}
