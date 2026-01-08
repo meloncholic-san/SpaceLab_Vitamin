@@ -1,4 +1,4 @@
-import{H as a,g as s,b as o,c as i,r as c}from"./url-DRAxJ8wK.js";import"./index-BnwCGYeZ.js";const p=`<section class="product">\r
+import{H as a,g as s,b as o,c as i,r as c}from"./url-BblpdFI-.js";import"./app-CEOAHZUc.js";const p=`<section class="product">\r
     <div class="product__wrapper">\r
         <div class="product__image-wrapper {{categoryClass}}">\r
             <img\r
