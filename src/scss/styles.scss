@@ -14,6 +14,11 @@
 @use "@scss/components/banner-blue";
 @use "@scss/components/banner-lilac";
 @use "@scss/components/product-card";
+@use "@scss/components/not-found";
+@use "@scss/components/term-of-use";
+@use "@scss/components/footer";
+@use "@scss/components/cart";
+@use "@scss/components/cart-product";
 
 @use "@scss/pages/main/main-hero";
 @use "@scss/pages/main/main-about";
@@ -28,3 +33,7 @@
 
 @use "@scss/pages/product/product";
 @use "@scss/pages/product/product-advertisement";
+
+@use "@scss/pages/auth/register";
+@use "@scss/pages/auth/login";
+@use "@scss/pages/auth/password-recovery";

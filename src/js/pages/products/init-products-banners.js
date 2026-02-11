@@ -4,21 +4,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 export function initProductsBanners() {
     
-    // function updateSlidesState(swiper) {
-    //     swiper.slides.forEach(slide => {
-    //         slide.classList.remove('is-active', 'is-prev', 'is-next');
-    //     });
 
-    //     const active = swiper.slides[swiper.activeIndex];
-    //     const prev = swiper.slides[swiper.activeIndex - 1];
-    //     const next = swiper.slides[swiper.activeIndex + 1];
-
-    //     if (active) active.classList.add('is-active');
-    //     if (prev) prev.classList.add('is-prev');
-    //     if (next) next.classList.add('is-next');
-    // }
-
-    
 
     const swiperElement = document.querySelector('.products-hero-swiper');
     if (!swiperElement) return;
@@ -52,7 +38,7 @@ export function initProductsBanners() {
             320: {
                 slidesPerView: 1,
                 spaceBetween: 10,
-                loop: true,
+                loop: false,
             },
             1024: {
                 slidesPerView: 1.24,
@@ -60,19 +46,10 @@ export function initProductsBanners() {
                 centeredSlides: true,
                 slidesOffsetBefore: 30,
                 slidesOffsetAfter: 30,
-                loop: false,
+                loop: true,
             }
         },
 
-    // on: {
-    //     init(swiper) {
-    //         updateSlidesState(swiper);
-    //     },
-
-    //     slideChangeTransitionStart(swiper) {
-    //         updateSlidesState(swiper);
-    //     },
-    // }
     
     on: {
         init(swiper) {

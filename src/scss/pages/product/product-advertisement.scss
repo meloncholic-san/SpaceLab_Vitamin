@@ -18,11 +18,28 @@
     margin-bottom: 40px;
     align-self: flex-start;
     padding-left: 202px;
+        @include respond-to(lg) {
+            padding-left: 20px;
+            font-size: 20px;
+            margin-bottom: 28px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @include respond-to(xxs) {
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 
     &__items {
         display: flex;
         flex-direction: row;
         gap: 32px;
+            @include respond-to(lg) {
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            }
     }
 }

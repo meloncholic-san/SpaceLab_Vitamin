@@ -1,0 +1,67 @@
+<article class="cart-product" data-cardId="{{cartId}}">
+    <div class="cart-product__wrapper">
+
+
+            <div class="cart-product__content-wrapper">
+                
+                <a href="/product?id={{id}}" class="cart-product__link" style="color: black;">
+                    <div class="cart-product__image-wrapper {{categoryClass}}">
+                        <img
+                            class="cart-product__image"
+                            src="./img/components/products/{{image}}.png"
+                            alt="{{title}}"
+                            loading="lazy"
+                        />
+                    </div>
+                </a>
+                <div class="cart-product__content">
+                    <div class="cart-product__outer">
+                        <h3 class="cart-product__title">{{title}}</h3>
+
+                        <div class="cart-product__inner">
+                            <div class="cart-product__quantity">
+                                <button type="button" class="cart-product-btn-menus"></button>
+                                <span class="cart-product__count">{{quantity}}</span>
+                                <button type="button" class="cart-product-btn-plus"></button>
+                            </div>
+
+                            <div class="cart-product__price">
+                            {{#if discount}}
+                                <span class="cart-product__price--old">${{oldPrice}}</span>
+                                <span class="cart-product__price--new">${{price}}</span>
+                            {{else}}
+                                <span class="cart-product__price--regular">${{price}}</span>
+                            {{/if}}
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="cart-product__autoship-control">
+                        <label class="cart-product__autoship-label">
+                            <input 
+                                type="checkbox" 
+                                class="cart-product__autoship-checkbox"
+                                {{#if is_autoship}}checked{{/if}}
+                                data-cart-id="{{cartId}}"
+                            >
+                            <span class="cart-product__autoship-custom"></span>
+                            <span class="cart-product__autoship-text">
+                                Autoship every 
+                                <span class="cart-product__autoship-select-wrapper">
+                                <select class="cart-product__autoship-select" data-cart-id="{{cartId}}" {{#unless is_autoship}}disabled{{/unless}}>
+                                    {{{autoship_options_html}}}
+                                </select>
+                                </span>
+                                days
+                            </span>
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+
+    </div>
+</article>

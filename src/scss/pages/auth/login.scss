@@ -1,0 +1,168 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.login {
+    background-color: #FAF8F6;
+    padding-top: 110px;
+    overflow: hidden;
+    height: 100vh;
+    &__wrapper {
+    background-color: white;
+    max-width: 920px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px 0;
+        @include respond-to(sm) {
+            padding: 60px 20px;
+        }
+    }
+
+    &__header {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 26px;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    &__phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+        max-width: 295px;
+        margin: 0 auto;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        max-width: 444px;
+        gap: 15px;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    &__item {
+
+        input {
+            width: 100%;
+            background-color: #FAF8F6;
+            padding: 15px 24px;
+            border: none;
+            border-radius: 12px;
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 18px;
+
+            &:-webkit-autofill {
+                background-color: #FAF8F6 !important;
+                -webkit-box-shadow: 0 0 0px 1000px #FAF8F6 inset !important;
+            }
+            
+            &:autofill {
+                background-color: #FAF8F6;
+            }
+
+            &::placeholder {
+                opacity: 0.3;
+            }
+        }
+
+            &.input-error {
+                input {
+                    border: 1px solid #FF4E4E;
+                    &::placeholder {
+                        color: #FF4E4E;
+                        opacity: 0.7;
+                    }
+                }
+            }
+
+        &.password {
+            background-color: #FAF8F6;
+            position: relative;
+            input {
+                max-width: 300px;
+            }
+        }
+    }
+
+    &__password-reset {
+        position: absolute;
+        right: 24px;
+        top: 25%;
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 14px;
+        cursor: pointer;
+        color: black;
+        opacity: 0.5;
+    }
+
+        &__submit {
+        background-color: #FF7D4E;
+        display: block;
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-bold;
+        font-size: 20px;
+        padding: 20px 0;
+        width: 100%;
+        max-width: 270px;
+        color: white;
+        margin: 0 auto;
+        margin-top: 20px;
+        border-radius: 100px;
+        cursor: pointer;
+            @include respond-to(sm) {
+                max-width: 335px;
+            }
+    }
+
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 20px;
+        margin: 0 auto;
+        max-width: fit-content;
+        margin-top: 40px;
+        position: relative;
+            &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            max-width: 241px;
+            height: 1px;
+            width: 200%;
+            background-color: #F2F2F2;
+            left: -265px;
+            top: 50%;
+            }
+            &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            max-width: 241px;
+            height: 1px;
+            width: 200%;
+            background-color: #F2F2F2;
+            right: -265px;
+            top: 50%;
+            }
+    }
+
+    &__reverse {
+        display: block;
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+        color: black;
+        max-width: fit-content;
+        margin: 0 auto;
+        margin-top: 40px;
+        a {
+            color: #FF7D4E;
+        }
+    }
+
+}

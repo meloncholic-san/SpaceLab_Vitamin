@@ -7,18 +7,43 @@
     position: relative;
     &__wrapper {
         display: flex;
+            @include respond-to(lg) {
+                flex-direction: column; 
+            }
     }
 
     &__image{
         width: 608px;
         height: 562px;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 30%);
+        position: sticky;
+        transform: none;
+        top: 14%;
+        margin-bottom: 100px;
         caret-color: transparent;
+        will-change: transform;
+            @include respond-to(lg) {
+                position: absolute;
+                left: 50%;
+                top: unset;
+                margin-bottom: unset;
+                height: 346px;
+                width: 375px;
+                transform: translate(-50%, 20%);
+            }
+            @include respond-to(xxs) {
+                width: 320px;
+                height: 296px;
+            }
         &-wrapper {
             width: 50%;
             position: relative;
+            display: flex;
+            justify-content: center;
+                @include respond-to(lg) {
+                    display: block;
+                    height: 436px;
+                    width: 100%;
+                }
                 &.category--vitamins {
                     background-color: #6B5EBB;
                 }
@@ -48,6 +73,16 @@
         position: relative;
         padding-left: 135px;
         border-bottom: 1px solid #F2F2F2;
+            @include respond-to(lg) {
+                padding-left: 0;
+                width: 100%;
+                margin: 0 auto;
+                max-width: 335px;
+                margin-top: 40px;
+            }
+            @include respond-to(xxs) {
+                padding: 0 20px;
+            }
     }
 
     &__backlink {
@@ -58,6 +93,11 @@
         font-weight: variables.$font-weight-semibold;
         font-size: 16px;
         margin-top: 44px;
+        z-index: 100;
+        max-width: 200px;
+            @include respond-to(lg) {
+                display: none;
+            }
             &::after {
                 content: "";
                 position: absolute;
@@ -79,9 +119,10 @@
     margin-bottom: 13px;
 
         @include respond-to(lg) {
-            font-size: 12px;
-            margin-top: 8px;
-            margin-bottom: 9px;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 13px;
+            max-width: 335px;
         }
         &.category--vitamins {
             color: #6B5EBB;
@@ -123,9 +164,10 @@
             bottom: -40px;
         }
         @include respond-to(lg) {
-            font-size: 16px;
+            font-size: 24px;
             min-height: 39px;
-            margin-bottom: 17px;
+            margin-bottom: 80px;
+            max-width: 335px;
         }
     }
 
@@ -133,12 +175,18 @@
 
         &-wrapper {
             max-width: 563px;
+                @include respond-to(lg) {
+                    max-width: 335px;
+                }
         }
 
         &-quantity {
         display: flex;
         align-items: center;
         gap: 32px;
+            @include respond-to(lg) {
+                gap: 18px;
+            }
             button {
                 width: 50px;
                 height: 50px;
@@ -149,6 +197,7 @@
             }
         }
         &-btn-menus {
+            cursor: pointer;
             &::before {
                 content: "";
                 position: absolute;
@@ -162,6 +211,7 @@
         }
 
         &-btn-plus {
+            cursor: pointer;
             &::before {
                 content: "";
                 position: absolute;
@@ -192,6 +242,11 @@
         &-wrapper {
         display: flex;
         align-items: center;
+            @include respond-to(lg) {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 17px;
+            }
         }
 
         &__inner {
@@ -200,6 +255,10 @@
         justify-content: space-between;
         flex-grow: 1;
         padding-right: 30px;
+            @include respond-to(lg) {
+                padding-right: 0;
+                width: 100%;
+            }
         }
         &-icon {
             width: 50px;
@@ -207,6 +266,9 @@
         }
         &__content {
             margin-left: 20px;
+                @include respond-to(lg) {
+                    margin: 0;
+                }
         }
         &-quantity {
         font-family: variables.$font-family-second;
@@ -230,6 +292,12 @@
         flex-direction: column;
         gap: 60px;
         position: relative;
+            @include respond-to(lg) {
+                flex-direction: column-reverse;
+                border-radius: 16px;
+                padding: 25px 20px;
+                gap: 50px;
+            }
     }
 
     &__order-content {
@@ -245,6 +313,10 @@
             height: 1px;
             background-color: #F2F2F2;
             top: -30px;
+                @include respond-to(lg) {
+                    top: unset;
+                    bottom: -25px;
+                }
         }
     }
     &__order-btn {
@@ -255,9 +327,18 @@
         color: white;
         padding: 20px 115px;
         border-radius: 100px;
+        cursor: pointer;
+            @include respond-to(lg) {
+                padding: 18px 55px;
+                font-size: 16px;
+            }
+            @include respond-to(xxs) {
+                padding: 18px 32px;
+            }
     }
     &__autoship {
         opacity: 0.5;
+        transition: opacity 0.3s ease;
         &-label {
         display: flex;
         align-items: center;
@@ -270,6 +351,9 @@
         display: flex;
         align-items: center;
         gap: 16px;
+            @include respond-to(lg) {
+                gap: 7px;
+            }
         }
 
         &-title {
@@ -291,6 +375,9 @@
             font-weight: variables.$font-weight-semibold;
             font-size: 14px;
             cursor: pointer;
+                @include respond-to(lg) {
+                    padding: 8px 12px;
+                }
             }
             &::before {
             position: absolute;
@@ -302,6 +389,9 @@
             transform: rotate(-135deg);
             right: 12px;
             top: 14px;
+                @include respond-to(lg) {
+                    content: none;
+                }
             }
          }
 
@@ -312,6 +402,7 @@
             height: 36px;
             right: 0px;
             z-index: 1;
+            cursor: pointer;
         }
 
         &-custom-checkbox {
@@ -340,10 +431,12 @@
   }
 
   &__autoship-checkbox:checked + &__autoship-custom-checkbox {
-    background: #f68b5c;
+    border-color: #f68b5c;
 
     &::before {
-      transform: translateX(20px);
+    transform: translateX(24px);
+    background: #f68b5c;
+
     }
   }
 
@@ -362,6 +455,10 @@
     }
   }
 
+    &__autoship--active,
+    &__autoship-checkbox:checked ~ .product__autoship-label .product__autoship {
+        opacity: 1;
+    }
 
 
     &__price-wrapper {
@@ -373,7 +470,9 @@
         font-weight: variables.$font-weight-bold;
         font-size: 30px;
             @include respond-to(lg) {
-                font-size: 16px;
+                font-size: 20px;
+                font-family: variables.$font-family-main;
+                font-weight: variables.$font-weight-medium;
             }
     }
 
@@ -384,7 +483,7 @@
         position: relative;
         max-width: 52px;
             @include respond-to(lg) {
-                font-size: 16px;
+                font-size: 12px;
             }
             &::after {
                 content: "";
@@ -403,7 +502,7 @@
         font-size: 30px;
         color: red;
             @include respond-to(lg) {
-                font-size: 16px;
+                font-size: 20px;
             }
     }
 
@@ -426,6 +525,11 @@
                 font-size: 10px;
                 width: 36px;
                 height: 22px;
+                top: 5%;
+                left: 15%;
+            }
+            @include respond-to(xxs) {
+                left: 18%;
             }
     }
 
@@ -433,11 +537,18 @@
     &__description {
         margin-top: 90px;
         max-width: 563px;
+            @include respond-to(lg) {
+                max-width: 335px;
+                margin-top: 120px;
+            }
         &-header {
         font-family: variables.$font-family-main;
         font-weight: variables.$font-weight-medium;
         font-size: 26px;
         margin-bottom: 30px;
+            @include respond-to(lg) {
+                font-size: 20px;
+            }
         }
         &-phrase {
         font-family: variables.$font-family-second;
@@ -445,6 +556,10 @@
         font-size: 16px;
         line-height: 28px;
         margin-bottom: 30px;
+            @include respond-to(lg) {
+                font-size: 14px;
+                line-height: 24px;
+            }
         }
         &-list {
             display: flex;
@@ -457,7 +572,11 @@
             font-weight: variables.$font-weight-regular;
             font-size: 16px;
             position: relative;
-
+                @include respond-to(lg) {
+                font-size: 14px;
+                line-height: 24px;
+                margin-left: 40px;
+                }
                 &::before {
                     position: absolute;
                     content: "";
@@ -467,6 +586,10 @@
                     background-color: #FF7D4E;
                     left: -50px;
                     top: 10px;
+                        @include respond-to(lg) {
+                            width: 20px;
+                            left: -40px;
+                        }
                 }
         }
     }
@@ -475,11 +598,20 @@
         margin-top: 90px;
         max-width: 563px;
         margin-bottom: 130px;
+            @include respond-to(lg) {
+                max-width: 335px;
+                margin-top: 60px;
+                margin-bottom: 63px;
+            }
         &-header {
         font-family: variables.$font-family-main;
         font-weight: variables.$font-weight-medium;
         font-size: 26px;
         margin-bottom: 40px;
+            @include respond-to(lg) {
+                font-size: 20px;
+                margin-bottom: 28px;
+            }
         }
         &-phrase {
         display: flex;
@@ -491,6 +623,12 @@
         line-height: 28px;
         margin-bottom: 60px;
         position: relative;
+            @include respond-to(lg) {
+                flex-direction: column;
+                font-size: 14px;
+                gap: 10px;
+                line-height: 24px;
+            }
             &::before {
             position: absolute;
             content: "";
@@ -511,6 +649,11 @@
         font-weight: variables.$font-weight-regular;
         width: 324px;
         text-align: left;
+            @include respond-to(xxs) {
+                width: unset;
+                max-width: 280px;
+            }
         }
     }
 }
+

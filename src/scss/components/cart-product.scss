@@ -1,0 +1,290 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.cart-product {
+    &__wrapper {
+        padding: 30px;
+    }
+    &__image {
+        position: relative;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &-wrapper {
+            position: relative;
+            max-width: 120px;
+            height: 174px;
+            border-radius: 8px;
+
+            &.category--vitamins {
+                background-color: #6B5EBB;
+            }
+            &.category--weight-loss {
+                background-color: #A5B3FF;
+            }
+            &.category--pain {
+                background-color: #91CAF2;
+            }
+            &.category--minerals {
+                background-color: #94D6BE;
+            }
+            &.category--probiotics {
+                background-color: #E8939D;
+            }
+            &.category--antioxidants {
+                background-color: #F2B385;
+            }
+            &.category--prenatal-vitamins {
+                background-color: #DA91E0;
+            }
+        }
+    }
+    &__content {
+        width: 290px;
+        &-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        }
+    }
+    &__outer {
+        padding-bottom: 15px;
+        border-bottom: 1px solid #F2F2F2;
+    }
+    &__inner {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-regular;
+        font-size: 20px;
+        max-width: 241px;
+        margin-bottom: 15px;
+    }
+    &__price {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+    }
+        &__price--regular {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 18px;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+    }
+
+    &__price--old {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 12px;
+        position: relative;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: black;
+                top: 55%;
+            }
+    }
+
+    &__price--new {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 18px;
+        color: red;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+    }
+
+    &__quantity {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100px;
+        justify-content: space-between;
+    }
+    &__count {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 16px;
+    }
+    &-btn-menus {
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            background-color: #F5F5F5;
+            border-radius: 100px;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 12px;
+                height: 2px;
+                opacity: 0.3;
+                background-color: #000000;
+                left: 50%;
+                transform: translate(-50%,0%);
+            }
+        }
+
+    &-btn-plus {
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            background-color: #F5F5F5;
+            border-radius: 100px;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 12px;
+                height: 2px;
+                background-color: #000000;
+                left: 50%;
+                transform: translate(-50%,0%);
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                width: 2px;
+                height: 12px;
+                background-color: #000000;
+                top: 52%;
+                transform: translate(-50%, -50%);
+            }
+    }
+
+&__autoship {
+        &-control {
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        &-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        &-checkbox {
+            position: absolute;
+            opacity: 0;
+            width: 16px;
+            height: 16px;
+            caret-color: transparent;
+
+            &:checked + .cart-product__autoship-custom {
+                background-color: #FF7D4E;
+                border-color: #FF7D4E;
+                
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 3px;
+                    top: 0px;
+                    width: 6px;
+                    height: 10px;
+                    border: solid white;
+                    border-width: 0 2px 2px 0;
+                    transform: rotate(45deg);
+                }
+            }
+            
+        }
+        
+        &-custom {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ddd;
+            border-radius: 4px; 
+            margin-right: 10px;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            background-color: white;
+            caret-color: transparent;
+            
+            &:hover {
+                border-color: #6B5EBB;
+            }
+        }
+
+        &-text {
+            opacity: 0.5;
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 12px;
+        }
+        &-select-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 0 4px;
+            
+            select {
+                padding: 7px 30px 7px 14px;
+                color: black;
+                border-color: transparent;
+                border-radius: 4px;
+                background-color: #F5F5F5;
+                font-size: 12px;
+                width: 100%;
+                cursor: pointer;
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                    background-color: #e9e9e9;
+                }
+            }
+             
+            &::after {
+                content: "";
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 8px;
+                height: 8px;
+                border-right: 1.5px solid black;
+                border-bottom: 1.5px solid black;
+                transform: translateY(-80%) rotate(45deg);
+                pointer-events: none;
+                z-index: 1;
+            }
+        }
+    }
+
+}
+
+.cart-product-btn-plus.loading,
+.cart-product-btn-menus.loading,
+.cart-product__autoship-checkbox.loading,
+.cart-product__autoship-select.loading {
+    opacity: 0.6;
+    cursor: wait;
+    pointer-events: none;
+}
+
+.cart-product.removing {
+    opacity: 0.5;
+    pointer-events: none;
+}

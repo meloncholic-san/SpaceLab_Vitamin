@@ -1,0 +1,71 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.not-found {
+    margin-top: 110px;
+    border-top: 1px solid rgb(0, 0, 0, 0.07) ;
+    padding: 0 20px;
+    &__wrapper {
+    margin-top: 100px;
+    caret-color: transparent;
+    }
+    &__image {
+        width: 100%;
+        &-wrapper {
+        max-width: 490px;
+        margin: 0 auto;
+        margin-bottom: 80px;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 26px;
+        margin-bottom: 15px;
+            @include respond-to(lg) {
+                font-size: 24px;
+            }
+    }
+
+    &__phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+        margin-bottom: 20px;
+        text-align: center;
+            @include respond-to(lg) {
+                font-size: 14px;
+            }
+    }
+
+    &__btn {
+        display: block;
+        background-color: #FF7D4E;
+        padding: 20px 0;
+        width: 100%;
+        border-radius: 100px;
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-bold;
+        color: white;
+        cursor: pointer;
+        text-align: center;
+        max-width: 330px;
+            @include respond-to(lg) {
+                max-width: 335px;
+                font-size: 16px;
+            }
+            @include respond-to(uxs) {
+                max-width: 270px;
+            }
+    }
+}

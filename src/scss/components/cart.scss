@@ -1,0 +1,146 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.cart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    
+    &.active {
+    opacity: 1;
+    pointer-events: all;
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: opacity 0.3s ease;
+    }
+
+    &__wrapper {
+            position: absolute;
+            top: 0;
+            right: 0;
+            max-width: 500px;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            
+            .cart.active & {
+                transform: translateX(0);
+            }
+    }
+    &__head {
+        position: relative;
+        padding: 39px 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: black;
+                left: 0;
+                bottom: 0;
+                opacity: 0.3;
+            }
+    }
+    &__headline {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 20px;
+        max-width: fit-content;
+    }
+    &__btn-close {
+        position: relative;
+        width: 18px;
+        height: 18px;
+        caret-color: transparent;
+        cursor: pointer;
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+    }
+
+    &__body {
+        height: calc(100% - 226px);
+        overflow-y: auto; 
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            background: transparent;
+            display: none;
+        }
+        
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        
+    }
+    &__footer {
+        padding: 30px;
+    }
+    &__order-btn {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-bold;
+        font-size: 20px;
+        border-radius: 100px;
+        width: 100%;
+        padding: 20px 0px;
+        background-color: #FF7D4E;
+        color: white;
+
+        &-dot {
+            margin: 0 15px;
+        }
+    }
+
+    &__no-items {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-semibold;
+        font-size: 16px;
+        &-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+    }
+}
+

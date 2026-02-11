@@ -1,0 +1,57 @@
+<section class="register">
+    <div class="register__wrapper">
+        <div class="register__btn-wrapper">
+            <button type="button" class="register__btn btn-regular active">Regular customer</button>
+            <button type="button" class="register__btn btn-wholesale">Wholesale customer</button>
+        </div>
+        <h2 class="register__title">Sign up with</h2>
+        <div class="register__social">
+            <button type="button" class="register__social-google">
+                <svg class="register__social-icon">
+                    <use href="#icon-vitamin-google-logo"></use>
+                </svg>
+                Google
+            </button>
+            <button type="button" class="register__social-apple">
+                <svg class="register__social-icon">
+                    <use href="#icon-vitamin-apple-logo"></use>
+                </svg>
+                Apple
+            </button>
+            <button type="button" class="register__social-facebook">
+                <svg class="register__social-icon">
+                    <use href="#icon-vitamin-facebook-logo"></use>
+                </svg>
+                Facebook
+            </button>
+        </div>
+        <h2 class="register__title">or sign up using your email address...</h2>
+        <form id="register-form" class="register__form">
+            <ul class="register__list">
+                <li class="register__item email">
+                    <input type="email" minlength="3"  name="email" placeholder="Email" required>
+                </li>
+                <li class="register__item first-name">
+                    <input type="text" minlength="2"  name="first_name" placeholder="First Name" required>
+                </li>
+                <li class="register__item last-name">
+                    <input type="text" minlength="2"  name="last_name" placeholder="Last Name" required>
+                </li>
+                <li class="register__item password">
+                    <input type="password" minlength="4" name="password" placeholder="Password" required>
+                </li>
+                <li class="register__item permission">
+                    <label>
+                        <input class="register__file-input" type="file" name="document" placeholder="Wholesale purchase permission" accept=".pdf,.jpg,.png">
+                        <span class="register__item-documemt-placeholder">Wholesale purchase permission</span>
+                        <span class="register__item-document-filename"></span>
+                        <button type="button" class="register__item-document-btn">Upload</button>
+                    </label>
+                </li>
+            </ul>
+            <button type="submit" class="register__submit">Create my account</button>
+        </form>
+    </div>
+    <p class="register__reverse">Already have an account? <span><a href="/login">Sign in</a></span></p>
+    <button class="logout-btn" type="button">Logout</button>
+</section>

@@ -3,6 +3,9 @@ import '@scss/styles.scss';
 import { initHeader } from './components/init-header';
 import { initLazyImages } from './components/init-lazyimages';
 import { useLoadFunction } from 'lazy-viewport-loader';
+import { listenAuthStatus } from './services/auth';
+import { wholesaleFileUpload } from './utils/wholesale-file-upload';
+import { initCart } from './components/init-cart';
 // import { initProduct } from './pages/product';
 // import { initMain } from './pages/main';
 // import { initProducts } from './pages/products';
@@ -11,6 +14,9 @@ import { useLoadFunction } from 'lazy-viewport-loader';
 document.addEventListener('DOMContentLoaded', async () => {
   initHeader();
   initLazyImages();
+  listenAuthStatus();
+  wholesaleFileUpload();
+  initCart();
   const page = document.body.dataset.page;
 
 
@@ -28,8 +34,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { initProduct } = await import('./pages/product');
       initProduct()
   }
+  if (page === 'register') {
+    const { initRegisterPage } = await import('./pages/register');
+      initRegisterPage()
+  }
 
+  if (page === 'login') {
+    const { initLoginPage } = await import('./pages/login');
+    initLoginPage();
+  }
+  
+  if (page === 'password-recovery') {
+    const { initPasswordRecovery } = await import('./pages/password-recovery');
+      initPasswordRecovery();
+  }
 
+  
   // initMain();
   // initProducts();
 

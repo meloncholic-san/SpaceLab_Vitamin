@@ -1,0 +1,40 @@
+<section class="login">
+    <div class="login__wrapper">
+        <h2 class="login__header">Sign in with email</h2>
+        <p class="login__phrase">Please enter your e-mail and password:</p>
+        <form id="login-form" class="login__form">
+            <ul class="login__list">
+                <li class="login__item email">
+                    <input type="email" minlength="3"  name="email" placeholder="Email" required>
+                </li>
+                <li class="login__item password">
+                    <input type="password" minlength="4" name="password" placeholder="Password" required>
+                    <a href="/password-recovery" class="login__password-reset">Forgot password?</a>
+                </li>
+            </ul>
+            <button type="submit" class="login__submit">Sign in</button>
+        </form>
+        <h3 class="login__title">or sign in with...</h3>
+        <div class="register__social">
+            <button type="button" class="register__social-google">
+                <svg class="register__social-icon">
+                    <use href="#icon-vitamin-google-logo"></use>
+                </svg>
+                Google
+            </button>
+            <button type="button" class="register__social-apple">
+                <svg class="register__social-icon">
+                    <use href="#icon-vitamin-apple-logo"></use>
+                </svg>
+            Apple
+            </button>
+            <button type="button" class="register__social-facebook">
+                <svg class="register__social-icon">
+                    <use href="#icon-vitamin-facebook-logo"></use>
+                </svg>
+            Facebook
+            </button>
+            </div>
+    </div>
+    <p class="register__reverse">Don't have an account? <span><a href="/register">Create one</a></span></p>
+</section>

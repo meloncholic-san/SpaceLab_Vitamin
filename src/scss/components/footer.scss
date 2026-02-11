@@ -1,0 +1,137 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.footer {
+    background-color: #FAF8F6;
+    position: relative;
+    &__wrapper {
+        padding: 70px 202px 74px;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+            @include respond-to(md) {
+                padding: 40px 20px;
+                flex-direction: column;
+            }
+    }
+    &__logo {
+        width: 85px;
+        height: 100px;
+            @include respond-to(md) {
+                width: 42px;
+                height: 50px;
+            }
+        &__content {
+            display: flex;
+            flex-direction: column;
+            gap: 59px;
+            margin-right: 20px;
+                @include respond-to(md) {
+                    margin-right: unset;
+                }
+        }
+        &__wrapper {
+
+        }
+    }
+    &__copyright-desctop {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 12px;
+        opacity: 0.3;
+            @include respond-to(md) {
+                display: none;
+            }
+    }
+        &__copyright-mobile {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 12px;
+        opacity: 0.3;
+        display: none;
+            @include respond-to(md) {
+                display: block;
+                margin-top: 37px;
+            }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-width: 315px;
+        max-height: 170px;
+        gap: 16px;
+            @include respond-to(md) {
+                flex-wrap: nowrap;
+                max-width: 160px;
+                max-height: unset;
+            }
+            @include respond-to(xxs) {
+                // max-width: 132px;
+                max-width: 41vw;
+            }
+        &.second {
+            max-height: 200px;
+
+            li {
+                max-width: 176px;
+            }
+        }
+        &__wrapper {
+            &.third {
+                margin-right: 44px;
+                    @include respond-to(md) {
+                        margin-right: unset;
+                        margin-top: 26px;
+                    }
+            }
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: row;
+            gap: 181px;
+            margin-left: auto;
+                @include respond-to(md) {
+                margin-left: unset;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                max-width: 340px;
+                gap: 15px;
+                margin-top: 36px;
+                }
+        }
+
+        &-name {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-regular;
+        font-size: 18px;
+        margin-bottom: 27px;
+            @include respond-to(md) {
+                margin-bottom: 21px;
+            }
+        }
+    }
+
+    &__item {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 14px;
+        opacity: 0.5;
+        max-width: 165px;
+        a {
+            color: black;
+            display: flex;
+            align-items: center;
+         }
+    }
+
+    &__icon {
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+    }
+}

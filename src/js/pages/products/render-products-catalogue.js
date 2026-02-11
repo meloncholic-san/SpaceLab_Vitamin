@@ -39,8 +39,7 @@ export function renderProductsCardCatalogue (products, container, { append = fal
         container.innerHTML = '<p style="font-size=20px color=red">No items!</p>'
         return;
     }
-
-    console.log(productCardTemplate);
+    
     console.log(products);
 
     if (append) {
