@@ -19,6 +19,7 @@
 @use "@scss/components/footer";
 @use "@scss/components/cart";
 @use "@scss/components/cart-product";
+@use "@scss/components/toast";
 
 @use "@scss/pages/main/main-hero";
 @use "@scss/pages/main/main-about";
@@ -37,3 +38,15 @@
 @use "@scss/pages/auth/register";
 @use "@scss/pages/auth/login";
 @use "@scss/pages/auth/password-recovery";
+
+@use "@scss/pages/checkout/checkout";
+@use "@scss/pages/checkout/checkout-item";
+
+@use "@scss/pages/checkout-success/checkout-success";
+
+@use "@scss/pages/profile/profile";
+@use "@scss/pages/profile/profile-subs";
+@use "@scss/pages/profile/profile-sidebar";
+@use "@scss/pages/profile/profile-orders";
+@use "@scss/pages/profile/profile-billing";
+@use "@scss/pages/profile/profile-password";

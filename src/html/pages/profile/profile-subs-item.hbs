@@ -1,0 +1,33 @@
+<div class="profile-subs-items">
+    <div class="profile-subs-items__wrapper">
+        <a href="/product?id={{id}}" class="profile-subs-items__link" style="color: black;">
+            <div class="profile-subs-items__image-wrapper {{categoryClass}}">
+                <img
+                class="profile-subs-items__image"
+                src="./img/components/products/{{image}}.png"
+                alt="{{title}}"
+                loading="lazy"
+                />
+            </div>
+        </a>
+        <div class="profile-subs-items__content-outer">
+            <div class="profile-subs-items__content">
+                <p class="profile-subs-items__category {{categoryClass}}">{{category}}</p>
+                <div class="profile-subs-items__content-inner">
+                    <p class="profile-subs-items__title">{{quantity}} x {{title}}</p>
+                    <span class="profile-subs-items__price">${{price}}</span>
+                </div>
+            </div>
+
+            <div class="profile-subs-items__shipment-wrapper">
+                <div class="profile-subs-items__shipment">
+                    <p class="profile-subs-items__shipment-interval">Shipment every {{autoship_interval}} days</p>
+                    <p class="profile-subs-items__shipment-next">Next delivery: {{autoship_next}}</p>
+                </div>
+                <button class="profile-subs-items__btn" data-subscription-id="{{subscriptionId}}">Unsubscribe</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

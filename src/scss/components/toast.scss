@@ -1,0 +1,44 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.custom-toast {
+    position: relative;
+    border-radius: 12px !important;
+    font-family: variables.$font-family-second;
+    font-weight: variables.$font-weight-semibold;
+    font-size: 16px;
+    padding: 17px 50px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        button {
+            display: none;
+        }
+
+    &.success {
+        background: #A2C94F !important;
+        padding-left: 60px !important;
+        &::before {
+            position: absolute;
+            content: "";
+            left: 32px;
+            top: 50%;
+            transform: translateY(-60%) rotate(45deg);
+            width: 8px;
+            height: 14px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+        }
+    }
+    
+    &.error {
+        background: linear-gradient(135deg, #ff5f6d, #ffc371) !important;
+    }
+    
+    &.warning {
+        background: linear-gradient(135deg, #f7971e, #ffd200) !important;
+    }
+    
+    &.info {
+        background: linear-gradient(135deg, #6B5EBB, #91CAF2) !important;
+    }
+}

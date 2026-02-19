@@ -16,10 +16,10 @@ export async function initRegisterPage() {
     // window.location.href = '/';
     // }
 
-    const logOutbtn = document.querySelector('.logout-btn');
-    logOutbtn.addEventListener('click', e => {
-        signOut();
-    })
+    // const logOutbtn = document.querySelector('.logout-btn');
+    // logOutbtn.addEventListener('click', e => {
+    //     signOut();
+    // })
 
     if (submitBtn) {
         submitBtn.disabled = true;

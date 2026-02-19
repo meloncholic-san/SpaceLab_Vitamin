@@ -1,0 +1,79 @@
+
+    <div class="profile-billing__wrapper">
+        <form class="profile-billing__form" id="billing-form" novalidate>
+            
+            <h2 class="profile-billing__title">Payment methods</h2>
+            
+            <div class="profile-billing__section">
+                
+                <img class="profile-billing__image" 
+                     src="./img/profile/billing-basement.webp" 
+                     alt="background picture" 
+                     loading="lazy">
+                
+
+
+                    <div class="profile-billing__field number">
+                        <label for="billing-card-number" class="profile-billing__label">
+                            Card Number
+                        </label>
+                        <input id="billing-cardNumber" 
+                               class="profile-billing__input" 
+                               type="text" 
+                               placeholder="Card Number" 
+                               name="cardNumber" />
+                        <span class="profile-billing__error profile-billing__error--required">
+                            Required
+                        </span>
+                        <span class="profile-billing__error profile-billing__error--pattern">
+                            Card numbers must contain between 12 and 16 numerical characters.
+                        </span>
+                    </div>
+
+
+        
+                    <div class="profile-billing__field expiry">
+                        <label for="billing-expiry" class="profile-billing__label">
+                            Expiration
+                        </label>
+                        <input id="billing-expiry" 
+                                class="profile-billing__input" 
+                                type="text" 
+                                placeholder="MM/YY"  
+                                name="expiry" />
+                        <span class="profile-billing__error profile-billing__error--required">
+                            Required
+                        </span>
+                        <span class="profile-billing__error profile-billing__error--pattern">
+                            Please enter valid expiry date
+                        </span>
+                    </div>
+
+
+                    <div class="profile-billing__field cvc">
+                        <label for="billing-cvc" class="profile-billing__label">
+                            CVC
+                        </label>
+                        <input id="billing-cvc" 
+                                class="profile-billing__input" 
+                                type="password"  
+                                placeholder="CVC" 
+                                name="cvc" />
+                        <span class="profile-billing__error profile-billing__error--required">
+                            Required
+                        </span>
+                        <span class="profile-billing__error profile-billing__error--pattern">
+                            Please enter valid cvc number
+                        </span>
+                    </div>
+
+
+
+            </div>
+
+            <button type="submit" class="profile-billing__submit disabled">
+                Save
+            </button>
+            
+        </form>
+    </div>

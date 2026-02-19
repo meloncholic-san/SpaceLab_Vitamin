@@ -1,0 +1,93 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.checkout-success {
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 20px 20px;
+    }
+    &__logo {
+        max-width: 168px;
+        max-height: 200px;
+        margin-bottom: 80px;
+            @include respond-to(sm) {
+                max-width: 84px;
+                height: 100px;
+                margin-bottom: 30px;
+            }
+    }
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 26px;
+        margin-bottom: 16px;
+        text-align: center;
+            @include respond-to(sm) {
+                font-size: 24px;
+            }
+    }
+
+    &__phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+        margin-bottom: 20px;
+        text-align: center;
+            @include respond-to(sm) {
+                font-size: 14px;
+            }
+    }
+
+    &__button {
+        position: relative;
+        display: block;
+        width: 100%;
+        max-width: 330px;
+        color: white;
+        background-color: #FF7D4E;
+        padding: 20px 0;
+        border-radius: 100px;
+        text-align: center;
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-bold;
+        font-size: 20px;
+            &::before {
+                position: absolute;
+                content: "";
+                display: block;
+                background-color: #F2F2F2;
+                width: 508px;
+                height: 1px;
+                bottom: -40px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                    @include respond-to(sm) {
+                        width: 100%;
+                    }
+            }
+            @include respond-to(sm) {
+                font-size: 16px;
+            }
+    }
+
+    &__watermark {
+        max-width: 560px;
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 14px;
+        text-align: center;
+        opacity: 0.5;
+        margin-top: 90px;
+            @include respond-to(sm) {
+                margin-top: 70px;
+                max-width: 335px;
+            }
+
+    }
+
+}

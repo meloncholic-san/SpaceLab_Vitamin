@@ -1,0 +1,46 @@
+<div class="profile-order-item" data-order-id="{{orderId}}">
+    <div class="profile-order-item__header">
+        <div class="profile-order-item__header-content">
+            <p class="profile-order-item__date">{{orderDate}}</p>
+            <a class="profile-order-item__number" href="/checkout?order={{orderId}}">No {{orderNumber}}</a>
+        </div>
+        <p class="profile-order-item__status">{{status}}</p>
+    </div>
+
+    <div class="profile-order-item__table">
+        {{#each items}}
+        <div class="profile-order-item__row">
+            <a href="/product?id={{id}}" class="profile-order-item__link" style="color: black;">
+                <div class="profile-order-item__image-wrapper {{categoryClass}}">
+                    <img
+                    class="profile-order-item__image"
+                    src="./img/components/products/{{image}}.png"
+                    alt="{{title}}"
+                    loading="lazy"
+                    />
+                </div>
+            </a>
+            <div class="profile-order-item__content">
+                <div class="profile-order-item__content-inner">
+                    <p class="profile-order-item__category {{categoryClass}}">{{category}}</p>
+                    <p class="profile-order-item__description">
+                        {{quantity}} x {{title}}
+                    </p>
+                </div>
+
+            <p class="profile-order-item__price">${{price}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <div class="profile-order-item__footer">
+        <div class="profile-order-item__amount">
+            <span>Order Amount:</span>
+            <strong>${{totalAmount}}</strong>
+        </div>
+        <button class="profile-order-item__btn-reorder" data-order-id="{{orderId}}">
+            Add to Cart
+        </button>
+    </div>
+</div>

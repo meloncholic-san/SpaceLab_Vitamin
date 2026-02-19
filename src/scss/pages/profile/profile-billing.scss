@@ -1,0 +1,185 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.profile-billing {
+    &__wrapper {
+        width: 100%;
+        max-width: 920px;
+        
+        @include respond-to(sm) {
+            max-width: 335px;
+            margin: 0 auto;
+        }
+    }
+
+    &__form {
+        position: relative;
+        width: 100%;
+    }
+
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 36px;
+        margin-bottom: 40px;
+        
+        @include respond-to(sm) {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+    }
+
+    &__section {
+        margin-bottom: 40px;
+        position: relative;
+        width: 674px;
+        height: 336px;
+    }
+
+    &__image {
+        width: 100%;
+        max-width: 920px;
+        height: auto;
+        margin-bottom: 30px;
+        border-radius: 16px;
+        
+        @include respond-to(sm) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__fields {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 444px;
+        padding: 40px;
+        @include respond-to(sm) {
+            max-width: 100%;
+        }
+    }
+
+    &__field-wrapper {
+        display: flex;
+        gap: 32px;
+        width: 100%;
+        
+        @include respond-to(md) {
+            gap: 15px;
+        }
+        
+        @include respond-to(sm) {
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        & > .profile-billing__field {
+            flex: 1;
+            min-width: 0;
+        }
+    }
+
+    &__field {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+            &.number {
+                position: absolute;
+                max-width: 410px;
+                top: 50px;
+                left: 40px;
+            }
+            &.expiry {
+                position: absolute;
+                max-width: 104px;
+                bottom: 70px;
+                height: 97px;
+                left: 40px;
+                .profile-billing__error {
+                    width: 200%;
+                }
+            }
+            &.cvc {
+                position: absolute;
+                max-width: 104px;
+                height: 114px;
+                bottom: 14px;
+                right: 40px;
+            }
+    }
+
+    &__label {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 14px;
+        opacity: 0.5;
+        margin-bottom: 5px;
+    }
+
+    &__input {
+        padding: 14px 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 18px;
+        background: #FAF8F6;
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        transition: all 0.2s ease;
+        
+        &:focus {
+            border-color: #111;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+            outline: none;
+        }
+
+        &.invalid {
+            border-color: #e53935;
+        }
+
+        &:-webkit-autofill {
+            background-color: #FAF8F6 !important;
+            -webkit-box-shadow: 0 0 0px 1000px #FAF8F6 inset !important;
+        }
+        
+        &:autofill {
+            background-color: #FAF8F6;
+        }
+
+        &::placeholder {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 18px;
+            opacity: 0.5;
+        }
+    }
+
+    &__error {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 12px;
+        color: #FF7D4E;
+        margin-top: 4px;
+        display: none;
+
+        &.visible {
+            display: block;
+        }
+    }
+
+    &__submit {
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-bold;
+            font-size: 16px;
+            color: white;
+            background-color: #FF7D4E;
+            width: 100%;
+            max-width: 154px;
+            border-radius: 100px;
+            padding: 15px 0;
+            cursor: pointer;
+            &.disabled {
+                background-color: #E1DEDA;
+            }
+    }
+}

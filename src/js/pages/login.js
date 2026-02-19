@@ -52,5 +52,6 @@ export async function initLoginPage() {
         }
         form.reset();
         console.log('Login submitted');
+        window.location.href = '/index';
     });
 }

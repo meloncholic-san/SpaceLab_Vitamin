@@ -1,0 +1,25 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.profile-sidebar {
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 55px;
+    }
+    &__btn {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-regular;
+        font-size: 22px;
+        cursor: pointer;
+
+        &.signout {
+            color: #D32D2C;
+        }
+
+        &.active {
+        font-weight: variables.$font-weight-bold;
+        }
+    }
+}

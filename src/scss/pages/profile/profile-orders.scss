@@ -1,0 +1,193 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.profile-order {
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 100px;
+    }
+    &-item {
+        width: 100vw;
+        max-width: 1039px;
+        padding: 40px;
+        background-color: #FAF8F6;
+        &__header {
+            display: flex;
+            flex-direction: row;
+            // align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            &-content {
+            }
+        }
+        &__link {
+            display: block;
+            width: fit-content;
+        }
+        &__image {
+        position: absolute;
+        width: 120px;
+        height: 122px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        &-wrapper {
+                position: relative;
+                width: 120px;
+                height: 170px;
+                border-radius: 8px;
+                &.category--vitamins {
+                    background-color: #6B5EBB;
+                }
+                &.category--weight-loss {
+                    background-color: #A5B3FF;
+                }
+                &.category--pain {
+                    background-color: #91CAF2;
+                }
+                &.category--minerals {
+                    background-color: #94D6BE;
+                }
+                &.category--probiotics {
+                    background-color: #E8939D;
+                }
+                &.category--antioxidants {
+                    background-color: #F2B385;
+                }
+                &.category--prenatal-vitamins {
+                    background-color: #DA91E0;
+                }
+                &.category--default {
+                    background-color: #c286a7;
+                }
+            }
+        }
+        &__date {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 18px;
+            opacity: 0.5;
+            margin-bottom: 8px;
+        }
+        &__number {
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-medium;
+            font-size: 22px;
+            color: black;
+        }
+        &__status {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 18px;
+        }
+        &__table {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    width: 100%;
+                    height: 1px;
+                    background-color: #000000;
+                    opacity: 0.07;
+                    left: 0;
+                    bottom: -50px;
+                }
+        }
+        &__row {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            max-width: 460px;
+        }
+        &__category {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-semibold;
+            font-size: 14px;
+            margin-bottom: 5px;
+                &.category--vitamins {
+                    color: #6B5EBB;
+                }
+                &.category--weight-loss {
+                    color: #A5B3FF;
+                }
+                &.category--pain {
+                    color: #91CAF2;
+                }
+                &.category--minerals {
+                    color: #94D6BE;
+                }
+                &.category--probiotics {
+                    color: #E8939D;
+                }
+                &.category--antioxidants {
+                    color: #F2B385;
+                }
+                &.category--prenatal-vitamins {
+                    color: #DA91E0;
+                }
+                &.category--default {
+                    color: #c286a7;
+                }
+        }
+        &__description {
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-regular;
+            font-size: 20px;
+        }
+        &__price {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-semibold;
+            font-size: 18px;
+        }
+        &__content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 0;
+            &-inner {
+                
+            }
+        }
+
+        &__footer {
+            margin-top: 87px;
+            display: flex;
+            justify-content: space-between;
+        }
+        &__amount {
+            display: flex;
+            flex-direction: column;
+                span {
+                font-family: variables.$font-family-second;
+                font-weight: variables.$font-weight-regular;
+                font-size: 18px;
+                opacity: 0.5;
+                margin-bottom: 4px;
+                }
+                strong {
+                font-family: variables.$font-family-second;
+                font-weight: variables.$font-weight-semibold;
+                font-size: 20px;
+                }
+        }
+        &__btn-reorder {
+                font-family: variables.$font-family-main;
+                font-weight: variables.$font-weight-bold;
+                font-size: 16px;
+                color: white;
+                background-color: #FF7D4E;
+                width: 100%;
+                max-width: 154px;
+                border-radius: 100px;
+                padding: 15px 0;
+                cursor: pointer;
+        }
+    }
+}

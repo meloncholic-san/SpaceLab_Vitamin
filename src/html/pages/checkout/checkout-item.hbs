@@ -1,0 +1,29 @@
+<article class="checkout-item" data-productId="{{id}}">
+    <div class="checkout-item__wrapper">
+        <a href="/product?id={{id}}" class="checkout-item__link" style="color: black;">
+            <div class="checkout-item__image-wrapper {{categoryClass}}">
+                <img
+                    class="checkout-item__image"
+                    src="./img/components/products/{{image}}.png"
+                    alt="{{title}}"
+                    loading="lazy"
+                />
+            </div>
+        </a>
+        
+        <div class="checkout-item__content">
+            <p class="checkout-item__title">{{quantity}} <span>x</span>{{title}}</p>
+            <div class="checkout-item__price">
+            {{#if discount}}
+                <span class="checkout-item__price--old">${{oldPrice}}</span>
+                <span class="checkout-item__price--new">${{price}}</span>
+            {{else}}
+                <span class="checkout-item__price--regular">${{price}}</span>
+            {{/if}}
+            </div>
+        </div>
+
+
+
+    </div>
+</article>

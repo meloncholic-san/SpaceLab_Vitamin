@@ -1,0 +1,103 @@
+
+            <form class="checkout-form form" id="checkout-form" novalidate>
+            <div class="profile-overview-form__header">
+                <h2 class="profile__section-title overview">Account Overview</h2>
+                <p class="profile__section-customer"></p>
+            </div>
+
+            <div class="checkout-form__section">
+
+                <div class="checkout-form__fields">
+                    <div class="checkout-form__field">
+                        <label for="firstName">First Name</label>
+                        <input id="firstName" name="firstName" type="text" placeholder="First Name" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Only letters can be entered</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="lastName">Last Name</label>
+                        <input id="lastName" name="lastName" type="text" placeholder="Last Name" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Only letters can be entered</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="address1">Address Line 1</label>
+                        <input id="address1" name="address1" type="text" placeholder="Address Line 1" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">The shipping address should be at least 5 characters long</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="address2">Address Line 2</label>
+                        <input id="address2" name="address2" type="text" placeholder="Address Line 2" />
+                        <span class="form__error form__error_pattern">The shipping address should be at least 5 characters long</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="city">City</label>
+                        <input id="city" name="city" type="text" placeholder="City" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Please enter a valid city name</span>
+
+                    </div>
+
+                    <div class="checkout-form__field-wrapper">
+                        <div class="checkout-form__field">
+                            <label for="zip">ZIP</label>
+                            <input id="zip" name="zip" type="text" placeholder="ZIP / Postal Code" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">You can write a maximum of 10 characters</span>
+
+                        </div>
+                        <div class="checkout-form__field state">
+                            <label for="state">State</label>
+                            <span class="checkout-form__field state-wrapper">
+                                <select name="state" type="select" placeholder="State / Province" id="state">
+                                    <option value="">--</option>
+                                </select>
+                            </span>
+                            <span class="form__error form__error_required">Please select State/Province</span>
+                        </div>
+                    </div>
+
+
+                    <div class="checkout-form__field">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="Email" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Please enter a valid email address</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="phone">Phone</label>
+                        <input id="phone" name="phone" type="tel" placeholder="Phone" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Please input numbers</span>
+                    </div>
+
+                    <div class="checkout-form__field permission" id="wholesale-document-field">
+                            <p class="profile-overview__document-placeholder">
+                                Wholesale purchase permission
+                            </p>
+                        <label>
+                            <input 
+                                class="profile-overview__document-input" 
+                                type="file" 
+                                name="document" 
+                                accept=".pdf,.jpg,.png"
+                            >
+
+                            <span class="profile-overview__document-document-filename"></span>
+                            <button type="button" class="profile-overview__document-btn">Upload</button>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <button type="submit" form="checkout-form" class="profile-overview__submit-btn disabled">
+                Save
+            </button>
+            </form>

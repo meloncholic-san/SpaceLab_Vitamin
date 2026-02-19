@@ -1,0 +1,159 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    &__wrapper {
+        padding: 160px 202px 0;
+        display: flex;
+        // justify-content: space-between;
+        justify-content: center;
+        gap: 131px;
+    }
+    &__section {
+        display: none;
+            &.active {
+                display: block;
+            }
+
+        &-title {
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-medium;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+    }
+
+    &-overview__submit-btn {
+            font-family: variables.$font-family-main;
+            font-weight: variables.$font-weight-bold;
+            font-size: 16px;
+            color: white;
+            background-color: #FF7D4E;
+            width: 100%;
+            max-width: 154px;
+            border-radius: 100px;
+            padding: 15px 0;
+            cursor: pointer;
+            &.disabled {
+                background-color: #E1DEDA;
+            }
+
+    }
+    &-overview-form__header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+    &__section-customer {
+        height: fit-content;
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 22px;
+    }
+    &__section-title.overview {
+        margin-bottom: 0;
+    }
+}
+
+
+.checkout-form__field {
+    &.permission {
+        display: none;
+        
+        input {
+            opacity: 0;
+            display: none;
+        }
+
+        label {
+            display: block;
+            width: 100%;
+            background-color: #FAF8F6;
+            padding: 14px 12px;
+            border: none;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            min-height: 60px;
+        }
+
+        span {
+            display: block;
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 18px;
+        }
+
+        button {
+            position: absolute;
+            max-width: 104px;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            padding: 9px 0;
+            background-color: #FF7D4E;
+            border-radius: 12px;
+            border: none;
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-bold;
+            font-size: 12px;
+            color: white;
+            cursor: pointer;
+            z-index: 1;
+            transition: background-color 0.2s ease;
+
+            &:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+            }
+        }
+
+        .profile-overview__document-filename {
+            font-family: variables.$font-family-second;
+            font-weight: variables.$font-weight-regular;
+            font-size: 16px;
+            color: black;
+            display: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 300px;
+            padding-right: 110px;
+            
+            &.show {
+                display: block;
+            }
+        }
+    }
+}
+
+.profile-overview__document-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: variables.$font-family-second;
+    font-size: 14px;
+    color: #FF7D4E;
+    text-decoration: none;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.profile-overview__document-placeholder {
+    font-family: variables.$font-family-second;
+    font-weight: variables.$font-weight-regular;
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+.checkout-form__field.permission label {
+    opacity: 1;
+}

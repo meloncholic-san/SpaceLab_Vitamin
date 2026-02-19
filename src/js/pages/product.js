@@ -1,12 +1,12 @@
+import { updateCartButtons } from "../components/init-cart";
 import { getCurrentSession } from "../services/auth";
-import { addCartProducts } from "../services/cart";
+import { addCartProducts, getCartProducts } from "../services/cart";
 import { getAdvertisementProducts, getProductById } from "../services/products";
 import { getQueryParam } from "../utils/url";
 import { renderProductPage } from "./product/init-render-product-page";
 import { renderProductsCardCatalogue } from "./products/render-products-catalogue";
 import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css";
-
 
 function showSuccessToast() {
     Toastify({
@@ -138,6 +138,8 @@ export async function initProduct () {
             console.log(result)
             if (result && !result.error) {
                 showSuccessToast();
+                const cartItems = await getCartProducts();
+                updateCartButtons(cartItems);
             } else {
                 showErrorToast();
             }

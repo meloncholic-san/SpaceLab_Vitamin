@@ -117,11 +117,11 @@ export async function signOut() {
   if (error) throw error;
 }
 
-export function getCurrentUser() {
+export async function getCurrentUser() {
   return supabase.auth.getUser();
 }
 
-export function getCurrentSession() {
+export async function getCurrentSession() {
   return supabase.auth.getSession()
 }
 

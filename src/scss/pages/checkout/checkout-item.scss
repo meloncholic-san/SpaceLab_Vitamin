@@ -1,0 +1,124 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.checkout-item {
+    max-width: 364px;
+    &__wrapper {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__image {
+        position: absolute;
+        width: 49px;
+        height: 55px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        &-wrapper {
+                position: relative;
+                width: 70px;
+                height: 70px;
+                border-radius: 8px;
+                &.category--vitamins {
+                    background-color: #6B5EBB;
+                }
+                &.category--weight-loss {
+                    background-color: #A5B3FF;
+                }
+                &.category--pain {
+                    background-color: #91CAF2;
+                }
+                &.category--minerals {
+                    background-color: #94D6BE;
+                }
+                &.category--probiotics {
+                    background-color: #E8939D;
+                }
+                &.category--antioxidants {
+                    background-color: #F2B385;
+                }
+                &.category--prenatal-vitamins {
+                    background-color: #DA91E0;
+                }
+                &.category--default {
+                    background-color: #c286a7;
+                }
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+            @include respond-to(sm) {
+                width: 100%;
+            }
+    }
+
+    &__title {
+        max-width: 190px;
+        min-width: 160px;
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+            @include respond-to(sm) {
+                font-size: 14px;
+                max-width: 160px;
+                min-width: 100px;
+            }
+    }
+
+    &__price {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__price--regular {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+            @include respond-to(sm) {
+                font-size: 14px;
+            }
+    }
+
+    &__price--old {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 12px;
+        position: relative;
+        opacity: 0.5;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+            @include respond-to(sm) {
+                font-size: 14px;
+            }
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: black;
+                top: 55%;
+            }
+    }
+
+    &__price--new {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 16px;
+        color: red;
+            @include respond-to(lg) {
+                font-size: 16px;
+            }
+            @include respond-to(sm) {
+                font-size: 14px;
+            }
+    }
+}

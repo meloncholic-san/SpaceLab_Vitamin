@@ -6,10 +6,10 @@ import { useLoadFunction } from 'lazy-viewport-loader';
 import { listenAuthStatus } from './services/auth';
 import { wholesaleFileUpload } from './utils/wholesale-file-upload';
 import { initCart } from './components/init-cart';
+import { initProfileButton } from './utils/init-profile-button';
 // import { initProduct } from './pages/product';
 // import { initMain } from './pages/main';
 // import { initProducts } from './pages/products';
-
 
 document.addEventListener('DOMContentLoaded', async () => {
   initHeader();
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   listenAuthStatus();
   wholesaleFileUpload();
   initCart();
+  initProfileButton();
   const page = document.body.dataset.page;
 
 
@@ -48,8 +49,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { initPasswordRecovery } = await import('./pages/password-recovery');
       initPasswordRecovery();
   }
-
+  if (page === 'checkout') {
+    const { initCheckout } = await import('./pages/checkout/init-checkout');
+    initCheckout();
+  }
   
+  if (page === 'profile') {
+    const { initProfile } = await import('./pages/profile/init-profile');
+    initProfile();
+  }
+
   // initMain();
   // initProducts();
 

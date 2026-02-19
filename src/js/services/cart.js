@@ -1,6 +1,10 @@
 import { supabase } from '../api/supabase';
 
 export async function getCartProducts() {
+  const { data: { session } } = await supabase.auth.getSession()
+  if (!session) {
+    return
+  }
 const { data, error } = await supabase
   .from('cart')
   .select(`

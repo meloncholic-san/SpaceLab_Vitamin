@@ -1,0 +1,158 @@
+<section class="checkout">
+    <div class="checkout__wrapper">
+        <div class="checkout__header">
+            <a href="index">
+                <svg class="checkout__logo">
+                    <use href="#icon-vitamin-logo"></use>
+                </svg>
+            </a>
+        </div>
+
+        <div class="checkout__body">
+            <form class="checkout-form form" id="checkout-form" novalidate>
+
+            <div class="checkout-form__section">
+                <h3 class="checkout-form__title">Delivery Information</h3>
+
+                <div class="checkout-form__fields">
+                    <div class="checkout-form__field">
+                        <label for="firstName">First Name</label>
+                        <input id="firstName" name="firstName" type="text" placeholder="First Name" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Only letters can be entered</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="lastName">Last Name</label>
+                        <input id="lastName" name="lastName" type="text" placeholder="Last Name" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Only letters can be entered</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="address1">Address Line 1</label>
+                        <input id="address1" name="address1" type="text" placeholder="Address Line 1" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">The shipping address should be at least 5 characters long</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="address2">Address Line 2</label>
+                        <input id="address2" name="address2" type="text" placeholder="Address Line 2" />
+                        <span class="form__error form__error_pattern">The shipping address should be at least 5 characters long</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="city">City</label>
+                        <input id="city" name="city" type="text" placeholder="City" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Please enter a valid city name</span>
+
+                    </div>
+
+                    <div class="checkout-form__field-wrapper">
+                        <div class="checkout-form__field">
+                            <label for="zip">ZIP</label>
+                            <input id="zip" name="zip" type="text" placeholder="ZIP / Postal Code" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">You can write a maximum of 10 characters</span>
+
+                        </div>
+                        <div class="checkout-form__field state">
+                            <label for="state">State</label>
+                            <span class="checkout-form__field state-wrapper">
+                                <select name="state" type="select" placeholder="State / Province" id="state">
+                                    <option value="">--</option>
+                                </select>
+                            </span>
+                            <span class="form__error form__error_required">Please select State/Province</span>
+                        </div>
+                    </div>
+
+
+                    <div class="checkout-form__field">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="Email" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Please enter a valid email address</span>
+                    </div>
+
+                    <div class="checkout-form__field">
+                        <label for="phone">Phone</label>
+                        <input id="phone" name="phone" type="tel" placeholder="Phone" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Please input numbers</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="checkout-form__section">
+                <h3 class="checkout-form__title">Billing</h3>
+
+                <div class="checkout-form__fields">
+                    <div class="checkout-form__field">
+                        <label for="cardNumber">Card Number</label>
+                        <input id="cardNumber" type="text" placeholder="Card Number" name="cardNumber" />
+                        <span class="form__error form__error_required">Required</span>
+                        <span class="form__error form__error_pattern">Card numbers must contain between 12 and 20 numerical characters.</span>
+                    </div>
+
+                    <div class="checkout-form__field-wrapper">
+                        <div class="checkout-form__field">
+                            <label for="expiry">Expiration</label>
+                            <input id="expiry" type="text" placeholder="MM/YY"  name="expiry" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Please enter numbers only</span>
+                        </div>
+
+                        <div class="checkout-form__field">
+                            <label for="cvc">CVC</label>
+                            <input id="cvc" type="text" placeholder="CVC" name="cvc" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Please enter valid expire date</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <button type="submit" form="checkout-form" class="checkout__submit mobile">
+                Place Order
+            </button>
+            </form>
+
+            <div class="checkout__order">
+                <div class="checkout__order-list">
+
+                </div>
+                <div class="checkout__order-pricing-wrapper">
+                    <div class="checkout__order-pricing"><p>Subtotal:</p> <span class="checkout__order-price"></span></div>
+                    <div class="checkout__order-pricing discount"><p>Discount:</p> <span class="checkout__order-discount"></span></div>
+                    <div class="checkout__order-pricing"><p>Shipping:</p> <span class="checkout__order-shipping"></span></div>
+                    <div class="checkout__order-pricing total"><p>Today`s total:</p> <span class="checkout__order-total"></span></div>
+                </div>
+
+                <button type="submit" form="checkout-form" class="checkout__submit desctop">
+                    Place Order
+                </button>
+            </div>
+
+            <div class="checkout__order-opener">
+                <div class="checkout__order-opener-wrapper">
+                    <svg class="checkout__order-opener-icon"><use href="#icon-vitamin-cart"></use></svg>
+                    <div class="checkout__order-opener-pricing"><p>Today`s total <button class="checkout__order-opener-arrow"></button></p> <span class="checkout__order-opener-total"></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout__footer">
+            <ul class="checkout__terms-list">
+                <li class="checkout__terms-item"><a href="/term-of-use">Return Policy</a></li>
+                <li class="checkout__terms-item"><a href="/term-of-use">Privacy Policy</a></li>
+                <li class="checkout__terms-item"><a href="/term-of-use">Terms & Conditions</a></li>
+            </ul>
+            <img class="checkout__footer-logos" src="./img/checkout/checkout-footer.webp" alt="background picture" loading="lazy">
+        </div>
+    </div>
+</section>
