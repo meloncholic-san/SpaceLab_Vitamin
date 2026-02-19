@@ -11,228 +11,168 @@
   <script type="module" crossorigin src="./assets/app-YCXN7p87.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/app-BjPGw8-u.css">
 </head>
-<body data-page="main">
+<body data-page="checkout">
 
-  <main id="main-page">
+  <main id="checkout-page">
 
-    <header class="header ">
-        <div class="header__wrapper">
-    
-            <div class="header__mobile-menu">
-    
-            </div>
-            
-            <div class="header__logo__wrapper">
+    <section class="checkout">
+        <div class="checkout__wrapper">
+            <div class="checkout__header">
                 <a href="index">
-                    <svg class="header__logo">
+                    <svg class="checkout__logo">
                         <use href="#icon-vitamin-logo"></use>
                     </svg>
-    
-                    <svg class="header__logo-white">
-                        <use href="#icon-vitamin-logo-white"></use>
-                    </svg>
                 </a>
-    
             </div>
     
-            <div class="header__content">
-                <button class="header__content-profile-btn" type="button"><svg class="header__content-icon"><use href="#icon-vitamin-profile"></use></svg></button>
-                <button class="header__content-cart-btn" type="button"><svg class="header__content-icon"><use href="#icon-vitamin-cart"></use></svg></button>
-                <button class="header__content-cart-btn alert" type="button"><svg class="header__content-icon"><use href="#icon-vitamin-cart-alert"></use></svg></button>
-                <button class="header__content-cart-btn white" type="button"><svg class="header__content-icon"><use href="#icon-vitamin-cart-white"></use></svg></button>
-                 <button class="header__content-cart-btn white-alert" type="button"><svg class="header__content-icon"><use href="#icon-vitamin-cart-white"></use></svg></button>
-                <button class="header__content-quiz-btn" type="button">Take the quiz</button>
+            <div class="checkout__body">
+                <form class="checkout-form form" id="checkout-form" novalidate>
+    
+                <div class="checkout-form__section">
+                    <h3 class="checkout-form__title">Delivery Information</h3>
+    
+                    <div class="checkout-form__fields">
+                        <div class="checkout-form__field">
+                            <label for="firstName">First Name</label>
+                            <input id="firstName" name="firstName" type="text" placeholder="First Name" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Only letters can be entered</span>
+                        </div>
+    
+                        <div class="checkout-form__field">
+                            <label for="lastName">Last Name</label>
+                            <input id="lastName" name="lastName" type="text" placeholder="Last Name" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Only letters can be entered</span>
+                        </div>
+    
+                        <div class="checkout-form__field">
+                            <label for="address1">Address Line 1</label>
+                            <input id="address1" name="address1" type="text" placeholder="Address Line 1" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">The shipping address should be at least 5 characters long</span>
+                        </div>
+    
+                        <div class="checkout-form__field">
+                            <label for="address2">Address Line 2</label>
+                            <input id="address2" name="address2" type="text" placeholder="Address Line 2" />
+                            <span class="form__error form__error_pattern">The shipping address should be at least 5 characters long</span>
+                        </div>
+    
+                        <div class="checkout-form__field">
+                            <label for="city">City</label>
+                            <input id="city" name="city" type="text" placeholder="City" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Please enter a valid city name</span>
+    
+                        </div>
+    
+                        <div class="checkout-form__field-wrapper">
+                            <div class="checkout-form__field">
+                                <label for="zip">ZIP</label>
+                                <input id="zip" name="zip" type="text" placeholder="ZIP / Postal Code" />
+                                <span class="form__error form__error_required">Required</span>
+                                <span class="form__error form__error_pattern">You can write a maximum of 10 characters</span>
+    
+                            </div>
+                            <div class="checkout-form__field state">
+                                <label for="state">State</label>
+                                <span class="checkout-form__field state-wrapper">
+                                    <select name="state" type="select" placeholder="State / Province" id="state">
+                                        <option value="">--</option>
+                                    </select>
+                                </span>
+                                <span class="form__error form__error_required">Please select State/Province</span>
+                            </div>
+                        </div>
+    
+    
+                        <div class="checkout-form__field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="Email" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Please enter a valid email address</span>
+                        </div>
+    
+                        <div class="checkout-form__field">
+                            <label for="phone">Phone</label>
+                            <input id="phone" name="phone" type="tel" placeholder="Phone" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Please input numbers</span>
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <div class="checkout-form__section">
+                    <h3 class="checkout-form__title">Billing</h3>
+    
+                    <div class="checkout-form__fields">
+                        <div class="checkout-form__field">
+                            <label for="cardNumber">Card Number</label>
+                            <input id="cardNumber" type="text" placeholder="Card Number" name="cardNumber" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Card numbers must contain between 12 and 20 numerical characters.</span>
+                        </div>
+    
+                        <div class="checkout-form__field-wrapper">
+                            <div class="checkout-form__field">
+                                <label for="expiry">Expiration</label>
+                                <input id="expiry" type="text" placeholder="MM/YY"  name="expiry" />
+                                <span class="form__error form__error_required">Required</span>
+                                <span class="form__error form__error_pattern">Please enter numbers only</span>
+                            </div>
+    
+                            <div class="checkout-form__field">
+                                <label for="cvc">CVC</label>
+                                <input id="cvc" type="text" placeholder="CVC" name="cvc" />
+                                <span class="form__error form__error_required">Required</span>
+                                <span class="form__error form__error_pattern">Please enter valid expire date</span>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <button type="submit" form="checkout-form" class="checkout__submit mobile">
+                    Place Order
+                </button>
+                </form>
+    
+                <div class="checkout__order">
+                    <div class="checkout__order-list">
+    
+                    </div>
+                    <div class="checkout__order-pricing-wrapper">
+                        <div class="checkout__order-pricing"><p>Subtotal:</p> <span class="checkout__order-price"></span></div>
+                        <div class="checkout__order-pricing discount"><p>Discount:</p> <span class="checkout__order-discount"></span></div>
+                        <div class="checkout__order-pricing"><p>Shipping:</p> <span class="checkout__order-shipping"></span></div>
+                        <div class="checkout__order-pricing total"><p>Today`s total:</p> <span class="checkout__order-total"></span></div>
+                    </div>
+    
+                    <button type="submit" form="checkout-form" class="checkout__submit desctop">
+                        Place Order
+                    </button>
+                </div>
+    
+                <div class="checkout__order-opener">
+                    <div class="checkout__order-opener-wrapper">
+                        <svg class="checkout__order-opener-icon"><use href="#icon-vitamin-cart"></use></svg>
+                        <div class="checkout__order-opener-pricing"><p>Today`s total <button class="checkout__order-opener-arrow"></button></p> <span class="checkout__order-opener-total"></span></div>
+                    </div>
+                </div>
             </div>
     
+            <div class="checkout__footer">
+                <ul class="checkout__terms-list">
+                    <li class="checkout__terms-item"><a href="/term-of-use">Return Policy</a></li>
+                    <li class="checkout__terms-item"><a href="/term-of-use">Privacy Policy</a></li>
+                    <li class="checkout__terms-item"><a href="/term-of-use">Terms & Conditions</a></li>
+                </ul>
+                <img class="checkout__footer-logos" src="data:image/webp;base64,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" alt="background picture" loading="lazy">
+            </div>
         </div>
-    </header>    <div class="cart">
-        <div class="cart__overlay"></div>
-        <div class="cart__wrapper">
-            <div class="cart__head">
-                <h3 class="cart__headline">Cart</h3>
-                <button class="cart__btn-close" type="button"></button>
-            </div>
-            
-            <div class="cart__body">
-                <div class="cart__no-items-wrapper"><p class="cart__no-items">Your cart is empty!</p></div>
-            </div>
-            <div class="cart__footer">
-                <button class="cart__order-btn" type="button">Check Out</button>
-            </div>
-    
-        </div>
-    </div>    <section class="main-hero">
-        <div class="main-hero__wrapper">
-            <div class="main-hero__content">
-                <h2 class="main-hero-title">Find out what <span>vitamins</span> your body needs right now.</h2>
-                <p class="main-hero-phrase">Answer a few simple questions and automatically get a personalazed list of vitamins in minutes</p>   
-                <div class="main-hero__buttons">
-                    <button type="button" class="quiz-btn main-hero-quiz-btn"><a class="quiz-btn-link " href="">Take the quiz</a></button>                <a class="shop-btn main-hero-shop-btn " href="">Go to the shop</a>            </div>
-    
-            </div>
-    
-            <div class="main-hero__image__wrapper">
-                <img class="main-hero__image" src="./assets/main-hero-vitamins-1-CJzW0rTp.webp" alt="vitamins picture" loading="eager">
-            </div>
-    
-            <div class="elipse yellow main-hero__elipse-1">
-            </div>        <div class="elipse main-hero__elipse-2">
-            </div>        <div class="circle main-hero__circle">
-            </div>    </div>
     </section>
-    
-    
-    
-    
-    </div>    <section class="main-about">
-        <div class="main-about__wrapper">
-            <div class="main-about__content">
-                <p class="main-about__content-phrase">Healthy doesn’t have to be hard. We make it easy.</p>
-                <img class="main-about__content-background" src="data:image/webp;base64,UklGRnQJAABXRUJQVlA4IGgJAACw7QCdASqEA8ADPjEYikQiIYgFViIQAYJaW7hd2Ef7kV9+o5dif9e89YMAHVVxcdZl4hbq226u5i431NQEwZcNTddJW5vqagJlbm+pqAmVub6mn/4YzCqlxvqagJlZYMNc/NXU1ATK3N9TUBMrc31NQEysu4PU1ATK3N8WGarxC431NQEytzfU1ATK3N9OECvMrc31NP//lC431NQEytzfU1ATK3N9TUAALQhcb6moCYO4PU1ATK3N9TUBMrc31NQEyttnRk1ATK3N9OECvMrc31NQEytzfU1ATK3N9S22sW5vqagJlCpqZ3U1ATK3N9TUBMrc31NQEwdwepqAmVub4sM1XiFxvqagJlbm+pqAmVub6cIFeZW5vqagABaELjfU1ATK3N9TUBMrc31NPNtYtzfU1ATKFTUzupqAmVub6moCZW5vqagJg7g9TUBMrc3xYZqvELjfU1ATK3N9TUBMrc304QK8ytzfU1AAC0IXG+pqAmVub6moCZW5vqaebaxbm+pqAmUKmpndTUBMrc31NQEytzfU1ATB3B6moCZW5viwzVeIXG+pqAmVub6moCZW5vpwgV5lbm+pqAAFoQuN9TUBMrc31NQEytzfU0821i3N9TUBMoVNTO6moCZW5vqagJlbm+pqAmDuD1NQEytzfFhmq8QuN9TUBMrc31NQEytzfThArzK3N9TUAALQhcb6moCZW5vqagJlbm+pp5trFub6moCZQqamd1NQEytzfU1ATK3N9TUBMHcHqagJlbm+LDNV4hcb6moCZW2upz9EUsbvm+b5vm+b5vm+b5vm+b5vm7H1zKdoLHUFkAxfrPMdQWQDF+s8x06TeO9f1AGzbNs2zbNs2zbNs2zbNs2zbNs2zbNs2zbNuOjrMvELjfTcXobiQhcb6moCYOoLjrMvELjfU1ATK3N9TUBMrLqC46zLxC43IWkytzfU1ATK3N9TUBMrc31NF/KFxvqagJlCjs7qagJlbm+pqAmVub6moCZQo7O6moCZW5fkbMvELjfU1ATK3N9TUBMrc3xXiXiFxvqaf//KFxvqagJlbm+pqAmVub6mn//yhcb6moCZQo7O6moCZW5vqagJlbm+pqAmUKOzupqAmVuX5GzLxC431NQEytzfU1ATK3N8V4l4hcb6mn//yhcb6moCZW5vqagJ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" alt="background picture" loading="lazy">
-                <div class="circle main-about__content-circle">
-                </div>        </div>
-    
-            <div class="main-about__icons">
-                <div class="main-about__icons-list">
-                    <div class="main-about__icons-item">
-                        <svg class="main-about__icons-icon icon-1">
-                            <use href="#icon-main-about-vitamins"></use>
-                        </svg>
-                        <p class="main-about__icons-phrase">Healthy doesn’t have to be hard. We make it easy.</p>
-                    </div>
-                    <div class="main-about__icons-item">
-                        <svg class="main-about__icons-icon icon-2">
-                            <use href="#icon-main-about-sapling"></use>
-                        </svg>
-                        <p class="main-about__icons-phrase">Healthy doesn’t have to be hard. We make it easy.</p>
-                    </div>
-                    <div class="main-about__icons-item">
-                        <svg class="main-about__icons-icon icon-3">
-                            <use href="#icon-main-about-cart"></use>
-                        </svg>
-                        <p class="main-about__icons-phrase">Healthy doesn’t have to be hard. We make it easy.</p>
-                    </div>
-                </div>
-            </div>
-    
-        </div>
-        <div class="main-about__content-image-1"><img src="./assets/main-about-image-1-C13TlEEd.webp" alt="background picture" loading="lazy"></div>
-        <div class="main-about__content-image-2"><img src="./assets/main-about-image-2-RRqheH7r.webp" alt="background picture" loading="lazy"></div>
-        
-    </section>    <section class="main-quiz">
-        <div class="main-quiz__wrapper">
-            <svg class="main-quiz__icon">
-                <use href="#icon-main-quiz"></use>
-            </svg>
-            <h2 class="main-quiz__title">Tell us a little about yourself. <br> We’re good listeners.</h2>
-            <p class="main-quiz__phrase">We'll help you create a health plan with vitamins, supplements, and more that help you feel your best today and support you long-term.</p>
-            <button type="button" class="quiz-btn main-hero-quiz-btn"><a class="quiz-btn-link " href="">Take the quiz</a></button>    </div>
-    
-        <div class="circle main-quiz__circle">
-        </div>    <div class="elipse yellow main-quiz__elipse">
-        </div></section>    <section class="main-projects">
-        <div class="main-projects__wrapper">
-            <div class="main-projects__content-swiper">
-    
-            </div>
-    
-            <div class="main-projects__content-content">
-                <h2 class="main-projects__content-title">Choose your products</h2>
-                <p class="main-projects__content-phrase">We'll help you create a health plan with vitamins, supplements, and more that help you feel your best today and support you long-term.</p>
-                <a class="shop-btn main-projects__content-shop-btn " href="">Go to the shop</a>            <img class="main-projects__image-background" src="data:image/webp;base64,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" alt="background picture" loading="lazy">
-            </div>
-        </div>
-        <img class="main-projects__image-3" src="./assets/main-projects-image-3-DH-QHh7Q.webp" alt="background picture" loading="lazy">
-    </section>    <section class="main-reviews">
-        <div class="main-reviews__wrapper">
-    
-        <svg class="main-reviews__icon">
-            <use href="#icon-main-reviews"></use>
-        </svg>
-        <h2 class="main-reviews__title">What healthy and happy customer says</h2>
-        <p class="main-reviews__phrase">We'll help you create a health plan with vitamins, supplements, and more that help you feel your best today and support you long-term.</p>
-        </div>
-    
-        <div class="reviews main-reviews__reviews">
-        </div></section>    <section class="main-start">
-        <div class="main-start__wrapper">
-            <svg class="main-start__icon">
-                <use href="#icon-main-contacts"></use>
-            </svg>
-            <h2 class="main-start__title">Ready to get started?</h2>
-            <p class="main-start__phrase">We'll help you create a health plan with vitamins, supplements, and more that help you feel your best today and support you long-term.</p>
-            <button type="button" class="quiz-btn main-start-quiz-btn"><a class="quiz-btn-link " href="">Take the quiz</a></button>        <a class="shop-btn main-start-shop-btn " href="">Go to the shop</a>    </div>
-            <div class="elipse yellow main-start__elipse-1">
-            </div>        <div class="elipse main-start__elipse-2">
-            </div></section>    <footer class="footer products-footer">
-        <div class="footer__wrapper">
-            <div class="footer__logo__content">
-                <div class="footer__logo__wrapper">
-                    <a href="index">
-                        <svg class="footer__logo">
-                            <use href="#icon-vitamin-logo"></use>
-                        </svg>
-                    </a>
-                </div>
-                <p class="footer__copyright-desctop">© 2020 Vitamins.com <br> / All rights reserved</p>
-            </div>
-    
-            <div class="footer__list__content">
-                <div class="footer__list__wrapper first">
-                    <p class="footer__list-name">Shop</p>
-                    <ul class="footer__list">
-                        <li class="footer__item"><a href="/products?category=Vitamins+%26+Dietary+Supplements">Vitamins & Dietary Supplements</a></li>
-                        <li class="footer__item"><a href="/products?category=Weight+Loss">Weight Loss</a></li>
-                        <li class="footer__item"><a href="/products?category=Minerals">Minerals</a></li>
-                        <li class="footer__item"><a href="/products?category=Antioxidants">Antioxidants</a></li>
-                        <li class="footer__item"><a href="/products?category=Probiotics">Probiotics</a></li>
-                        <li class="footer__item"><a href="/products?category=Pain+Relief">Pain Relief</a></li>
-                        <li class="footer__item"><a href="/products?category=Prenatal+Vitamins">Prenatal Vitamins</a></li>
-                    </ul>
-                </div>
-    
-                
-                <div class="footer__list__wrapper second">
-                    <p class="footer__list-name">Information</p>
-                    <ul class="footer__list second">
-                        <li class="footer__item"><a href="/term-of-use">Terms & Conditions</a></li>
-                        <li class="footer__item"><a href="/term-of-use">Privacy Policy</a></li>
-                        <li class="footer__item"><a href="/term-of-use">Shipping & Delivery</a></li>
-                        <li class="footer__item"><a href="/term-of-use">Subscription Cycle & Billing</a></li>
-                        <li class="footer__item"><a href="/term-of-use">Return Policy</a></li>
-                    </ul>
-                </div>
-    
-    
-    
-                <div class="footer__list__wrapper third">
-                    <p class="footer__list-name">Contact</p>
-                    <ul class="footer__list">
-                        <li class="footer__item">
-                            <a href="mailto:support@medstogo.com">support@medstogo.com</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                                <svg class="footer__icon">
-                                    <use href="#icon-footer-vitamin-facebook"></use>
-                                </svg>
-                                Facebook
-                            </a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                                <svg class="footer__icon">
-                                    <use href="#icon-footer-vitamin-instagram"></use>
-                                </svg>
-                                Instagram
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <p class="footer__copyright-mobile">© 2020 Vitamins.com / All rights reserved</p>
-        </div>
-    </footer>
   </main>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
