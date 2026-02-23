@@ -1,4 +1,4 @@
-import{H as x,f as b,s as E,h as L}from"./app-CjO3gVkQ.js";import{g as C,a as F,s as D,b as A,c as N,d as $,S as O}from"./state-Cu3W0Uie.js";const P=`<article class="checkout-item" data-productId="{{id}}">\r
+import{H as x,f as b,s as E,h as L}from"./app-DCHPwCLG.js";import{g as C,a as F,s as D,b as A,c as N,d as $,S as O}from"./state-DRQACb7d.js";const P=`<article class="checkout-item" data-productId="{{id}}">\r
     <div class="checkout-item__wrapper">\r
         <a href="/product?id={{id}}" class="checkout-item__link" style="color: black;">\r
             <div class="checkout-item__image-wrapper {{categoryClass}}">\r
