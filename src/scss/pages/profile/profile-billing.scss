@@ -34,6 +34,13 @@
         position: relative;
         width: 674px;
         height: 336px;
+            @include respond-to(md) {
+                width: 100%;
+            }
+            @include respond-to(sm) {
+                height: unset;
+                margin-bottom: 35px;
+            }
     }
 
     &__image {
@@ -45,19 +52,10 @@
         
         @include respond-to(sm) {
             margin-bottom: 20px;
+            display: none;
         }
     }
 
-    &__fields {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        max-width: 444px;
-        padding: 40px;
-        @include respond-to(sm) {
-            max-width: 100%;
-        }
-    }
 
     &__field-wrapper {
         display: flex;
@@ -78,17 +76,34 @@
             min-width: 0;
         }
     }
-
+    &__form__fields {
+        @include respond-to(sm) {
+            display: flex;
+            flex-direction: row;
+            gap: 17px;
+        }
+        @include respond-to(uxs) {
+            max-width: 280px;
+        }
+    }
     &__field {
         position: relative;
         display: flex;
         flex-direction: column;
         width: 100%;
+            @include respond-to(uxs) {
+                max-width: 280px;
+            }
             &.number {
                 position: absolute;
                 max-width: 410px;
                 top: 50px;
                 left: 40px;
+                    @include respond-to(sm) {
+                    position: relative;
+                    top: unset;
+                    left: unset;
+                    }
             }
             &.expiry {
                 position: absolute;
@@ -96,6 +111,14 @@
                 bottom: 70px;
                 height: 97px;
                 left: 40px;
+                @include respond-to(sm) {
+                    position: relative;
+                    top: unset;
+                    left: unset;
+                    bottom: unset;
+                    max-width: unset;
+                    width: calc(50% - 8px);
+                    }
                 .profile-billing__error {
                     width: 200%;
                 }
@@ -106,6 +129,15 @@
                 height: 114px;
                 bottom: 14px;
                 right: 40px;
+                @include respond-to(sm) {
+                position: relative;
+                top: unset;
+                right: unset;
+                left: unset;
+                bottom: unset;
+                max-width: unset;
+                width: calc(50% - 8px);
+                }
             }
     }
 
@@ -181,5 +213,8 @@
             &.disabled {
                 background-color: #E1DEDA;
             }
+                @include respond-to(sm) {
+                        margin-top: -20px;
+                }
     }
 }

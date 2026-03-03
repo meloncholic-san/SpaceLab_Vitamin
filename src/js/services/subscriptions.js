@@ -1,46 +1,76 @@
 import { supabase } from '../api/supabase';
 
 export async function createSubscriptionsFromOrder(order) {
-  const subscriptions = [];
+  if (!order?.order_items?.length) {
+    return { data: null, error: null };
+  }
 
   const startDate = new Date();
+  const autoshipItems = order.order_items.filter(item => item.is_autoship);
+  
+  if (!autoshipItems.length) {
+    return { data: null, error: null };
+  }
 
-  for (const item of order.order_items) {
-    if (!item.is_autoship) continue;
+  const { data: existingSubs } = await supabase
+    .from('subscriptions')
+    .select('product_id')
+    .eq('user_id', order.user_id)
+    .eq('status', 'active');
 
-    const nextPaymentDate = new Date();
-    nextPaymentDate.setDate(
-      startDate.getDate() + item.autoship_interval
-    );
+  const existingProductIds = new Set(existingSubs?.map(s => s.product_id) || []);
+  
+  const newItems = autoshipItems.filter(item => !existingProductIds.has(item.product_id));
+  const duplicateItems = autoshipItems.filter(item => existingProductIds.has(item.product_id));
 
-    subscriptions.push({
+  if (duplicateItems.length > 0) {
+    console.log('Skipping duplicate subscriptions for products:', 
+      duplicateItems.map(i => i.product_id).join(', '));
+  }
+
+  if (!newItems.length) {
+    return { data: null, error: null };
+  }
+
+  const subscriptions = newItems.map(item => {
+    const nextPaymentDate = new Date(startDate);
+    nextPaymentDate.setDate(startDate.getDate() + (item.autoship_interval || 30));
+
+    return {
       user_id: order.user_id,
       order_id: order.id,
       order_item_id: item.id,
       product_id: item.product_id,
-
       quantity: item.quantity,
       price_at_purchase: item.price,
-      autoship_interval: item.autoship_interval,
-
+      autoship_interval: item.autoship_interval || 30,
       start_date: startDate,
-      next_payment_date: nextPaymentDate
-    });
-  }
+      next_payment_date: nextPaymentDate,
+      status: 'active'
+    };
+  });
 
-  if (!subscriptions.length) return;
+  try {
+    const { data, error } = await supabase
+      .from('subscriptions')
+      .insert(subscriptions)
+      .select();
 
+    if (error) {
+      if (error.message.includes('unique_active_subscription')) {
+        console.warn('Duplicate subscription detected, skipping creation');
+        return { data: null, error: null };
+      }
+      return { data: null, error };
+    }
 
-    try {
-      const { data, error } = await supabase
-      .from("subscriptions")
-      .insert(subscriptions);
-          
-      return { data, error };
+    return { data, error: null };
   } catch (error) {
-      return { data, error };
+    console.error('Error creating subscriptions:', error);
+    return { data: null, error };
   }
 }
+
 
 
 export async function getSubscriptionsByUserId(userId) {

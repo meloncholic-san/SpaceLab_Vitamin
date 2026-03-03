@@ -12,18 +12,44 @@
         // justify-content: space-between;
         justify-content: center;
         gap: 131px;
+            @include respond-to(lg) {
+                padding: 160px 40px 0;
+            }
+            @include respond-to(md) {
+                padding: 160px 20px 0; 
+            }
+
     }
+    &__sections {
+        flex-grow: 1;
+    }
+
     &__section {
         display: none;
             &.active {
                 display: block;
             }
-
+            &.subscriptions {
+                max-width: 1039px;
+            }
+            &.orders {
+                max-width: 1039px;
+            }
+            &.overview {
+                max-width: 920px;
+            }
+            &.billing {
+                max-width: 920px;
+            }
         &-title {
             font-family: variables.$font-family-main;
             font-weight: variables.$font-weight-medium;
             font-size: 36px;
             margin-bottom: 40px;
+                @include respond-to(md) {
+                    font-size: 24px;
+                    // margin-left: 20px;
+                }
         }
     }
 
@@ -49,12 +75,21 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 50px;
+            @include respond-to(md) {
+                flex-direction: column;
+                margin-bottom: 30px;
+                align-items: flex-start;
+            }
     }
     &__section-customer {
         height: fit-content;
         font-family: variables.$font-family-main;
         font-weight: variables.$font-weight-medium;
         font-size: 22px;
+            @include respond-to(md) {
+                font-size: 18px;
+                margin-top: 10px;
+            }
     }
     &__section-title.overview {
         margin-bottom: 0;
@@ -152,8 +187,24 @@
     font-weight: variables.$font-weight-regular;
     font-size: 14px;
     opacity: 0.5;
+    margin-bottom: 5px;
 }
 
 .checkout-form__field.permission label {
     opacity: 1;
+}
+
+#checkout-form.profile-overview-form {
+    @include respond-to(sm) {
+        padding: 0;
+    }
+}
+
+
+.profile__section.subscriptions {
+    .profile__section-title {
+        @include respond-to(md) {
+            margin-left: 20px;
+        }
+    }
 }

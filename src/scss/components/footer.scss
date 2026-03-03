@@ -80,6 +80,9 @@
             }
         }
         &__wrapper {
+            @include respond-to(md) {
+                width: calc(50% - 13px);
+            }
             &.third {
                 margin-right: 44px;
                     @include respond-to(md) {
@@ -101,6 +104,7 @@
                 flex-wrap: wrap;
                 max-width: 340px;
                 gap: 15px;
+                column-gap: 21px;
                 margin-top: 36px;
                 }
         }

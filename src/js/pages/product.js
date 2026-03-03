@@ -58,11 +58,11 @@ export async function initProduct () {
 
 
     const backlink = document.querySelector('.product__backlink');
-    localStorage.setItem('productsPageUrl', document.referrer || '/products');
+    localStorage.setItem('productsPageUrl', document.referrer || './products.html');
     
     backlink.addEventListener('click', (e) => {
         e.preventDefault();
-        const savedUrl = localStorage.getItem('productsPageUrl') || '/products';
+        const savedUrl = localStorage.getItem('productsPageUrl') || './products.html';
         window.location.href = savedUrl;
     });
 

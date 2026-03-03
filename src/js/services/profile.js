@@ -109,6 +109,7 @@ export async function getOrdersByUserId(userId) {
             status,
             order_items (
                 id,
+                product_id,
                 title,
                 price,
                 discount,

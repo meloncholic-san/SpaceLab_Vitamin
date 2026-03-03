@@ -11,6 +11,8 @@
         @include respond-to(md) {
             margin-top: 28px;
             padding-bottom: 64px;
+            overflow-y: visible;
+            overflow-x: clip;
         }
     &__icon {
         width: 96px;
@@ -80,7 +82,7 @@
     }
     &__elipse-2 {
     left: 2.9%;
-    top: 36.2%;
+    top: 30%;
     transform: rotate(90deg);
     z-index: -2;
         @include respond-to(md) {
@@ -90,7 +92,8 @@
             top: unset;
             right: 0;
             bottom: 0;
-            transform: rotate(0deg) translate(43%, -41%);
+            transform: rotate(0deg) translate(43%, 73%);
+            z-index: 2;
             &::before {
             border: 28px solid #E99478;
             border-top: none;

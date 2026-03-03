@@ -9,6 +9,6 @@ export function initProfileButton() {
         
         const { data: { user } } = await supabase.auth.getUser();
         
-        window.location.href = user ? '/profile' : '/login';
+        window.location.href = user ? './profile.html' : '/login.html';
     });
 }

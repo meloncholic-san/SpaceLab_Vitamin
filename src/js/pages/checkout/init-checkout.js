@@ -89,7 +89,7 @@ export async function initCheckout() {
   if (!order) return;
 
   if (order.status === "success") {
-      window.location.href = `/checkout-success?order=${orderId}`;
+      window.location.href = `./checkout-success?order=${orderId}`;
   }
 
   const processedItems = renderCheckoutProducts(order.order_items, container);
@@ -98,7 +98,7 @@ export async function initCheckout() {
 
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
-    window.location.href = '/login';
+    window.location.href = './login.html';
     return;
   }
 
@@ -306,19 +306,24 @@ try {
     if (billingResult?.error) {
         throw new Error(`Billing error: ${billingResult.error.message}`);
     }
+    const subscriptionResult = await createSubscriptionsFromOrder(order);
+    if (subscriptionResult?.error) {
+        throw new Error(`Status update error: ${subscriptionResult.error.message}`);
+    }
 
     const statusResult = await updateOrderStatus(orderId, 'success');
     if (statusResult?.error) {
         throw new Error(`Status update error: ${statusResult.error.message}`);
     }
-    const subscriptionResult = await createSubscriptionsFromOrder(order);
-    if (subscriptionResult?.error) {
-        throw new Error(`Status update error: ${subscriptionResult.error.message}`);
-    }
     showToast('Order placed successfully!', 'success', 2000);
     
+    await supabase
+    .from('cart')
+    .delete()
+    .eq('user_id', user.id);
+
     setTimeout(() => {
-        window.location.href = `/checkout-success?order=${orderId}`;
+        window.location.href = `./checkout-success?order=${orderId}`;
     }, 1500);
 
 } catch (error) {

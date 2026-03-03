@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import handlebars from 'vite-plugin-handlebars'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 import path from 'path'
 import fs from 'fs'
 
@@ -40,7 +41,16 @@ export default defineConfig({
           server.ws.send({ type: 'full-reload' })
         }
       }
-    }
+    },
+    viteStaticCopy({
+      targets: [
+        {
+          src: './img/**/*',  
+          dest: 'img',
+          flatten: false,
+        }
+      ]
+    })
   ],
 
   build: {

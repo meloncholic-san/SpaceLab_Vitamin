@@ -42,6 +42,7 @@ function renderOrders(orders, container) {
     const processedOrders = orders.map(order => {
         console.log(order)
         const items = order.order_items.map(item => ({
+            product_id: item?.product_id,
             category: item?.category || 'Unknown',
             categoryClass: CATEGORY_CLASS_MAP[item?.category] || 'category--default',
             title: item?.title || 'Product',
@@ -104,15 +105,32 @@ function attachReorderHandlers(container) {
     });
 }
 
+function attachMobileToggles(container) {
+    const orderArrows = container.querySelectorAll('.profile-order-item__opener-arrow');
+    
+    orderArrows.forEach(arrow => {
+        const orderItem = arrow.closest('.profile-order-item');
+        const orderTable = orderItem.querySelector('.profile-order-item__table');
+        const orderFooter = orderItem.querySelector('.profile-order-item__footer');
+        if (!orderTable || !orderFooter) return;
+        arrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            arrow.classList.toggle('active');
+            orderTable.classList.toggle('active');
+            orderFooter.classList.toggle('active');
+        });
+    });
+}
+
 export async function initProfileOrders(userId) {
     const container = document.querySelector('.profile-order__list');
     if (!container) return;
-
     try {
         const orders = await getOrdersByUserId(userId);
         console.log(orders)
         renderOrders(orders, container);
         attachReorderHandlers(container);
+        attachMobileToggles(container);
         
     } catch (error) {
         console.error('Error loading orders:', error);

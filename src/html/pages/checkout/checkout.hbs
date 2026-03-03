@@ -1,7 +1,7 @@
 <section class="checkout">
     <div class="checkout__wrapper">
         <div class="checkout__header">
-            <a href="index">
+            <a href="./">
                 <svg class="checkout__logo">
                     <use href="#icon-vitamin-logo"></use>
                 </svg>
@@ -51,13 +51,6 @@
                     </div>
 
                     <div class="checkout-form__field-wrapper">
-                        <div class="checkout-form__field">
-                            <label for="zip">ZIP</label>
-                            <input id="zip" name="zip" type="text" placeholder="ZIP / Postal Code" />
-                            <span class="form__error form__error_required">Required</span>
-                            <span class="form__error form__error_pattern">You can write a maximum of 10 characters</span>
-
-                        </div>
                         <div class="checkout-form__field state">
                             <label for="state">State</label>
                             <span class="checkout-form__field state-wrapper">
@@ -66,6 +59,14 @@
                                 </select>
                             </span>
                             <span class="form__error form__error_required">Please select State/Province</span>
+                        </div>
+
+                        <div class="checkout-form__field">
+                            <label for="zip">ZIP</label>
+                            <input id="zip" name="zip" type="text" placeholder="ZIP / Postal Code" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">You can write a maximum of 10 characters</span>
+
                         </div>
                     </div>
 
@@ -99,18 +100,18 @@
                     </div>
 
                     <div class="checkout-form__field-wrapper">
-                        <div class="checkout-form__field">
-                            <label for="expiry">Expiration</label>
-                            <input id="expiry" type="text" placeholder="MM/YY"  name="expiry" />
-                            <span class="form__error form__error_required">Required</span>
-                            <span class="form__error form__error_pattern">Please enter numbers only</span>
-                        </div>
-
-                        <div class="checkout-form__field">
+                        <div class="checkout-form__field small">
                             <label for="cvc">CVC</label>
                             <input id="cvc" type="text" placeholder="CVC" name="cvc" />
                             <span class="form__error form__error_required">Required</span>
                             <span class="form__error form__error_pattern">Please enter valid expire date</span>
+                        </div>
+
+                        <div class="checkout-form__field small">
+                            <label for="expiry">Expiration</label>
+                            <input id="expiry" type="text" placeholder="MM/YY"  name="expiry" />
+                            <span class="form__error form__error_required">Required</span>
+                            <span class="form__error form__error_pattern">Please enter numbers only</span>
                         </div>
                     </div>
 
@@ -148,9 +149,9 @@
 
         <div class="checkout__footer">
             <ul class="checkout__terms-list">
-                <li class="checkout__terms-item"><a href="/term-of-use">Return Policy</a></li>
-                <li class="checkout__terms-item"><a href="/term-of-use">Privacy Policy</a></li>
-                <li class="checkout__terms-item"><a href="/term-of-use">Terms & Conditions</a></li>
+                <li class="checkout__terms-item"><a href="./term-of-use.html">Return Policy</a></li>
+                <li class="checkout__terms-item"><a href="./term-of-use.html">Privacy Policy</a></li>
+                <li class="checkout__terms-item"><a href="./term-of-use.html">Terms & Conditions</a></li>
             </ul>
             <img class="checkout__footer-logos" src="./img/checkout/checkout-footer.webp" alt="background picture" loading="lazy">
         </div>

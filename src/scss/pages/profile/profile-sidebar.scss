@@ -3,6 +3,9 @@
 
 
 .profile-sidebar {
+    @include respond-to(md) {
+        display: none;
+    }
     &__list {
         display: flex;
         flex-direction: column;
@@ -13,6 +16,7 @@
         font-weight: variables.$font-weight-regular;
         font-size: 22px;
         cursor: pointer;
+        text-align: left;
 
         &.signout {
             color: #D32D2C;

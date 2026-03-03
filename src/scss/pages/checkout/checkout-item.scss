@@ -2,7 +2,14 @@
 @use '@scss/utils/mixins' as *;
 
 .checkout-item {
+    width: 364px;
     max-width: 364px;
+        @include respond-to(md) {
+            width: 300px;
+        }
+        @include respond-to(sm) {
+            width: unset;
+        }
     &__wrapper {
         display: flex;
         gap: 20px;
@@ -51,7 +58,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-            @include respond-to(sm) {
+        flex: 1;
+            @include respond-to(md) {
                 width: 100%;
             }
     }
@@ -62,7 +70,7 @@
         font-family: variables.$font-family-main;
         font-weight: variables.$font-weight-regular;
         font-size: 16px;
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 font-size: 14px;
                 max-width: 160px;
                 min-width: 100px;
@@ -81,7 +89,7 @@
             @include respond-to(lg) {
                 font-size: 16px;
             }
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 font-size: 14px;
             }
     }
@@ -95,7 +103,7 @@
             @include respond-to(lg) {
                 font-size: 16px;
             }
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 font-size: 14px;
             }
             &::after {
@@ -117,7 +125,7 @@
             @include respond-to(lg) {
                 font-size: 16px;
             }
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 font-size: 14px;
             }
     }

@@ -29,6 +29,13 @@ const clickHandler = async (e) => {
     if (target.classList.contains('cart-product-btn-menus')) {
         await handleMinusButton(target);
     }
+
+    if (target.classList.contains('cart-product__btn-cancel') || 
+        target.closest('.cart-product__btn-cancel')) {
+        
+        const cancelBtn = target.closest('.cart-product__btn-cancel');
+        await handleCancelButton(cancelBtn);
+    }
 };
 
 const changeHandler = async (e) => {
@@ -298,6 +305,47 @@ function handleEscapeKey(e) {
 }
 
 
+async function handleCancelButton(button) {
+    const cartItem = button.closest('.cart-product');
+    if (!cartItem) return;
+    
+    const cartItemId = cartItem.dataset.cardid;
+    if (!cartItemId) return;
+    
+    cartItem.classList.add('removing');
+    
+    if (await confirmRemove()) {
+        try {
+            button.disabled = true;
+            button.classList.add('loading');
+            
+            await deleteCartProduct(cartItemId);
+            
+            cartItem.style.height = `${cartItem.offsetHeight}px`;
+            cartItem.style.transition = 'all 0.3s ease';
+            cartItem.style.opacity = '0';
+            cartItem.style.transform = 'translateX(-20px)';
+            
+            setTimeout(async () => {
+                await refreshCart();
+                await updateCartTotal();
+                showToast('Item removed from cart', 'success');
+            }, 300);
+            
+        } catch (error) {
+            console.error('Error removing item:', error);
+            cartItem.classList.remove('removing');
+            cartItem.style.height = '';
+            cartItem.style.opacity = '';
+            cartItem.style.transform = '';
+            showToast('Failed to remove item', 'error');
+        }
+    } else {
+        cartItem.classList.remove('removing');
+    }
+}
+
+
 export function updateCartButtons(cartItems) {
     const hasItems = cartItems && cartItems.length > 0;
     
@@ -461,7 +509,7 @@ export function setupCheckoutButton() {
         try {
             const order = await createOrderFromCart();
 
-            window.location.href = `/checkout.html?order=${order.id}`;
+            window.location.href = `./checkout.html?order=${order.id}`;
 
         } catch (error) {
             console.error(error);

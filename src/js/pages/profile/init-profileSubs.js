@@ -47,7 +47,7 @@ function renderSubscriptions(subscriptions, container) {
             image: sub.image,
             price: (parseFloat(sub.price_at_purchase) * sub.quantity).toFixed(2),
             quantity: sub.quantity,
-            autoship_interval: `Shipment every ${sub.autoship_interval} days`,
+            autoship_interval: ` ${sub.autoship_interval}`,
             autoship_next: formatNextDelivery(sub.next_payment_date),
             category: sub.category
         };

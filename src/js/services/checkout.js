@@ -34,7 +34,7 @@ export async function createOrderFromCart() {
 
     if (orderError) throw orderError;
 
-        console.log("cartItems", cartItems)
+    console.log("cartItems", cartItems)
     const orderItems = cartItems.map(item => ({
         order_id: order.id,
         product_id: item.products.id,
@@ -54,10 +54,10 @@ export async function createOrderFromCart() {
 
     if (itemsError) throw itemsError;
 
-    await supabase
-        .from('cart')
-        .delete()
-        .eq('user_id', user.id);
+    // await supabase
+    //     .from('cart')
+    //     .delete()
+    //     .eq('user_id', user.id);
 
     return order;
 }

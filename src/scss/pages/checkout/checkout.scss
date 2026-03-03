@@ -9,7 +9,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 padding: 0;
             }
     }
@@ -17,7 +17,7 @@
         display: flex;
         justify-content: flex-start;
         padding: 30px 0;
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 justify-content: center;
             }
     }
@@ -33,14 +33,14 @@
         align-items: center;
         justify-content: space-between;
         padding: 30px 0;
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 padding: 30px 20px;
                 flex-direction: column;
                 gap: 30px;
             }
         
             &-logos {
-                @include respond-to(sm) {
+                @include respond-to(md) {
                     max-width: 335px;
                     width: 100%;
                     padding-bottom: 30px;
@@ -52,7 +52,7 @@
             display: flex;
             flex-direction: row;
             gap: 30px;
-                @include respond-to(sm) {
+                @include respond-to(md) {
                 row-gap: 15px;
                 max-width: 204px;
                 flex-wrap: wrap;
@@ -76,11 +76,13 @@
         gap: 32px;
         align-items: center;
         justify-content: center;
+        margin-bottom: 80px;
         // padding: 0 20px;
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 // padding: 0 20px;
                 flex-direction: column-reverse;
                 gap: 0;
+                margin-bottom: 70px;
             }
     }
     &__order {
@@ -89,8 +91,8 @@
     border-radius: 16px;
     padding: 40px;
     max-width: 444px;
-    max-height: 625px;
-        @include respond-to(sm) {
+    // max-height: 625px;
+        @include respond-to(md) {
             max-width: 375px;
             background-color: #FAF8F6;
             padding: 30px 20px;
@@ -125,7 +127,7 @@
             &.total {
                 font-size: 20px;
                 font-weight: variables.$font-weight-semibold;
-                @include respond-to(sm) {
+                @include respond-to(md) {
                     font-size: 16px;
                 }
             }
@@ -148,7 +150,7 @@
             &.active {
                 margin-bottom: 0;
             }
-            @include respond-from(sm) {
+            @include respond-from(md) {
                 display: none;
             }
             &-wrapper {
@@ -197,7 +199,7 @@
     &-form {
         max-width: 920px;
         width: 100%; 
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 max-width: 335px;
                 padding: 0px 20px;
             }
@@ -214,7 +216,7 @@
             font-size: 36px;
             margin-bottom: 40px;
             max-width: 500px;
-                @include respond-to(sm) {
+                @include respond-to(md) {
                     font-size: 20px;
                 }
         }
@@ -224,14 +226,14 @@
             gap: 16px;
             max-width: 920px;
             flex-wrap: wrap;
-                @include respond-to(sm) {
+                @include respond-to(md) {
                     justify-content: center;
                 }
         }
 
         &__field-wrapper {
             display: flex;
-            flex-direction: row-reverse;
+            // flex-direction: row-reverse;
             gap: 32px;
             width: 100%;
             max-width: 444px;
@@ -251,6 +253,9 @@
             width: 100%;
             max-width: 444px;
 
+            &.small {
+                width: calc((50% - 16px));
+            }
             input,
             select {
                 padding: 14px 12px;
@@ -286,6 +291,8 @@
                 font-size: 18px;
                 opacity: 0.5;
                 }
+
+
             }
 
             label {
@@ -338,13 +345,13 @@
     font-weight: variables.$font-weight-bold;
     font-size: 20px;
         &.desctop {
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 display: none;
             }
         }
         &.mobile {
             display: none;
-            @include respond-to(sm) {
+            @include respond-to(md) {
                 display: block;
                 font-size: 16px;
             }

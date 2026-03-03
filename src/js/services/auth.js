@@ -164,7 +164,7 @@ export function listenAuthStatus () {
         
       case 'SIGNED_OUT':
         console.log('User signed out');
-        window.location.href = '/login';
+        window.location.href = './login.html';
         break;
         
       case 'USER_UPDATED':

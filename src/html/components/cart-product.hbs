@@ -4,7 +4,7 @@
 
             <div class="cart-product__content-wrapper">
                 
-                <a href="/product?id={{id}}" class="cart-product__link" style="color: black;">
+                <a href="./product?id={{id}}.html" class="cart-product__link" style="color: black;">
                     <div class="cart-product__image-wrapper {{categoryClass}}">
                         <img
                             class="cart-product__image"
@@ -17,7 +17,7 @@
                 <div class="cart-product__content">
                     <div class="cart-product__outer">
                         <h3 class="cart-product__title">{{title}}</h3>
-
+                        <button type="button" class="cart-product__btn-cancel"></button>
                         <div class="cart-product__inner">
                             <div class="cart-product__quantity">
                                 <button type="button" class="cart-product-btn-menus"></button>
@@ -48,13 +48,15 @@
                             >
                             <span class="cart-product__autoship-custom"></span>
                             <span class="cart-product__autoship-text">
-                                Autoship every 
+                                <span class="cart-product__autoship-text-span-desktop">Autoship every </span>
+                                <span class="cart-product__autoship-text-span-mobile">Deliver every </span>
                                 <span class="cart-product__autoship-select-wrapper">
                                 <select class="cart-product__autoship-select" data-cart-id="{{cartId}}" {{#unless is_autoship}}disabled{{/unless}}>
                                     {{{autoship_options_html}}}
                                 </select>
                                 </span>
-                                days
+                                <span class="cart-product__autoship-text-span">days</span>
+
                             </span>
                         </label>
                     </div>
