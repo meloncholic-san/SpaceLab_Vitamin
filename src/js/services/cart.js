@@ -20,7 +20,8 @@ export async function addCartProducts({product,quantity,autoshipStatus,autoshipI
         price: product.price,
         discount: product.discount,
         title: product.title,
-        image: product.image
+        image: product.image,
+        category: product.category
       }
     });
 

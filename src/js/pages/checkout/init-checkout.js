@@ -96,11 +96,6 @@ export async function initCheckout() {
   updateTotals(processedItems);
 
 
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    window.location.href = './login.html';
-    return;
-  }
 
   const existingShipping = await getShippingData();
   if (existingShipping) {
@@ -296,20 +291,29 @@ form.addEventListener('submit', async (e) => {
   console.log('Shipping data:', shippingData);
   console.log('Billing data:', billingData);
 
+const { data: { user } } = await supabase.auth.getUser();
+
+
+
 try {
-    const shippingResult = await saveShippingData(shippingData);
-    if (shippingResult?.error) {
-        throw new Error(`Shipping error: ${shippingResult.error.message}`);
+  
+    if (user) {
+      const shippingResult = await saveShippingData(shippingData);
+      if (shippingResult?.error) {
+          throw new Error(`Shipping error: ${shippingResult.error.message}`);
+      }
+
+      const billingResult = await saveBillingData(billingData);
+      if (billingResult?.error) {
+          throw new Error(`Billing error: ${billingResult.error.message}`);
+      }
+      const subscriptionResult = await createSubscriptionsFromOrder(order);
+      if (subscriptionResult?.error) {
+          throw new Error(`Status update error: ${subscriptionResult.error.message}`);
+      }
     }
 
-    const billingResult = await saveBillingData(billingData);
-    if (billingResult?.error) {
-        throw new Error(`Billing error: ${billingResult.error.message}`);
-    }
-    const subscriptionResult = await createSubscriptionsFromOrder(order);
-    if (subscriptionResult?.error) {
-        throw new Error(`Status update error: ${subscriptionResult.error.message}`);
-    }
+
 
     const statusResult = await updateOrderStatus(orderId, 'success');
     if (statusResult?.error) {
@@ -317,10 +321,15 @@ try {
     }
     showToast('Order placed successfully!', 'success', 2000);
     
-    await supabase
-    .from('cart')
-    .delete()
-    .eq('user_id', user.id);
+    if (user) {
+      await supabase
+      .from('cart')
+      .delete()
+      .eq('user_id', user.id);
+    } else {
+      localStorage.removeItem('local_cart');
+    }
+
 
     setTimeout(() => {
         window.location.href = `./checkout-success?order=${orderId}`;

@@ -1,87 +1,97 @@
-import { supabase } from '../api/supabase';
+import { guestSupabase, supabase } from '../api/supabase';
 import { getCartProducts } from './cart';
+import { getLocalCart } from './local-cart';
+import { getGuestId } from './guest';
+
+async function getClient() {
+    const { data: { user } } = await supabase.auth.getUser();
+    return user ? supabase : guestSupabase;
+}
 
 export async function createOrderFromCart() {
-    const cartItems = await getCartProducts();
+    const { data: { user } } = await supabase.auth.getUser();
 
-    if (!cartItems || cartItems.length === 0) {
+    const cartItems = user
+        ? await getCartProducts()
+        : getLocalCart();
+
+    if (!cartItems?.length) {
         throw new Error("Cart is empty");
     }
 
     const totalPrice = cartItems.reduce((sum, item) => {
-        const product = item.products;
+        const product = item.products || item;
         const price = parseFloat(product.price) || 0;
         const discount = parseFloat(product.discount) || 0;
-        const finalPrice = discount > 0 
+
+        const finalPrice = discount > 0
             ? price * (1 - discount / 100)
             : price;
 
         return sum + finalPrice * item.quantity;
     }, 0);
 
-    const { data: { user } } = await supabase.auth.getUser();
+    const client = user ? supabase : guestSupabase;
 
-    if (!user) throw new Error("Not authenticated");
-
-    const { data: order, error: orderError } = await supabase
+    const { data: order, error: orderError } = await client
         .from('orders')
         .insert({
-            user_id: user.id,
-            total_price: totalPrice
+            user_id: user ? user.id : null,
+            guest_id: user ? null : getGuestId(),
+            total_price: totalPrice,
         })
         .select()
         .single();
 
     if (orderError) throw orderError;
 
-    console.log("cartItems", cartItems)
-    const orderItems = cartItems.map(item => ({
-        order_id: order.id,
-        product_id: item.products.id,
-        title: item.products.title,
-        price: item.products.price,
-        discount: item.products.discount,
-        quantity: item.quantity,
-        is_autoship: item.is_autoship,
-        autoship_interval: item.autoship_interval,
-        image: item.products.image,
-        category: item.products.category
-    }));
-    console.log("orderItems", orderItems)
-    const { error: itemsError } = await supabase
+    const orderItems = cartItems.map(item => {
+        const product = item.products || item;
+
+        return {
+            order_id: order.id,
+            product_id: product.id || item.product_id,
+            title: product.title,
+            price: product.price,
+            discount: product.discount,
+            quantity: item.quantity,
+            is_autoship: item.is_autoship,
+            autoship_interval: item.autoship_interval,
+            image: product.image,
+            category: product.category
+        };
+    });
+
+    const { error: itemsError } = await client
         .from('order_items')
         .insert(orderItems);
 
     if (itemsError) throw itemsError;
 
-    // await supabase
-    //     .from('cart')
-    //     .delete()
-    //     .eq('user_id', user.id);
-
     return order;
 }
 
-
 export async function getOrderWithItems(orderId) {
-    const { data, error } = await supabase
+    const client = await getClient();
+
+    const { data, error } = await client
         .from('orders')
         .select(`
             *,
             order_items (*)
         `)
         .eq('id', orderId)
-        .single();
+        .maybeSingle();
 
     if (error) throw error;
 
     return data;
 }
 
-
-
 export async function updateOrderStatus(orderId, status) {
-    const { error } = await supabase
+    const client = await getClient();
+
+    const { error } = await client
         .from('orders')
         .update({
             status,
