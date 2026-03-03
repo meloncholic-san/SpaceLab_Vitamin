@@ -1,137 +1,112 @@
 import { supabase } from '../api/supabase';
+import {
+  getLocalCart,
+  addLocalCartProduct,
+  updateLocalCartProduct,
+  deleteLocalCartProduct
+} from './local-cart';
 
-export async function getCartProducts() {
-  const { data: { session } } = await supabase.auth.getSession()
+
+export async function addCartProducts({product,quantity,autoshipStatus,autoshipInterval}) {
+  const { data: { session } } = await supabase.auth.getSession();
+
   if (!session) {
-    return
-  }
-const { data, error } = await supabase
-  .from('cart')
-  .select(`
-    id,
-    quantity,
-    is_autoship,
-    autoship_interval,
-    products (
-      id,
-      title,
-      price,
-      image,
-      category,
-      discount,
-      package
-    )
-  `)
-  if (error) console.log(error)
-  return data;
-}
+    const cart = addLocalCartProduct({
+      product_id: product.id,
+      quantity,
+      is_autoship: autoshipStatus,
+      autoship_interval: autoshipInterval,
+      products: {
+        price: product.price,
+        discount: product.discount,
+        title: product.title,
+        image: product.image
+      }
+    });
 
-
-export async function addCartProducts({productId, userId, quantity, autoshipStatus, autoshipInterval}) {
-  const { data: { session } } = await supabase.auth.getSession()
-  if (!session) {
-    alert('Please sign in to add products to cart')
-    return
+    return { data: cart, error: null };
   }
 
+  const userId = session.user.id;
 
   const { data, error } = await supabase
     .from('cart')
     .select('id, quantity')
-    .eq('product_id', productId)
+    .eq('product_id', product.id)
     .eq('user_id', userId)
-    .maybeSingle()
+    .maybeSingle();
 
-  if (error) {
-    console.error(error)
-    return
-  }
-  let response;
+  if (error) return { error };
+
   if (data) {
-    response = await supabase
+    await supabase
       .from('cart')
       .update({ quantity: data.quantity + quantity })
-      .eq('id', data.id)
-      .select()
+      .eq('id', data.id);
   } else {
-  response = await supabase
+    await supabase
       .from('cart')
       .insert({
-        product_id: productId,
+        product_id: product.id,
         user_id: userId,
-        quantity: quantity,
+        quantity,
         is_autoship: autoshipStatus,
         autoship_interval: autoshipInterval
-      })
-      .select()
+      });
   }
-        return { 
-          data: response.data, 
-          error: response.error 
-      }
+
+  return { error: null };
 }
 
 
-
-export async function updateCartProduct(cartItemId, newData) {
+export async function getCartProducts() {
   const { data: { session } } = await supabase.auth.getSession();
-  
+
   if (!session) {
-    alert('Please sign in to update cart');
-    return { error: 'No session' };
+    return getLocalCart();
   }
 
-  try {
-    const { data, error } = await supabase
-      .from('cart')
-      .update(newData)
-      .eq('id', cartItemId)
-      .eq('user_id', session.user.id)
-      .select(`
-        id,
-        quantity,
-        is_autoship,
-        autoship_interval,
-        products (
-          id,
-          title,
-          price,
-          image,
-          category,
-          discount,
-          package
-        )
-      `);
+  const { data, error } = await supabase
+    .from('cart')
+    .select('*, products(*)')
+    .eq('user_id', session.user.id);
 
-    if (error) throw error;
-    
-    return { data, error: null };
-  } catch (error) {
-    console.error('Error updating cart product:', error);
-    return { data: null, error };
+  if (error) {
+    console.error(error);
+    return [];
   }
+
+  return data;
 }
 
 
-export async function deleteCartProduct(cartItemId) {
+export async function updateCartProduct(id, updates) {
   const { data: { session } } = await supabase.auth.getSession();
-  
+
   if (!session) {
-    return { error: 'No session' };
-  }
-
-  try {
-    const { error } = await supabase
-      .from('cart')
-      .delete()
-      .eq('id', cartItemId)
-      .eq('user_id', session.user.id);
-
-    if (error) throw error;
-    
+    updateLocalCartProduct(id, updates);
     return { error: null };
-  } catch (error) {
-    console.error('Error deleting cart product:', error);
-    return { error };
   }
+
+  const { error } = await supabase
+    .from('cart')
+    .update(updates)
+    .eq('id', id);
+
+  return { error };
+}
+
+
+export async function deleteCartProduct(id) {
+  const { data: { session } } = await supabase.auth.getSession();
+
+  if (!session) {
+    deleteLocalCartProduct(id);
+    return;
+  }
+
+  await supabase
+    .from('cart')
+    .delete()
+    .eq('id', id);
 }

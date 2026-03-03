@@ -1,4 +1,5 @@
 import { supabase } from '../api/supabase';
+import { syncLocalCartToDatabase } from './local-cart';
 
 export async function signUp({
   email,
@@ -160,6 +161,7 @@ export function listenAuthStatus () {
     switch (event) {
       case 'SIGNED_IN':
         console.log('User signed in:', session?.user.email);
+        syncLocalCartToDatabase();
         break;
         
       case 'SIGNED_OUT':

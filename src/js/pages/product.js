@@ -1,5 +1,4 @@
 import { updateCartButtons } from "../components/init-cart";
-import { getCurrentSession } from "../services/auth";
 import { addCartProducts, getCartProducts } from "../services/cart";
 import { getAdvertisementProducts, getProductById } from "../services/products";
 import { getQueryParam } from "../utils/url";
@@ -122,18 +121,13 @@ export async function initProduct () {
 
     const addToCartBtn = document.querySelector('.product__order-btn');
 
-
-    const { data: { session } } = await getCurrentSession();
-    const user = session?.user?.id;
-
     addToCartBtn.addEventListener('click', async () => {
 
     const result = await addCartProducts({
-                productId: product.id,
-                userId: user,
-                quantity: currentQuantity,
-                autoshipStatus: autoshipStatus,
-                autoshipInterval: autoshipStatus ? autoshipFrequencyRef.value : null
+            product: product,
+            quantity: currentQuantity,
+            autoshipStatus,
+            autoshipInterval: autoshipStatus ? autoshipFrequencyRef.value : null
             });
             console.log(result)
             if (result && !result.error) {
