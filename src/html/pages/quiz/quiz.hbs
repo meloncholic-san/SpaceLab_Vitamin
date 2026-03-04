@@ -1,0 +1,285 @@
+<section class="quiz" id="quiz">
+  <form id="quiz-form">
+
+    <!-- STEP 1 -->
+    <div class="quiz__step active" data-step="0">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">What's your first name?</h2>
+        </div>
+        <div class="quiz__answer-wrapper">
+            <div class="quiz__answer-input">
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" required />
+                <button type="button" class="quiz-next"></button>
+            </div>
+            {{> components/circle className="quiz__s1-circle"  }}
+            {{> components/elipse className="yellow quiz__s1-elipse-1" }}
+            {{> components/elipse className="yellow quiz__s1-elipse-2" }}
+        </div>
+
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="quiz__step" data-step="1">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">Do you smoke?</h2>
+        </div>
+
+        <div class="quiz__answer-wrapper">
+
+            <div class="quiz__answer-radio s2">
+                <label class="quiz__option">
+                    <input type="radio" name="smoke" value="yes" required />
+                    <span>Yes</span>
+                </label>
+
+                <label class="quiz__option">
+                    <input type="radio" name="smoke" value="no" />
+                    <span>No</span>
+                </label>
+            </div>
+
+            {{> components/circle className="quiz__s2-circle"  }}
+            {{> components/elipse className="quiz__s2-elipse-1" }}
+        </div>
+
+        <button type="button" class="quiz-back">Back</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="quiz__step" data-step="2">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">What is your eating habits?</h2>
+        </div>
+
+        <div class="quiz__answer-wrapper">
+
+            <div class="quiz__answer-radio">
+                <label class="quiz__option small">
+                    <input type="radio" name="diet" value="vegan" required />
+                    <span>Vegan diet</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="diet" value="vegetarian" />
+                    <span>Vegetarian diet</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="diet" value="normal" />
+                    <span>My diet is generally healthy and includes animal protein, fish and veggies</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="diet" value="bad" />
+                    <span>My diet includes fast food and soft drinks</span>
+                </label>
+            </div>
+
+            {{> components/circle className="quiz__s3-circle"  }}
+            {{> components/elipse className="yellow quiz__s3-elipse-1" }}
+
+        </div>
+
+        <button type="button" class="quiz-back">Back</button>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="quiz__step" data-step="3">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">How frequently do you consume alcoholic beverages?</h2>
+        </div>
+
+        <div class="quiz__answer-wrapper">
+
+            <div class="quiz__answer-radio"> 
+                <label class="quiz__option small">
+                    <input type="radio" name="alco" value="low" required />
+                    <span>≤ 3 times per week</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="alco" value="avarage" />
+                    <span>4 - 7 times per week</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="alco" value="high" />
+                    <span>7+ times per week</span>
+                </label>
+            </div>
+
+            {{> components/circle className="quiz__s4-circle"  }}
+            {{> components/elipse className="quiz__s4-elipse-1" }}
+
+        </div>
+
+        <button type="button" class="quiz-back">Back</button>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="quiz__step" data-step="4">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">How frequently do you have cold/flu symptoms?</h2>
+        </div>
+
+        <div class="quiz__answer-wrapper">
+
+            <div class="quiz__answer-radio"> 
+                <label class="quiz__option small">
+                    <input type="radio" name="ill" value="low" required />
+                    <span>≤ 2 per year</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="ill" value="avarage" />
+                    <span>3 - 5 times per year</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="ill" value="high" />
+                    <span>5+ times per year</span>
+                </label>
+            </div>
+
+            {{> components/circle className="quiz__s5-circle"  }}
+            {{> components/elipse className="quiz__s5-elipse-1" }}
+
+        </div>
+
+        <button type="button" class="quiz-back">Back</button>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="quiz__step" data-step="5">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">Describe your stress level</h2>
+        </div>
+
+        <div class="quiz__answer-wrapper">
+
+            <div class="quiz__answer-radio"> 
+                <label class="quiz__option small">
+                    <input type="radio" name="stress" value="low" required />
+                    <span>I feel calm and relaxed most of the time</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="stress" value="avarage" />
+                    <span>I get nervous from time to time</span>
+                </label>
+
+                <label class="quiz__option small">
+                    <input type="radio" name="stress" value="high" />
+                    <span>I’m under a lot of stress most of the time</span>
+                </label>
+            </div>
+
+            {{> components/circle className="quiz__s6-circle"  }}
+            {{> components/elipse className="quiz__s6-elipse-1" }}
+
+        </div>
+
+        <button type="button" class="quiz-back">Back</button>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="quiz__step" data-step="6">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">Have you ever been diagnosted with high blood glucose level?</h2>
+        </div>
+
+        <div class="quiz__answer-wrapper">
+
+            <div class="quiz__answer-radio s2"> 
+                <label class="quiz__option">
+                    <input type="radio" name="sugar" value="yes" required />
+                    <span>Yes</span>
+                </label>
+
+                <label class="quiz__option">
+                    <input type="radio" name="sugar" value="no" />
+                    <span>No</span>
+                </label>
+            </div>
+
+            {{> components/circle className="quiz__s7-circle"  }}
+            {{> components/elipse className="yellow quiz__s7-elipse-1" }}
+
+        </div>
+
+        <button type="button" class="quiz-back">Back</button>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="quiz__step" data-step="7">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">Tell us what you want to focus on</h2>
+        </div>
+
+        <div class="quiz__answer-wrapper">
+
+            <div class="quiz__answer-radio big">
+                <label class="quiz__option">
+                    <input type="radio" name="focus" value="weight" required />
+                    <span>Weight management</span>
+                </label>
+
+                <label class="quiz__option">
+                    <input type="radio" name="focus" value="stress" />
+                    <span>Stress relief</span>
+                </label>
+
+                <label class="quiz__option">
+                    <input type="radio" name="focus" value="immune" />
+                    <span>Immune boost</span>
+                </label>
+
+                <label class="quiz__option">
+                    <input type="radio" name="focus" value="specific" />
+                    <span>Need to solve a specific problem</span>
+                </label>
+
+                <label class="quiz__option">
+                    <input type="radio" name="focus" value="basic" />
+                    <span>I need a basic kit for a daily intake</span>
+                </label>
+
+                <label class="quiz__option">
+                    <input type="radio" name="focus" value="all" />
+                    <span>All in one</span>
+                </label>
+            </div>
+
+            {{> components/circle className="quiz__s8-circle"  }}
+            {{> components/elipse className="quiz__s8-elipse-1" }}
+            
+        </div>
+
+        <button type="button" class="quiz-back">Back</button>
+    </div>
+
+    <!-- STEP 9 -->
+    <div class="quiz__step" data-step="8">
+        <div class="quiz__question-wrapper">
+            <h2 class="quiz__question">What’s your email address?</h2>
+        </div>
+
+        <div class="quiz__answer-wrapper">
+            <div class="quiz__answer-input">
+                <label for="email">Email</label>
+                <input type="email" name="email" required />
+                <button type="submit" form="quiz-form" class="quiz-next"></button>
+            </div>
+
+            {{> components/circle className="quiz__s1-circle"  }}
+            {{> components/elipse className="yellow quiz__s1-elipse-1" }}
+            {{> components/elipse className="yellow quiz__s1-elipse-2" }}
+
+        </div>
+
+        <button type="button" class="quiz-back">Back</button>
+    </div>
+
+  </form>
+</section>

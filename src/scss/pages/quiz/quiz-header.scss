@@ -1,0 +1,38 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+
+.quiz-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    &__wrapper {
+        padding: 30px 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+            @include respond-to(md) {
+                padding: 20px;
+                padding-top: 15px;
+            }
+    }
+
+    &__logo-white {
+        width: 42px;
+        height: 50px;
+            @include respond-to(md) {
+                display: none;
+            }
+    }
+    &__logo {
+        width: 42px;
+        height: 50px;
+        display: none;
+            @include respond-to(md) {
+                display: block;
+            }
+    }
+}
