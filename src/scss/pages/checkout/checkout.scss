@@ -252,7 +252,7 @@
             flex-direction: column;
             width: 100%;
             max-width: 444px;
-
+            position: relative;
             &.small {
                 width: calc((50% - 16px));
             }
@@ -366,12 +366,15 @@
 
 
 .form__error {
+    position: absolute;
+    bottom: -14px;
+    left: 4px;
     font-family: variables.$font-family-second;
     font-weight: variables.$font-weight-regular;
-  font-size: 12px;
-  color: #FF7D4E;
-  margin-top: 4px;
-  display: none;
+    font-size: 12px;
+    color: #FF7D4E;
+    margin-top: 4px;
+    display: none;
 
   &.visible {
     display: block;

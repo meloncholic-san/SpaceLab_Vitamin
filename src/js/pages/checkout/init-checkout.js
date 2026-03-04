@@ -113,7 +113,12 @@ export async function initCheckout() {
 
   const existingBilling = await getBillingData();
   if (existingBilling) {
-      form.cardNumber.value = existingBilling.card_number || '';
+    
+      if (existingBilling.card_number) {
+        const raw = String(existingBilling.card_number);
+        form.cardNumber.value = raw.match(/.{1,4}/g)?.join('-') || raw;
+      }
+
 
       if (existingBilling.expiry_month && existingBilling.expiry_year) {
           const month = String(existingBilling.expiry_month).padStart(2, '0');
@@ -136,7 +141,7 @@ export async function initCheckout() {
     zip: /^\d{0,10}$/,
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     phone: /^\+?\d{10,15}$/,
-    cardNumber: /^\d{12,20}$/,
+    cardNumber: /^\d{4}-\d{4}-\d{4}-\d{4}$/,
     expiry: /^(0[1-9]|1[0-2])\/\d{2}$/,
     cvc: /^\d{3,4}$/
   };
@@ -211,6 +216,16 @@ export async function initCheckout() {
     }
   });
 
+  form.querySelector('#cardNumber').addEventListener('input', (e) => {
+  let value = e.target.value.replace(/\D/g, '');
+
+  if (value.length > 16) value = value.slice(0, 16);
+
+  value = value.match(/.{1,4}/g)?.join('-') || value;
+
+  e.target.value = value;
+});
+
   form.querySelector('#expiry').addEventListener('input', (e) => {
   let value = e.target.value.replace(/\D/g, '');
   
@@ -283,7 +298,7 @@ form.addEventListener('submit', async (e) => {
   };
 
   const billingData = {
-    cardNumber: allFormData.cardNumber,
+    cardNumber: allFormData.cardNumber.replace(/-/g, ''),
     expiry: allFormData.expiry,
     cvc: allFormData.cvc
   };

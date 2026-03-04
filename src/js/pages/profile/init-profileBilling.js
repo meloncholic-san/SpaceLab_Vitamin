@@ -13,7 +13,11 @@ export async function initProfileBilling() {
 
   const billing = await getBillingData();
   if (billing) {
-    form.cardNumber.value = billing.card_number || "";
+
+    if (billing.card_number) {
+      const raw = String(billing.card_number).replace(/\D/g, "");
+      form.cardNumber.value = raw.match(/.{1,4}/g)?.join("-") || raw;
+    }
 
     if (billing.expiry_month && billing.expiry_year) {
       const month = String(billing.expiry_month).padStart(2, '0');
@@ -51,13 +55,17 @@ export async function initProfileBilling() {
   }
 
   function validateField(field) {
-    const value = field.value.trim();
-    
+    let value = field.value.trim();
+
     let fieldKey = field.id;
     if (fieldKey === 'billing-cardNumber') fieldKey = 'cardNumber';
     if (fieldKey === 'billing-expiry') fieldKey = 'expiry';
     if (fieldKey === 'billing-cvc') fieldKey = 'cvc';
-    
+
+    if (fieldKey === "cardNumber") {
+      value = value.replace(/\D/g, "");
+    }
+
     const regex = fieldsConfig[fieldKey];
 
     if (!value) {
@@ -76,6 +84,16 @@ export async function initProfileBilling() {
 
 
   form.querySelector("#billing-cardNumber")?.addEventListener("input", (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+
+    if (value.length > 16) {
+      value = value.slice(0, 16);
+    }
+
+    value = value.match(/.{1,4}/g)?.join("-") || value;
+
+    e.target.value = value;
+
     validateField(e.target);
   });
 
@@ -138,7 +156,7 @@ export async function initProfileBilling() {
 
     try {
       const result = await saveBillingData({
-        cardNumber: data.cardNumber,
+        cardNumber: data.cardNumber.replace(/\D/g, ""),
         expiry: data.expiry,
         cvc: data.cvc
       });
