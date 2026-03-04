@@ -12,7 +12,8 @@ export function initQuiz() {
   const totalSteps = steps.length;
 
   totalEl.textContent = totalSteps;
-// 🔄 Восстановление данных
+
+
     const savedData = localStorage.getItem("quizData");
     if (savedData) {
     const parsed = JSON.parse(savedData);
@@ -29,7 +30,7 @@ export function initQuiz() {
         }
     });
     }
-    
+
   function showStep(index) {
     steps.forEach(step => step.classList.remove("active"));
     steps[index].classList.add("active");
@@ -67,20 +68,17 @@ export function initQuiz() {
     }
   }
 
-  // NEXT buttons (текстовые шаги)
+
   quiz.querySelectorAll(".quiz-next").forEach(btn => {
     btn.addEventListener("click", nextStep);
   });
 
-  // BACK buttons
   quiz.querySelectorAll(".quiz-back").forEach(btn => {
     btn.addEventListener("click", prevStep);
   });
 
-  // 🔥 Авто-переход для radio
   quiz.querySelectorAll('input[type="radio"]').forEach(radio => {
     radio.addEventListener("click", () => {
-      // Небольшая задержка чтобы пользователь увидел выбор
       setTimeout(() => {
         nextStep();
       }, 200);
@@ -88,12 +86,10 @@ export function initQuiz() {
   });
   
   quiz.querySelectorAll('input[type="text"], input[type="email"]').forEach(input => {
-  // Ищем кнопку внутри того же .quiz__answer-input
   const button = input.closest('.quiz__answer-input')?.querySelector('.quiz-next');
   
-  if (!button) return; // если кнопка не найдена - выходим
+  if (!button) return; 
 
-  // изначально выключаем кнопку
   button.disabled = true;
 
   input.addEventListener('input', () => {
@@ -101,7 +97,6 @@ export function initQuiz() {
   });
 });
 
-  // Submit (если добавишь финальную кнопку)
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
