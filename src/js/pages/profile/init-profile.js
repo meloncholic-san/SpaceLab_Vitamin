@@ -9,7 +9,7 @@ import { initProfileSubs } from "./init-profileSubs";
 export async function initProfile() {
     const { data: { user } } = await getCurrentUser();
 
-    if (!user) return;
+    if (!user) window.location.href = new URL("login.html", window.location.href);
     initProfileSidebar();
     console.log("user", user.id)
 

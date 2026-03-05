@@ -1,0 +1,193 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.mobile-menu{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  z-index:1000;
+  pointer-events: none;
+  transform:translateX(-100%);
+  transition:.3s;
+
+    &.open{
+    transform:translateX(0);
+    pointer-events: all;
+    }
+
+    &__screen {
+    display:none;
+    padding: 40px 20px;
+    }
+
+    &__screen.active { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: calc(100% - 70px);
+    }
+
+
+    &__header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 20px;
+    border-bottom:1px solid #eee;
+    height: 70px;
+    }
+
+    &-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    &-profile-btn {
+        display: block;
+        &.hidden {
+            display: none;
+        }
+    }
+
+    &__close {
+        display: block;
+        position: relative;
+        width: 18px;
+        height: 18px;
+        caret-color: transparent;
+        cursor: pointer;
+        &.hidden {
+            display: none;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+    }
+
+    &__back {
+    display: none;
+    position: relative;
+    width: 20px;
+    height: 20px;
+            &::before {
+            content: "^";
+            position: absolute;
+            color: black;
+            font-size: 28px;
+            transform: rotate(-90deg) translate(120%, -15%) scaleX(1.8) scaleY(1);
+            }
+            &.visible {
+                display: block;
+            }
+    }
+
+
+    &__title {
+    flex: 1;
+    text-align: center;
+    font-family: variables.$font-family-main;
+    font-weight: variables.$font-weight-medium;
+    font-size: 20px;
+    }
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+        &.nbrd {
+            border: none;
+        }
+    }
+    &__item {
+    font-family: variables.$font-family-main;
+    font-weight: variables.$font-weight-medium;
+    font-size: 20px;
+    text-align: left;
+    color: black;
+        &.quiz {
+            color: #FF7D4E;
+        }
+        &.sale {
+            color: #D32D2C;
+        }
+    }
+
+    &__footer {
+        margin-top: 40px;
+    }
+
+    &__mail {
+    display: inline-block;
+    font-family: variables.$font-family-second;
+    font-weight: variables.$font-weight-regular;
+    font-size: 14px; 
+    margin-bottom: 15px;
+    opacity: 0.5;
+    color: black;
+    }
+
+    &__copyright {
+    font-family: variables.$font-family-second;
+    font-weight: variables.$font-weight-regular;
+    font-size: 12px; 
+    opacity: 0.5; 
+    }
+
+    &__quiz {
+        &-title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-regular;
+        font-size: 18px;
+        margin-bottom: 15px; 
+        margin-top: 40px;
+        text-align: center;
+        }
+        &-phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 14px; 
+        opacity: 0.5;
+        margin-bottom: 25px;
+        text-align: center;
+        }
+        &-btn {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        background-color: #FF7D4E;
+        color: white;
+        padding: 18px 0;
+        border-radius: 100px;
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-bold;
+        font-size: 16px;
+        }
+    }
+}
+
+
+
+

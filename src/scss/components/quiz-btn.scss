@@ -2,6 +2,7 @@
 @use '@scss/utils/mixins' as *;
 
 .quiz-btn {
+    display: block;
     background-color: #6E5DDC;
     font-family: "Effra", sans-serif;
     font-weight: 700;
@@ -11,13 +12,11 @@
     line-height: 1.6em;
     letter-spacing: 1.51px;
     max-width: 264px;
+    color: white;
         @include respond-to(md) {
             font-size: 16px;
             padding: 15px 30px;
             line-height: 1.3em;
             letter-spacing: 0;
         }
-    a {
-        color: white
-    }
 }

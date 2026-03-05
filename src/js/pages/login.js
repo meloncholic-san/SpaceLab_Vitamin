@@ -47,11 +47,13 @@ export async function initLoginPage() {
             email: formData.get('email'),
             password: formData.get('password'),
             });
+
+            form.reset();
+            console.log('Login submitted');
+            window.location.href = './';
         } catch (err) {
             alert(err.message);
         }
-        form.reset();
-        console.log('Login submitted');
-        window.location.href = '/';
+
     });
 }

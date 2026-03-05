@@ -1,47 +1,110 @@
-import scrollLock from 'scroll-lock';
+import scrollLock from "scroll-lock";
+import { signOut } from "../services/auth";
 
 export function initMobileMenu() {
-    const openBtn = document.querySelector(".header__menu__button-open");
-    const mobileMenu = document.querySelector(".mobile-menu");
-    const mobileLinks = document.querySelectorAll(".mobile-menu-nav__link");
 
-    if (!openBtn || !mobileMenu) return;
+    const menu = document.getElementById("mobileMenu")
+    const openBtn = document.getElementById("menuOpen")
+    const closeBtn = document.querySelector(".mobile-menu__close")
+    const profileBtn = document.querySelector(".mobile-menu-profile-btn")
+    const screens = document.querySelectorAll(".mobile-menu__screen")
+    const title = document.querySelector(".mobile-menu__title")
+    const backBtn = document.querySelector(".mobile-menu__back")
+
+    let history = []
+
+    if(!menu || !openBtn) return
 
 
-    openBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active");
-        openBtn.classList.toggle("open");
-
-        if (mobileMenu.classList.contains("active")) {
-            scrollLock.disablePageScroll();
-        } else {
-            scrollLock.enablePageScroll();
-        }
-    });
-
-    mobileLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            mobileMenu.classList.remove("active");
-            openBtn.classList.remove("open");
-            scrollLock.enablePageScroll();
-        });
-    });
-
-    let page = window.location.pathname.split("/").pop().replace(".html", "");
-
-    if (page === "" || page === "index") {
-        page = "home";
+    function openMenu(){
+        menu.classList.add("open")
+        scrollLock.disablePageScroll()
     }
 
-    mobileLinks.forEach(link => {
-        if (link.dataset.page === page) {
-            link.classList.add("active");
+    function closeMenu(){
+        menu.classList.remove("open")
+        scrollLock.enablePageScroll()
+
+        history = []
+
+        screens.forEach(s => s.classList.remove("active"))
+        document.querySelector('[data-screen="main"]').classList.add("active")
+
+        title.textContent = ""
+        backBtn.classList.remove("visible")
+    }
+
+    openBtn.addEventListener("click", openMenu)
+    closeBtn.addEventListener("click", closeMenu)
+
+
+    function openScreen(name){
+
+        const current = document.querySelector(".mobile-menu__screen.active")
+
+        history.push(current.dataset.screen)
+
+        screens.forEach(s => s.classList.remove("active"))
+
+        const next = document.querySelector(`[data-screen="${name}"]`)
+
+        next.classList.add("active")
+
+        title.textContent = name.charAt(0).toUpperCase() + name.slice(1)
+
+        backBtn.classList.add("visible");
+        closeBtn.classList.add('hidden');
+        profileBtn.classList.add('hidden');
+    }
+
+
+    document.querySelectorAll("[data-open]").forEach(btn => {
+
+        btn.addEventListener("click", () => {
+            openScreen(btn.dataset.open)
+        })
+
+    })
+
+    profileBtn?.addEventListener("click", () => {
+        openScreen("profile")
+    })
+
+    backBtn.addEventListener("click", () => {
+
+        const prev = history.pop()
+
+        if(!prev) return
+
+        screens.forEach(s => s.classList.remove("active"))
+
+        document.querySelector(`[data-screen="${prev}"]`).classList.add("active")
+
+        title.textContent = prev === "main" ? "" : prev
+
+        if(prev === "main"){
+            backBtn.classList.remove("visible")
+            closeBtn.classList.remove('hidden')
+            profileBtn.classList.remove('hidden');
+
         }
-    });
-    
+
+    })
+
+    const signoutBtn = document.querySelector('.mobile-menu__item.logout');
+    if (signoutBtn) {
+        signoutBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await signOut();
+            window.location.href = '/';
+        });
+    }
+
     window.addEventListener("resize", () => {
-        mobileMenu.classList.remove("active");
-        openBtn.classList.remove("open");
-        scrollLock.enablePageScroll();
+
+        if(menu.classList.contains("open")){
+            closeMenu()
+        }
+
     })
 }

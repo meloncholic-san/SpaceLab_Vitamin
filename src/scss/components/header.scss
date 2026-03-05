@@ -6,15 +6,30 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 400;
+        &.scroll {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            // background: white;
+            // box-shadow: 0 1px 0 rgba(0,0,0,0.05), 0 8px 20px rgba(0,0,0,0.04);
+        }
+
+        &.product-header {
+            &.scroll {
+                // @include respond-to(md) {
+                background-color: rgb(107, 94, 187, 0.85);
+                // }
+            }
+        }
     &__wrapper {
-        padding: 30px 30px 0 35px;
+        padding: 30px 30px 30px 35px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
             @include respond-to(md) {
-            padding: 16px 20px 0 24px;
+            padding: 16px 20px 16px 24px;
             }
     }
     &__logo {
@@ -75,6 +90,7 @@
             }
         }
         &-quiz-btn {
+            display: block;
             font-family: variables.$font-family-main;
             font-weight: variables.$font-weight-bold;
             font-size: 16px;

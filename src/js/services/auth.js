@@ -79,21 +79,22 @@ export async function signIn({ email, password }) {
     });
 
     console.log('Sign in result:', { data, error });
-
+  
     if (error) {
+
       if (error.message.includes('Email not confirmed')) {
-        throw new Error({
-          type: 'EMAIL_NOT_CONFIRMED',
-          message: 'Please confirm your email first. Check your inbox.',
-          email: email
-        });
+        const errObj = new Error('Please confirm your email first. Check your inbox.');
+        errObj.type = 'EMAIL_NOT_CONFIRMED';
+        errObj.email = email;
+        throw errObj;
       }
+
       if (error.message.includes('Invalid login credentials')) {
-        throw new Error({
-          type: 'INVALID_CREDENTIALS',
-          message: 'Wrong email or password'
-        });
+        const errObj = new Error('Wrong email or password');
+        errObj.type = 'INVALID_CREDENTIALS';
+        throw errObj;
       }
+
       throw error;
     }
 
