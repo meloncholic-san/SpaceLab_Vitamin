@@ -24,8 +24,6 @@
                     align-items: center;
                     margin-bottom: 0;
                 }
-            &-content {
-            }
         }
         &__link {
             display: block;
@@ -219,9 +217,6 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 10px 0;
-            &-inner {
-                
-            }
         }
 
         &__footer {

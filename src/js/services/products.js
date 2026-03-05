@@ -70,3 +70,13 @@ export async function getAdvertisementProducts({category,excludeId,limit = 4}) {
 
   return result.slice(0, limit);
 }
+
+
+export async function getRandomProducts({ limit = 4 }) {
+  const { data, error } = await supabase
+    .rpc('get_random_products', { limit_count: limit });
+
+  if (error) throw error;
+
+  return data;
+}

@@ -8,6 +8,7 @@ import { wholesaleFileUpload } from './utils/wholesale-file-upload';
 import { initCart } from './components/init-cart';
 import { initProfileButton } from './utils/init-profile-button';
 
+
 // import { initProduct } from './pages/product';
 // import { initMain } from './pages/main';
 // import { initProducts } from './pages/products';
@@ -65,5 +66,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     initQuiz();
   }
 
-  
+  if (page === "personal-pack") {
+    const { initPersonalPack } = await import('./pages/personal-pack/init-personal-pack');
+    initPersonalPack();
+  }
+
 });

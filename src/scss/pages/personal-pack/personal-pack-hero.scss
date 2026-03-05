@@ -1,0 +1,46 @@
+@use "@scss/utils/variables";
+@use '@scss/utils/mixins' as *;
+
+.personal-pack-hero {
+    &__wrapper {
+        padding: 180px 202px 24px;
+            @include respond-to(md) {
+                padding: 120px 20px 0px;
+            }
+    }
+    &__title {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 50px;
+        max-width: 682px;
+        margin-bottom: 60px;
+            @include respond-to(md) {
+                font-size: 24px;
+                max-width: 227px;
+                margin-bottom: 30px;
+            }
+            @include respond-to(uxs) {
+                max-width: 172px;
+            }
+    }
+    &__bold {
+        font-family: variables.$font-family-main;
+        font-weight: variables.$font-weight-medium;
+        font-size: 26px;
+        margin-bottom: 25px;
+            @include respond-to(md) {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+    }
+    &__phrase {
+        font-family: variables.$font-family-second;
+        font-weight: variables.$font-weight-regular;
+        font-size: 18px;
+        max-width: 919px;
+            @include respond-to(md) {
+                font-size: 14px;
+                max-width: 333px;
+            }
+    }
+}

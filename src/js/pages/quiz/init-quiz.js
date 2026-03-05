@@ -107,5 +107,7 @@ export function initQuiz() {
     localStorage.setItem("quizData", JSON.stringify(data));
 
     console.log("Quiz result:", data);
+
+    window.location.href = "./personal-pack.html";
   });
 }
