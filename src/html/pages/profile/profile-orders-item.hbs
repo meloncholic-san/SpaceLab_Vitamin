@@ -2,7 +2,7 @@
     <div class="profile-order-item__header">
         <div class="profile-order-item__header-content">
             <p class="profile-order-item__date">{{orderDate}} <span class="profile-order-item__date-gap">•</span> <span class="profile-order-item__date-mobile">{{status}}</span></p>
-            <a class="profile-order-item__number" href="/checkout?order={{orderId}}">No {{orderNumber}}</a>
+            <a class="profile-order-item__number" href="./checkout?order={{orderId}}">No {{orderNumber}}</a>
         </div>
         <p class="profile-order-item__status">{{status}}</p>
         <button class="profile-order-item__opener-arrow"></button>
@@ -11,7 +11,7 @@
     <div class="profile-order-item__table">
         {{#each items}}
         <div class="profile-order-item__row">
-            <a href="/product?id={{product_id}}" class="profile-order-item__link" style="color: black;">
+            <a href="./product?id={{product_id}}" class="profile-order-item__link" style="color: black;">
                 <div class="profile-order-item__image-wrapper {{categoryClass}}">
                     <img
                     class="profile-order-item__image"

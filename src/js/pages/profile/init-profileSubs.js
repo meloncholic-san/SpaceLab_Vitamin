@@ -41,7 +41,7 @@ function renderSubscriptions(subscriptions, container) {
 
     const processedItems = subscriptions.map(sub => {
         const result = {
-            id: sub.product_id,
+            product_id: sub.product_id,
             subscriptionId: sub.id,
             title: sub.title,
             image: sub.image,
@@ -67,6 +67,7 @@ function renderSubscriptions(subscriptions, container) {
 async function refreshSubscriptions(userId, container) {
     try {
         const subscriptions = await getSubscriptionsByUserId(userId);
+        console.log(subscriptions)
         renderSubscriptions(subscriptions, container);
 
         return subscriptions;
