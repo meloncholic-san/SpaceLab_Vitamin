@@ -1,0 +1,1 @@
+import{T as e}from"./app-F0NVCmJo.js";function n(o,t,s=3e3){const a={text:o,duration:s,close:!0,gravity:"top",position:"center",stopOnFocus:!0,className:`custom-toast ${t}`};e(a).showToast()}export{n as s};
