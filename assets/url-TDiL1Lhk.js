@@ -1,0 +1,1 @@
+function s(e){return new URLSearchParams(window.location.search).get(e)}function t(e,a){const r=new URL(window.location.href);a==="all"||!a?r.searchParams.delete(e):r.searchParams.set(e,a),history.pushState({},"",r)}export{s as g,t as s};

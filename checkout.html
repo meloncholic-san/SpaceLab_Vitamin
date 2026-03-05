@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/app-DczORQxc.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/app-BSAY16Xr.css">
+  <script type="module" crossorigin src="./assets/app-C_L0DxJH.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/app-D9SaPKmW.css">
 </head>
 <body data-page="checkout">
 
@@ -68,13 +68,6 @@
                         </div>
     
                         <div class="checkout-form__field-wrapper">
-                            <div class="checkout-form__field">
-                                <label for="zip">ZIP</label>
-                                <input id="zip" name="zip" type="text" placeholder="ZIP / Postal Code" />
-                                <span class="form__error form__error_required">Required</span>
-                                <span class="form__error form__error_pattern">You can write a maximum of 10 characters</span>
-    
-                            </div>
                             <div class="checkout-form__field state">
                                 <label for="state">State</label>
                                 <span class="checkout-form__field state-wrapper">
@@ -83,6 +76,14 @@
                                     </select>
                                 </span>
                                 <span class="form__error form__error_required">Please select State/Province</span>
+                            </div>
+    
+                            <div class="checkout-form__field">
+                                <label for="zip">ZIP</label>
+                                <input id="zip" name="zip" type="text" placeholder="ZIP / Postal Code" />
+                                <span class="form__error form__error_required">Required</span>
+                                <span class="form__error form__error_pattern">You can write a maximum of 10 characters</span>
+    
                             </div>
                         </div>
     
@@ -110,24 +111,24 @@
                     <div class="checkout-form__fields">
                         <div class="checkout-form__field">
                             <label for="cardNumber">Card Number</label>
-                            <input id="cardNumber" type="text" placeholder="Card Number" name="cardNumber" />
+                            <input id="cardNumber" maxlength="19" type="text" placeholder="Card Number" name="cardNumber" />
                             <span class="form__error form__error_required">Required</span>
                             <span class="form__error form__error_pattern">Card numbers must contain between 12 and 20 numerical characters.</span>
                         </div>
     
                         <div class="checkout-form__field-wrapper">
-                            <div class="checkout-form__field">
-                                <label for="expiry">Expiration</label>
-                                <input id="expiry" type="text" placeholder="MM/YY"  name="expiry" />
-                                <span class="form__error form__error_required">Required</span>
-                                <span class="form__error form__error_pattern">Please enter numbers only</span>
-                            </div>
-    
-                            <div class="checkout-form__field">
+                            <div class="checkout-form__field small">
                                 <label for="cvc">CVC</label>
                                 <input id="cvc" type="text" placeholder="CVC" name="cvc" />
                                 <span class="form__error form__error_required">Required</span>
                                 <span class="form__error form__error_pattern">Please enter valid expire date</span>
+                            </div>
+    
+                            <div class="checkout-form__field small">
+                                <label for="expiry">Expiration</label>
+                                <input id="expiry" type="text" placeholder="MM/YY"  name="expiry" />
+                                <span class="form__error form__error_required">Required</span>
+                                <span class="form__error form__error_pattern">Please enter numbers only</span>
                             </div>
                         </div>
     

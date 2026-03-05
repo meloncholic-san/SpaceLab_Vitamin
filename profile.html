@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/app-DczORQxc.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/app-BSAY16Xr.css">
+  <script type="module" crossorigin src="./assets/app-C_L0DxJH.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/app-D9SaPKmW.css">
 </head>
 <body data-page="profile">
 
@@ -17,7 +17,7 @@
   <header class="header " data-scroll-lock-fill-gap>
       <div class="header__wrapper">
   
-          <div class="header__mobile-menu">
+          <div class="header__mobile-menu" id="menuOpen">
   
           </div>
           
@@ -60,6 +60,98 @@
           </div>
   
       </div>
+  </div>  <div class="mobile-menu" id="mobileMenu">
+  
+    <div class="mobile-menu__header">
+      <button class="mobile-menu__close">
+      </button>
+      <button class="mobile-menu__back">
+      </button>
+  
+      <span class="mobile-menu__title"></span>
+  
+      <button class="mobile-menu-profile-btn" type="button"><svg class="mobile-menu-icon"><use href="#icon-vitamin-profile"></use></svg></button>
+  
+    </div>
+  
+  
+    <div class="mobile-menu__screen active" data-screen="main">
+      <div class="mobile-menu__list">
+          <button class="mobile-menu__item" data-open="shop">
+          Shop
+          </button>
+  
+          <button class="mobile-menu__item" data-open="information">
+          Information
+          </button>
+  
+          <a href="./quiz.html" class="mobile-menu__item quiz">
+          Take the quiz
+          </a>
+      </div>
+  
+  
+      <div class="mobile-menu__footer">
+        <a class="mobile-menu__mail" href="mailto:support@medstogo.com">support@medstogo.com</a>
+        <p class="mobile-menu__copyright">© 2020 Vitamins.com / All rights reserved</p>
+      </div>
+  
+    </div>
+  
+  
+  
+    <div class="mobile-menu__screen" data-screen="shop">
+  
+      <div class="mobile-menu__list"> 
+          <a class="mobile-menu__item" href="./products">All categories</a>
+          <a class="mobile-menu__item" href="./products?category=Vitamins+%26+Dietary+Supplements">Vitamins & Dietary Supplements</a>
+          <a class="mobile-menu__item" href="./products?category=Weight+Loss">Weight Loss</a>
+          <a class="mobile-menu__item" href="./products?category=Minerals">Minerals</a>
+          <a class="mobile-menu__item" href="./products?category=Antioxidants">Antioxidants</a>
+          <a class="mobile-menu__item" href="./products?category=Probiotics">Probiotics</a>
+          <a class="mobile-menu__item" href="./products?category=Pain+Relief">Pain Relief</a>
+          <a class="mobile-menu__item" href="./products?category=Prenatal+Vitamins">Prenatal Vitamins</a>
+          <a class="mobile-menu__item sale" href="./products?category=sale">Sale%</a>
+  
+      </div>
+  
+      <div class="mobile-menu__quiz-block">
+        <p class="mobile-menu__quiz-title">Don't know what vitamins your body needs?</p>
+        <p class="mobile-menu__quiz-phrase">Answer a few simple questions and automaticallyget a personalazed list of vitamins in minutes</p>
+        <a href="./quiz.html" class="mobile-menu__quiz-btn">Take the quiz</a>
+      </div>
+  
+    </div>
+  
+  
+  
+    <div class="mobile-menu__screen" data-screen="information">
+  
+      <div class="mobile-menu__list nbrd">  
+          <a class="mobile-menu__item"  href="./subscription.html">Subscription Cycle & Billing</a>
+          <a class="mobile-menu__item"  href="./term-of-use.html">Terms & Conditions</a>
+          <a class="mobile-menu__item"  href="./privacy.html">Privacy Policy</a>
+          <a class="mobile-menu__item"  href="./shipping.html">Shipping & Delivery</a>
+          <a class="mobile-menu__item"  href="./returns.html">Return Policy</a> 
+      </div>
+  
+    </div>
+  
+  
+  
+    <div class="mobile-menu__screen" data-screen="profile">
+  
+      <div class="mobile-menu__list nbrd">
+          <a href="./profile.html?tab=subscriptions" class="mobile-menu__item" href="#">Subscriptions</a>
+          <a href="./profile.html?tab=orders" class="mobile-menu__item" href="#">Orders</a>
+          <a href="./profile.html?tab=overview" class="mobile-menu__item" href="#">Account Overview</a>
+          <a href="./profile.html?tab=billing" class="mobile-menu__item" href="#">Payment methods</a>
+          <a href="./profile.html?tab=password" class="mobile-menu__item" href="#">Change Password</a>
+          <a class="mobile-menu__item sale logout" href="#">Sign Out</a>
+      </div>
+  
+    </div>
+  
   </div>  
   <div class="profile__wrapper">
      <aside class="profile-sidebar">
@@ -116,7 +208,7 @@
 
       <section class="profile__section overview" id="section-overview">
         
-                    <form class="checkout-form form" id="checkout-form" novalidate>
+                    <form class="checkout-form profile-overview-form" id="checkout-form" novalidate>
                     <div class="profile-overview-form__header">
                         <h2 class="profile__section-title overview">Account Overview</h2>
                         <p class="profile__section-customer"></p>
@@ -236,6 +328,7 @@
                         
         
         
+                        <div class="profile-billing__form__field-wrapper">
                             <div class="profile-billing__field number">
                                 <label for="billing-card-number" class="profile-billing__label">
                                     Card Number
@@ -243,7 +336,8 @@
                                 <input id="billing-cardNumber" 
                                        class="profile-billing__input" 
                                        type="text" 
-                                       placeholder="Card Number" 
+                                       placeholder="Card Number"
+                                       maxlength="19" 
                                        name="cardNumber" />
                                 <span class="profile-billing__error profile-billing__error--required">
                                     Required
@@ -253,8 +347,7 @@
                                 </span>
                             </div>
         
-        
-                
+                        <div class="profile-billing__form__fields">
                             <div class="profile-billing__field expiry">
                                 <label for="billing-expiry" class="profile-billing__label">
                                     Expiration
@@ -271,6 +364,7 @@
                                     Please enter valid expiry date
                                 </span>
                             </div>
+        
         
         
                             <div class="profile-billing__field cvc">
@@ -290,6 +384,9 @@
                                 </span>
                             </div>
         
+        
+                            </div>
+                        </div>
         
         
                     </div>
