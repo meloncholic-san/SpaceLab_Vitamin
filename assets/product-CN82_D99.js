@@ -1,4 +1,4 @@
-import{H as f,a as b,g as x,u as k,T as l}from"./app-DWMtlqGX.js";import{a as C,b as P,r as S}from"./render-products-catalogue-DfAb5pno.js";import{g as w}from"./url-TDiL1Lhk.js";const q=`<section class="product">\r
+import{H as f,a as b,g as x,u as k,T as l}from"./app-DHQXSEZd.js";import{a as C,b as P,r as S}from"./render-products-catalogue-C6XoDB2F.js";import{g as w}from"./url-TDiL1Lhk.js";const q=`<section class="product">\r
     <div class="product__wrapper">\r
         <div class="product__image-wrapper {{categoryClass}}">\r
             <img\r
