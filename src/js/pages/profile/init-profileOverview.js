@@ -4,9 +4,9 @@ import { showToast } from "../../components/show-toast";
 import { State } from "country-state-city";
 import { getWholesaleDocumentUrl, uploadWholesaleDocument } from "../../utils/profile-file-upload";
 import { supabase } from "../../api/supabase";
+import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js/max";
 
 export async function initProfileOverview() {
-
   const form = document.querySelector(".checkout-form");
   if (!form) return;
 
@@ -17,7 +17,7 @@ export async function initProfileOverview() {
   const fileBtn = form.querySelector(".profile-overview__document-btn");
   const fileNameEl = form.querySelector(".profile-overview__document-document-filename");
   const fileField = fileInput?.closest(".checkout-form__field");
-  
+
   let fileLink = document.querySelector(".profile-overview__document-link");
   if (!fileLink && fileField) {
     fileLink = document.createElement('a');
@@ -28,7 +28,6 @@ export async function initProfileOverview() {
     fileField.appendChild(fileLink);
   }
 
-
   if (stateSelect) {
     State.getStatesOfCountry("US").forEach(state => {
       const option = document.createElement("option");
@@ -38,9 +37,7 @@ export async function initProfileOverview() {
     });
   }
 
-
   const shipping = await getShippingData();
-
   if (shipping) {
     form.firstName.value = shipping.first_name || "";
     form.lastName.value = shipping.last_name || "";
@@ -50,22 +47,26 @@ export async function initProfileOverview() {
     form.state.value = shipping.state || "";
     form.zip.value = shipping.zip || "";
     form.email.value = shipping.email || "";
-    form.phone.value = shipping.phone || "";
+
+    if (shipping.phone) {
+      const formatter = new AsYouType();
+      let phoneRaw = shipping.phone;
+      if (!phoneRaw.startsWith('+')) phoneRaw = '+' + phoneRaw.replace(/\D/g, '');
+      form.phone.value = formatter.input(phoneRaw);
+    } else {
+      form.phone.value = '';
+    }
   }
-
-
 
   const { data: { user } } = await getCurrentUser();
   const role = user?.user_metadata?.role;
-
   const roleEl = document.querySelector(".profile__section-customer");
 
   if (role === "wholesale") {
     roleEl.textContent = "Wholesale Customer";
     if (fileField) fileField.style.display = "block";
-    
+
     const { fileUrl, fileName } = await getWholesaleDocumentUrl(user.id);
-    console.log(fileUrl, fileName)
     if (fileUrl && fileName) {
       fileNameEl.textContent = fileName;
       fileNameEl.classList.add('show');
@@ -82,114 +83,28 @@ export async function initProfileOverview() {
     if (fileField) fileField.style.display = "none";
   }
 
-
   if (role === "wholesale" && fileBtn && fileInput) {
-
-    fileBtn.addEventListener("click", (e) => {
+    fileBtn.addEventListener("click", e => {
       e.preventDefault();
       fileInput.click();
     });
 
-    fileInput.addEventListener("change", async () => {
-
+    fileInput.addEventListener("change", () => {
       const file = fileInput.files[0];
       if (!file) return;
 
-      const allowedTypes = [
-        "image/jpeg",
-        "image/png", 
-        "application/pdf"
-      ];
-
-      if (!allowedTypes.includes(file.type)) {
-        showToast("Only PDF, JPG or PNG allowed", "error");
-        fileInput.value = "";
-        return;
-      }
 
       fileNameEl.textContent = file.name;
       fileNameEl.classList.add('show');
       fileField.classList.add('has-file');
-      
-      if (fileLink) {
-        fileLink.style.display = 'none';
-      }
+      if (fileLink) fileLink.style.display = 'none';
 
-      fileBtn.disabled = true;
-      const originalBtnText = fileBtn.textContent;
-      fileBtn.textContent = 'Uploading...';
-
-      try {
-        await uploadWholesaleDocument(file);
-
-        const { data: { session } } = await supabase.auth.getSession();
-        
-        if (!session) {
-          throw new Error('No active session');
-        }
-
-        const response = await fetch(
-          'https://qdqbtiofhnjnfvortswl.supabase.co/functions/v1/init-wholesale-user',
-          {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${session.access_token}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error('Edge function error:', errorText);
-          throw new Error('Failed to process document');
-        }
-
-        await response.json();
-
-        const { fileUrl, fileName } = await getWholesaleDocumentUrl(user.id);
-        
-        if (fileUrl && fileName) {
-          fileNameEl.textContent = fileName;
-          
-          if (fileLink) {
-            fileLink.href = fileUrl;
-            fileLink.style.display = 'inline';
-            fileLink.textContent = 'View Document';
-          }
-        }
-
-        showToast("Document uploaded successfully", "success");
-
-      } catch (error) {
-        console.error('Upload failed:', error);
-        showToast("Upload failed: " + error.message, "error");
-        
-        const { fileUrl, fileName } = await getWholesaleDocumentUrl(user.id);
-        
-        if (fileUrl && fileName) {
-          fileNameEl.textContent = fileName;
-          if (fileLink) {
-            fileLink.href = fileUrl;
-            fileLink.style.display = 'inline';
-          }
-        } else {
-          fileNameEl.classList.remove('show');
-          fileField.classList.remove('has-file');
-          if (fileLink) {
-            fileLink.style.display = 'none';
-          }
-        }
-        
-        fileInput.value = "";
-        
-      } finally {
-        fileBtn.disabled = false;
-        fileBtn.textContent = originalBtnText;
+      if (saveBtn) {
+        saveBtn.disabled = false;
+        saveBtn.classList.remove('disabled');
       }
     });
   }
-
 
   const fieldsConfig = {
     firstName: /^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\s'-]{2,}$/,
@@ -198,7 +113,7 @@ export async function initProfileOverview() {
     city: /^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\s'-]{2,}$/,
     zip: /^\d{1,10}$/,
     email: /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-    phone: /^\+?\d{10,15}$/
+    phone: /^\+?[0-9\s()-]{10,20}$/
   };
 
   function showError(field, type) {
@@ -230,6 +145,20 @@ export async function initProfileOverview() {
       return false;
     }
 
+    if (field.id === 'phone') {
+      if (!regex.test(value)) {
+        showError(field, 'pattern');
+        return false;
+      }
+      const phoneNumber = parsePhoneNumberFromString(value);
+      if (!phoneNumber || !phoneNumber.isPossible()) {
+        showError(field, 'pattern');
+        return false;
+      }
+      clearError(field);
+      return true;
+    }
+
     if (regex && !regex.test(value)) {
       showError(field, "pattern");
       return false;
@@ -237,6 +166,19 @@ export async function initProfileOverview() {
 
     clearError(field);
     return true;
+  }
+
+  const phoneInput = form.querySelector("#phone");
+  if (phoneInput) {
+    phoneInput.addEventListener("input", e => {
+      let value = e.target.value.replace(/[^\d+]/g, '');
+      if (!value.startsWith('+')) value = '+' + value.replace(/\D/g, '');
+      let digits = value.replace(/\D/g, '');
+      if (digits.length > 13) digits = digits.slice(0, 13);
+      value = '+' + digits;
+      const formatter = new AsYouType();
+      e.target.value = formatter.input(value);
+    });
   }
 
   form.querySelectorAll("input").forEach(input => {
@@ -250,7 +192,6 @@ export async function initProfileOverview() {
     else clearError(e.target);
   });
 
-
   function getFormData() {
     return Object.fromEntries(new FormData(form).entries());
   }
@@ -262,18 +203,12 @@ export async function initProfileOverview() {
     const changed = JSON.stringify(getFormData()) !== JSON.stringify(initialData);
     if (saveBtn) {
       saveBtn.disabled = !changed;
-      if (!changed) {
-        saveBtn.classList.add('disabled');
-      } else {
-        saveBtn.classList.remove('disabled');
-      }
-    } 
+      saveBtn.classList.toggle('disabled', !changed);
+    }
   });
-
 
   form.addEventListener("submit", async e => {
     e.preventDefault();
-
     let valid = true;
 
     Object.keys(fieldsConfig).forEach(id => {
@@ -291,6 +226,45 @@ export async function initProfileOverview() {
     const data = getFormData();
 
     try {
+      let uploadedFileUrl = null;
+      let uploadedFileName = null;
+
+      if (role === "wholesale" && fileInput?.files[0]) {
+        const file = fileInput.files[0];
+        const allowedTypes = ["image/jpeg","image/png","application/pdf"];
+        if (!allowedTypes.includes(file.type)) {
+          showToast("Only PDF, JPG or PNG allowed", "error");
+          return;
+        }
+
+        fileBtn.disabled = true;
+        const originalBtnText = fileBtn.textContent;
+        fileBtn.textContent = 'Uploading...';
+
+        await uploadWholesaleDocument(file);
+
+        const { fileUrl, fileName } = await getWholesaleDocumentUrl(user.id);
+        if (fileUrl && fileName) {
+          uploadedFileUrl = fileUrl;
+          uploadedFileName = fileName;
+
+          // Обновляем отображение
+          fileNameEl.textContent = uploadedFileName;
+          fileNameEl.classList.add('show');
+          fileField.classList.add('has-file');
+
+          if (fileLink) {
+            fileLink.href = uploadedFileUrl;
+            fileLink.style.display = 'inline';
+            fileLink.textContent = 'View Document';
+          }
+        }
+
+        fileBtn.disabled = false;
+        fileBtn.textContent = originalBtnText;
+        showToast("Document uploaded successfully", "success");
+      }
+
       await saveShippingData({
         firstName: data.firstName,
         lastName: data.lastName,
@@ -303,14 +277,25 @@ export async function initProfileOverview() {
         phone: data.phone
       });
 
-      showToast("Changes successfully saved", "success");
-
       initialData = getFormData();
       if (saveBtn) saveBtn.disabled = true;
 
+      if (uploadedFileName) {
+        fileNameEl.textContent = uploadedFileName;
+        fileNameEl.classList.add('show');
+        fileField.classList.add('has-file');
+        if (fileLink) {
+          fileLink.href = uploadedFileUrl;
+          fileLink.style.display = 'inline';
+          fileLink.textContent = 'View Document';
+        }
+      }
+
+      showToast("Changes successfully saved", "success");
+
     } catch (err) {
       console.error('Save error:', err);
-      showToast("Failed to update profile", "error");
+      showToast("Failed to update profile: " + err.message, "error");
     }
   });
 }

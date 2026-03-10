@@ -3,6 +3,8 @@ import { initMobileMenu } from "./init-mobileMenu";
 
 export function initHeader() {
     const header = document.querySelector(".header")
+    if(!header) return;
+    
     const links = document.querySelectorAll(".header__nav__link");
 
     let page = window.location.pathname.split("/").pop().replace(".html", "");

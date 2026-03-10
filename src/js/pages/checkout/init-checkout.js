@@ -5,7 +5,7 @@ import { saveBillingData, saveShippingData, getShippingData, getBillingData } fr
 import { createSubscriptionsFromOrder } from "../../services/subscriptions";
 import { renderCheckoutProducts } from "./render-checkout-products"
 import { State } from 'country-state-city';
-
+import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js/max";
 
 
 function updateTotals(items) {
@@ -106,8 +106,16 @@ export async function initCheckout() {
       form.city.value = existingShipping.city || '';
       form.state.value = existingShipping.state || '';
       form.zip.value = existingShipping.zip || '';
-      form.phone.value = existingShipping.phone || '';
       form.email.value = existingShipping.email || '';
+
+      if (existingShipping.phone) {
+          const formatter = new AsYouType();
+          let phoneRaw = existingShipping.phone;
+          if (!phoneRaw.startsWith('+')) phoneRaw = '+' + phoneRaw.replace(/\D/g, '');
+          form.phone.value = formatter.input(phoneRaw);
+      } else {
+          form.phone.value = '';
+      }
   }
 
 
@@ -140,7 +148,7 @@ export async function initCheckout() {
     city: /^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\s'-]{2,}$/,
     zip: /^\d{0,10}$/,
     email: /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-    phone: /^\+?\d{10,15}$/,
+    phone: /^\+[0-9\s\-()]{8,20}$/,
     cardNumber: /^\d{4}-\d{4}-\d{4}-\d{4}$/,
     expiry: /^(0[1-9]|1[0-2])\/\d{2}$/,
     cvc: /^\d{3,4}$/
@@ -181,14 +189,46 @@ export async function initCheckout() {
     field.classList.remove('invalid');
   }
 
+  function handlePhoneInput(e) {
+    let value = e.target.value;
+
+    value = value.replace(/[^\d+]/g, '');
+
+    if (!value.startsWith('+')) value = '+' + value.replace(/\D/g, '');
+
+    let digits = value.replace(/\D/g, '');
+    if (digits.length > 13) digits = digits.slice(0, 13);
+    value = '+' + digits;
+
+    const formatter = new AsYouType();
+    e.target.value = formatter.input(value);
+  }
+
   function validateField(field) {
-    const value = field.value.trim();
+    let value = field.value.trim();
     const regex = fieldsConfig[field.id];
 
     if (!value) {
       showError(field, 'required');
       return false;
     }
+
+    if (field.id === 'phone') {
+      if (!regex.test(value)) {
+        showError(field, 'pattern');
+        return false;
+      }
+
+      const phoneNumber = parsePhoneNumberFromString(value);
+      if (!phoneNumber || !phoneNumber.isPossible()) {
+        showError(field, 'pattern');
+        return false;
+      }
+
+      clearError(field);
+      return true;
+    }
+
 
     if (regex && !regex.test(value)) {
       showError(field, 'pattern');
@@ -207,6 +247,12 @@ export async function initCheckout() {
       }
     });
   });
+
+  const phoneInput = form.querySelector('#phone');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', handlePhoneInput);
+  }
+
 
   form.querySelector('#state').addEventListener('change', (e) => {
     if (!e.target.value) {
@@ -285,6 +331,8 @@ form.addEventListener('submit', async (e) => {
   
   console.log('All form data:', allFormData);
 
+  const parsedPhone = parsePhoneNumberFromString(allFormData.phone);
+
   const shippingData = {
     firstName: allFormData.firstName,
     lastName: allFormData.lastName,
@@ -294,7 +342,7 @@ form.addEventListener('submit', async (e) => {
     state: allFormData.state,
     zip: allFormData.zip,
     email: allFormData.email,
-    phone: allFormData.phone
+    phone: parsedPhone ? parsedPhone.number : allFormData.phone
   };
 
   const billingData = {

@@ -66,8 +66,6 @@ export async function initProfilePassword() {
         input.addEventListener("input", validateForm);
     });
 
-    validateForm();
-
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -105,7 +103,6 @@ export async function initProfilePassword() {
 
             showToast("Password updated successfully", "success");
             form.reset();
-            validateForm();
 
         } catch (error) {
             console.error("Error:", error);

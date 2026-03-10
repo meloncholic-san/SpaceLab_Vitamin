@@ -6,6 +6,8 @@
     max-width: 364px;
         @include respond-to(md) {
             width: 300px;
+            max-width: unset;
+            width: 100%;
         }
         @include respond-to(sm) {
             width: unset;
