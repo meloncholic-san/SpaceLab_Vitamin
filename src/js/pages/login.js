@@ -1,59 +1,90 @@
-import { signIn, getCurrentSession } from "../services/auth";
+import { signIn } from "../services/auth";
+
 
 export async function initLoginPage() {
-    const form = document.getElementById('login-form');
-    
-    // const { data } = await getCurrentSession();
-    // const user = data?.session?.user;
 
-    // if (user) {
-    // window.location.href = '/';
-    // }
-    
-    function checkForm() {
-        const inputs = form.querySelectorAll('input[required]');
-        let isValid = true;
-        
-        inputs.forEach(input => {
-            if (!input.value.trim() || !input.checkValidity()) {
-                isValid = false;
-                if (input.dataset.touched) {
-                    input.closest('.login__item')?.classList.add('input-error');
-                }
-            } else {
-                input.closest('.login__item')?.classList.remove('input-error');
-            }
-        });
-        
+  const form = document.getElementById('login-form');
+  if (!form) return;
+
+  const fieldsConfig = {
+    email: /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+    password: /^.{4,}$/
+  };
+
+  function showError(field) {
+    field.closest('.login__item')?.classList.add('input-error');
+  }
+
+  function clearError(field) {
+    field.closest('.login__item')?.classList.remove('input-error');
+  }
+
+  function validateField(field) {
+
+    const value = field.value.trim();
+    const regex = fieldsConfig[field.name];
+
+    if (!value) {
+      showError(field);
+      return false;
     }
 
-    form.querySelectorAll('input').forEach(input => {
-        input.addEventListener('blur', () => {
-            input.dataset.touched = 'true';
-            checkForm();
-        });
-        
-        input.addEventListener('input', checkForm);
+    if (regex && !regex.test(value)) {
+      showError(field);
+      return false;
+    }
+
+    clearError(field);
+    return true;
+  }
+
+  function validateForm() {
+
+    let valid = true;
+
+    Object.keys(fieldsConfig).forEach(name => {
+      const field = form.querySelector(`[name="${name}"]`);
+      if (!validateField(field)) valid = false;
     });
-    
-    checkForm();
-    
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
 
-        const formData = new FormData(form);
-        try {
-            await signIn({
-            email: formData.get('email'),
-            password: formData.get('password'),
-            });
+    return valid;
+  }
 
-            form.reset();
-            console.log('Login submitted');
-            window.location.href = './';
-        } catch (err) {
-            alert(err.message);
-        }
+  form.querySelectorAll('input').forEach(input => {
 
+    input.addEventListener('blur', () => {
+      input.dataset.touched = 'true';
+      validateField(input);
     });
+
+    input.addEventListener('input', () => {
+      if (input.dataset.touched) validateField(input);
+    });
+
+  });
+
+  form.addEventListener('submit', async e => {
+
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    const formData = new FormData(form);
+
+    try {
+
+      await signIn({
+        email: formData.get('email'),
+        password: formData.get('password'),
+      });
+
+      form.reset();
+      window.location.href = './';
+
+    } catch (err) {
+      alert(err.message);
+    }
+
+  });
+
 }

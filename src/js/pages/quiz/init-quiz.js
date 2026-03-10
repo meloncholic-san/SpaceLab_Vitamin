@@ -4,7 +4,7 @@ export function initQuiz() {
 
   const form = document.getElementById("quiz-form");
   const steps = quiz.querySelectorAll(".quiz__step");
-
+  let isTransitioning = false;
   const currentEl = document.getElementById("quiz-current");
   const totalEl = document.getElementById("quiz-total");
 
@@ -13,23 +13,55 @@ export function initQuiz() {
 
   totalEl.textContent = totalSteps;
 
+  const fieldsConfig = {
+    firstName: /^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\s'-]{2,}$/,
+    email: /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
+  };
 
-    const savedData = localStorage.getItem("quizData");
-    if (savedData) {
+  const savedData = localStorage.getItem("quizData");
+
+  if (savedData) {
     const parsed = JSON.parse(savedData);
 
     Object.entries(parsed).forEach(([key, value]) => {
-        const field = form.elements[key];
-        if (!field) return;
+      const field = form.elements[key];
+      if (!field) return;
 
-        if (field.type === "radio") {
-        const radio = form.querySelector(`input[name="${key}"][value="${value}"]`);
+      if (field.type === "radio") {
+        const radio = form.querySelector(
+          `input[name="${key}"][value="${value}"]`
+        );
         if (radio) radio.checked = true;
-        } else {
+      } else {
         field.value = value;
-        }
+      }
     });
+  }
+
+  function showError(field) {
+    field
+      .closest(".quiz__answer-input")
+      ?.classList.add("input-error");
+  }
+
+  function clearError(field) {
+    field
+      .closest(".quiz__answer-input")
+      ?.classList.remove("input-error");
+  }
+
+  function validateField(field) {
+    const value = field.value.trim();
+    const regex = fieldsConfig[field.name];
+
+    if (!value || (regex && !regex.test(value))) {
+      showError(field);
+      return false;
     }
+
+    clearError(field);
+    return true;
+  }
 
   function showStep(index) {
     steps.forEach(step => step.classList.remove("active"));
@@ -44,22 +76,40 @@ export function initQuiz() {
   function validateStep(index) {
     const inputs = steps[index].querySelectorAll("input");
 
-    for (let input of inputs) {
-      if (!input.checkValidity()) {
-        input.reportValidity();
-        return false;
-      }
-    }
+    let valid = true;
 
-    return true;
+    inputs.forEach(input => {
+      if (fieldsConfig[input.name]) {
+        if (!validateField(input)) valid = false;
+      } else if (input.type === "radio") {
+        const group = steps[index].querySelectorAll(
+          `input[name="${input.name}"]`
+        );
+        const checked = [...group].some(r => r.checked);
+
+        if (!checked) {
+          group[0].reportValidity();
+          valid = false;
+        }
+      }
+    });
+
+    return valid;
   }
 
   function nextStep() {
+    if (isTransitioning) return;
     if (!validateStep(currentStep)) return;
 
+    isTransitioning = true;
+    
     if (currentStep < totalSteps - 1) {
       showStep(currentStep + 1);
     }
+
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 200);
   }
 
   function prevStep() {
@@ -67,7 +117,6 @@ export function initQuiz() {
       showStep(currentStep - 1);
     }
   }
-
 
   quiz.querySelectorAll(".quiz-next").forEach(btn => {
     btn.addEventListener("click", nextStep);
@@ -84,25 +133,31 @@ export function initQuiz() {
       }, 200);
     });
   });
-  
+
   quiz.querySelectorAll('input[type="text"], input[type="email"]').forEach(input => {
-  const button = input.closest('.quiz__answer-input')?.querySelector('.quiz-next');
-  
-  if (!button) return; 
+      const button =
+        input.closest(".quiz__answer-input")?.querySelector(
+          ".quiz-next"
+        );
 
-  button.disabled = true;
+      if (!button) return;
 
-  input.addEventListener('input', () => {
-    button.disabled = input.value.trim().length === 0;
-  });
-});
+      button.disabled = true;
 
-  form.addEventListener("submit", (e) => {
+      input.addEventListener("input", () => {
+        const valid = validateField(input);
+        button.disabled = !valid;
+      });
+    });
+
+  form.addEventListener("submit", e => {
     e.preventDefault();
 
     if (!validateStep(currentStep)) return;
 
-    const data = Object.fromEntries(new FormData(form).entries());
+    const data = Object.fromEntries(
+      new FormData(form).entries()
+    );
 
     localStorage.setItem("quizData", JSON.stringify(data));
 

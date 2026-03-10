@@ -33,13 +33,33 @@
 
     .products-hero-swiper-slide .banner {
     // filter: blur(0);
-    opacity: 1;
+    // opacity: 1;
     transition:
     filter 0.8s ease-out,
     opacity 0.8s ease-out;
     overflow: visible;
     }
 
+
+    .products-hero-swiper:not(.swiper-initialized) .banner {
+    transition: none;
+    opacity: 0.2;
+    }
+
+    .products-hero-swiper:not(.swiper-initialized)
+    .products-hero-swiper-slide:nth-child(2) .banner {
+    opacity: 1;
+    }
+
+    .products-hero-swiper.swiper-initialized
+    .products-hero-swiper-slide .banner {
+    opacity: 0.2;
+    }
+
+    .products-hero-swiper.swiper-initialized
+    .products-hero-swiper-slide.swiper-slide-active .banner {
+    opacity: 1;
+    }
 
     .products-hero-swiper-slide.swiper-slide-prev .banner,
     .products-hero-swiper-slide.swiper-slide-next .banner {
@@ -169,3 +189,5 @@
 
 
 }
+
+

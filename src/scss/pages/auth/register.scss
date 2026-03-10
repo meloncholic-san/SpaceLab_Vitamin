@@ -174,7 +174,8 @@
 
             &.input-error {
                 input {
-                    border: 1px solid #FF4E4E;
+                    // border: 1px solid #FF4E4E;
+                    outline: 1px solid #FF4E4E;
                     &::placeholder {
                         color: #FF4E4E;
                         opacity: 0.7;

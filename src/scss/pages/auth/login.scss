@@ -24,6 +24,7 @@
         font-size: 26px;
         max-width: 200px;
         margin: 0 auto;
+        margin-bottom: 10px;
     }
 
     &__phrase {
@@ -54,7 +55,6 @@
             font-family: variables.$font-family-second;
             font-weight: variables.$font-weight-regular;
             font-size: 18px;
-
             &:-webkit-autofill {
                 background-color: #FAF8F6 !important;
                 -webkit-box-shadow: 0 0 0px 1000px #FAF8F6 inset !important;
@@ -71,7 +71,8 @@
 
             &.input-error {
                 input {
-                    border: 1px solid #FF4E4E;
+                    // border: 1px solid #FF4E4E;
+                    outline: 1px solid #FF4E4E;
                     &::placeholder {
                         color: #FF4E4E;
                         opacity: 0.7;
@@ -83,7 +84,11 @@
             background-color: #FAF8F6;
             position: relative;
             input {
-                max-width: 300px;
+                // max-width: 300px;
+                padding-right: 145px;
+                @include respond-to(sm) {
+                    // max-width: 190px;
+                }
             }
         }
     }

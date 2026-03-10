@@ -5,12 +5,14 @@
                 <span class="product-card__sale">-{{discount}}%</span>
             {{/if}}
 
-            <img
-                class="product-card__image"
-                src="./img/components/products/{{image}}.png"
-                alt="{{title}}"
-                loading="lazy"
-            />
+            <div class="product-card__image-wrapper">
+                <img
+                    class="product-card__image"
+                    src="./img/components/products/{{image}}.png"
+                    alt="{{title}}"
+                    loading="lazy"
+                />
+            </div>
 
             <div class="product-card__content">
                 <p class="product-card__category {{categoryClass}}">{{category}}</p>

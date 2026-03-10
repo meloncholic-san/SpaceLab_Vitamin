@@ -91,8 +91,10 @@
     border-radius: 16px;
     padding: 40px;
     max-width: 444px;
+    min-width: 444px;
     // max-height: 625px;
         @include respond-to(md) {
+            min-width: unset;
             max-width: 375px;
             background-color: #FAF8F6;
             padding: 30px 20px;

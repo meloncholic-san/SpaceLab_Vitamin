@@ -139,7 +139,7 @@ export async function initCheckout() {
     address1: /^.{5,}$/,
     city: /^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\s'-]{2,}$/,
     zip: /^\d{0,10}$/,
-    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    email: /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
     phone: /^\+?\d{10,15}$/,
     cardNumber: /^\d{4}-\d{4}-\d{4}-\d{4}$/,
     expiry: /^(0[1-9]|1[0-2])\/\d{2}$/,

@@ -28,25 +28,24 @@
             }
     }
     &__items {
-        display: flex;
+        display: grid;
+        // grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 32px;
-        justify-content: space-between;
         margin-bottom: 50px;
         .product-card {
             background-color: white;
         }
             @include respond-to(lg) {
-                // flex-direction: column;
-                max-width: 335px;
                 gap: 15px;
-                flex-wrap: wrap;
                 margin: 0 auto;
                 margin-bottom: 30px;
             }
-
+            @include respond-to(sm) {
+                grid-template-columns: repeat(2, 1fr);
+            }
             @include respond-to(uxs) {
-                flex-direction: column;
-                flex-wrap: nowrap;
+                grid-template-columns: (1fr);
             }
     }
 

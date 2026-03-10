@@ -47,7 +47,7 @@ export async function initProducts() {
 
     setButtonLoading(false, loadMoreBtn);
   }
-
+  
   await loadProducts({ reset: true });
 
   initProductsFilters(async category => {

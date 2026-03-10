@@ -8,7 +8,8 @@
     padding: 40px 30px 30px 30px;
     position: relative;
         @include respond-to(lg) {
-            width: 160px;
+            width: 100%;
+            // max-width: 160px;
             height: 279px;
             padding: 10px 15px 20px;
         }
@@ -137,13 +138,21 @@
 
     &__image {
         caret-color: transparent;
+            &-wrapper {
+                width: 100%;
+            }
             @include respond-to(lg) {
-                width: 130px;
+                width: 100%;
+                max-width: 160px;
                 height: 120px;
+                position: relative;
+                left: 50%;
+                transform: translate(-50%, 0);
             }
             @include respond-to(uxs) {
                 width: 240px;
                 height: 222px;
+                max-width: unset;
             }
     }
 }

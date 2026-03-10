@@ -108,11 +108,17 @@
             position: absolute;
             width: 9px;
             height: 9px;
+            top: 40%;
             transform: rotate(225deg);
             border-left: 2px solid #FF7D4E;
             border-top: 2px solid #FF7D4E;
             // transition: all 0.3s ease;
             }
+        }
+
+        @include respond-to(sm) {
+            max-width: 375px;
+            margin: 0 auto;
         }
     }
 
@@ -152,23 +158,25 @@
 
     max-width: 1039px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
     justify-content: center;
     margin-left: auto;
     justify-items: center;
         @include respond-to(lg) {
-        grid-template-columns: repeat(2, 160px);
-        // margin-left: unset;
         margin-right: auto;
         gap: 15px;
         }
-        @include respond-to(xxs) {
+        @include respond-to(sm) {
+        grid-template-columns: repeat(2, 1fr);
+        }
+        @include respond-to(nuxs) {
         grid-template-columns: (1fr);
         }
     }
 
     &__load-more-btn {
+        display: none;
         font-family: variables.$font-family-main;
         font-weight: variables.$font-weight-medium;
         font-size: 16px;
@@ -202,17 +210,16 @@
                 content: none;
             }
             &::before {
-                content: "• • •";                
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                display: flex;
-                gap: 6px;
-                color: #FF7D4E;
-                font-size: 24px;
-                letter-spacing: 4px;
-                animation: button-loading-dots 1.5s infinite;
+            content: "• • •";                
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 6px;
+            color: #FF7D4E;
+            font-size: 24px;
+            animation: simple-loading-dots 1s infinite linear;
             }
         }
     }

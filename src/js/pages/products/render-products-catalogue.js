@@ -27,13 +27,13 @@ export function renderProductsCardCatalogue (products, container, { append = fal
         return product;
     });
 
-    if (products.length <= 2) {
-        container.style.marginRight = 'auto';
-        container.style.marginLeft = 'auto';
-    } else {
-        container.style.marginRight = '';
-        container.style.marginLeft = '';
-    }
+    // if (products.length <= 2) {
+    //     container.style.marginRight = 'auto';
+    //     container.style.marginLeft = 'auto';
+    // } else {
+    //     container.style.marginRight = '';
+    //     container.style.marginLeft = '';
+    // }
 
     if (products.length === 0) {
         container.innerHTML = '<p style="font-size=20px color=red">No items!</p>'

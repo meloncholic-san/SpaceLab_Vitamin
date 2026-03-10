@@ -3,7 +3,9 @@
 
 .personal-pack-hero {
     &__wrapper {
-        padding: 180px 202px 24px;
+        max-width: 919px;
+        margin: 0 auto;
+        padding: 180px 0 24px;
             @include respond-to(md) {
                 padding: 120px 20px 0px;
             }
@@ -40,7 +42,7 @@
         max-width: 919px;
             @include respond-to(md) {
                 font-size: 14px;
-                max-width: 333px;
+                // max-width: 333px;
             }
     }
 }

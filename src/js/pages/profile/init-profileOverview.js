@@ -197,7 +197,7 @@ export async function initProfileOverview() {
     address1: /^.{5,}$/,
     city: /^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\s'-]{2,}$/,
     zip: /^\d{1,10}$/,
-    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    email: /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
     phone: /^\+?\d{10,15}$/
   };
 

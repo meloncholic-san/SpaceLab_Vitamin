@@ -1,6 +1,5 @@
 export function setButtonLoading(isLoading, button) {
   if (!button) return;
-
   if (isLoading && !button.dataset.originalText) {
     button.dataset.originalText = button.textContent;
   }

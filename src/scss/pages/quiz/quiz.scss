@@ -91,7 +91,7 @@
             input {
                 padding: 40px;
                 padding-right: 80px;
-                border: none;
+                border: 1px solid transparent;
                 border-radius: 16px;
                 font-family: variables.$font-family-second;
                 font-weight: variables.$font-weight-regular;
@@ -107,6 +107,15 @@
                 }
             }
 
+            &.input-error {
+                input {
+                    border: 1px solid #FF4E4E;
+                    &::placeholder {
+                        color: #FF4E4E;
+                        opacity: 0.7;
+                    }
+                }
+            }
                 @include respond-to(md) {
                     padding-top: 0;
                     label {
@@ -182,7 +191,7 @@
             font-family: variables.$font-family-second;
             font-weight: variables.$font-weight-semibold;
             font-size: 18px;
-            transition: all 0.25s ease;
+            transition: background-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         @media (hover: hover) {
@@ -192,7 +201,9 @@
         }
 
         input:checked + span {
-            border: 2px solid #8172DD;
+            // border: 2px solid transparent;
+            outline: 2px solid #8172DD;
+            outline-offset: -2px;
         }
 
             @include respond-to(md) {
@@ -239,8 +250,8 @@
                 @include respond-to(md) {
                     width: 32px;
                     height: 32px;
-                    right: 30px;
-                    bottom: 30px;
+                    right: 33px;
+                    bottom: 33px;
                 }
     }
     &-back {

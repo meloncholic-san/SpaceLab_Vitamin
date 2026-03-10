@@ -11,7 +11,7 @@ export function initProductsBanners() {
 
     const bannersSwiper = new Swiper('.products-hero-swiper', {
         modules: [Autoplay, Navigation, Pagination],
-        
+        initialSlide: 1,
         slidesPerView: 1,
         spaceBetween: 20,
         speed: 800,
@@ -36,6 +36,7 @@ export function initProductsBanners() {
         
         breakpoints: {
             320: {
+                initialSlide: 0,
                 slidesPerView: 1,
                 spaceBetween: 10,
                 loop: false,
@@ -51,13 +52,13 @@ export function initProductsBanners() {
         },
 
     
-    on: {
-        init(swiper) {
-            if (window.innerWidth >= 1024) {
-                swiper.slideTo(1, 0, false);
-            }
-        },
-    }
+    // on: {
+    //     init(swiper) {
+    //         if (window.innerWidth >= 1024) {
+    //             swiper.slideTo(1, 0, false);
+    //         }
+    //     },
+    // }
 
         
     });
